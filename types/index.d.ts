@@ -6,4 +6,5 @@ import { CampoTexto } from "./CampoTexto";
 import { CampoEstatico, TipoCampoEstatico } from "./CampoEstatico";
 import { Form } from "./Form";
 import { Button, TipoBotao } from "./Button";
-export { Col, Row, Box, Alert, TipoAlerta, CampoTexto, CampoEstatico, TipoCampoEstatico, Form, Button, TipoBotao };
+import { Combo } from "./Combo";
+export { Col, Row, Box, Alert, TipoAlerta, CampoTexto, CampoEstatico, TipoCampoEstatico, Form, Button, TipoBotao, Combo };

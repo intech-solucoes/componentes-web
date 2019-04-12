@@ -19,3 +19,5 @@ exports.Form = Form_1.Form;
 var Button_1 = require("./Button");
 exports.Button = Button_1.Button;
 exports.TipoBotao = Button_1.TipoBotao;
+var Combo_1 = require("./Combo");
+exports.Combo = Combo_1.Combo;
