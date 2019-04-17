@@ -1,6 +1,6 @@
 import React from 'react';
 interface Props {
-    children: Array<any>;
+    children: Array<any> | any;
 }
 export declare class Form extends React.Component<Props> {
     erros: Array<string>;

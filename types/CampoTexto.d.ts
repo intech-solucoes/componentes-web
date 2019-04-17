@@ -1,6 +1,7 @@
 import React from 'react';
 interface Props {
-    col?: string;
+    tamanhoLabel?: string;
+    tamanhoCampo?: string;
     obrigatorio?: boolean;
     label?: string;
     nome: string;
