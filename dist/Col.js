@@ -17,17 +17,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(require("react"));
+var classnames_1 = __importDefault(require("classnames"));
 var Col = /** @class */ (function (_super) {
     __extends(Col, _super);
     function Col() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Col.prototype.render = function () {
-        var tamanho = this.props.tamanho;
-        var className = tamanho ? "col-" + tamanho : "col";
-        if (this.props.className)
-            className += " " + this.props.className;
-        return (react_1.default.createElement("div", { className: className }, this.props.children));
+        var _a;
+        var classes = classnames_1.default({ "col": !this.props.tamanho }, (_a = {}, _a["col-" + this.props.tamanho] = this.props.tamanho, _a), this.props.className);
+        return (react_1.default.createElement("div", { className: classes }, this.props.children));
     };
     return Col;
 }(react_1.default.Component));

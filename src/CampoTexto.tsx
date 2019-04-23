@@ -3,11 +3,13 @@ import React from 'react';
 import { handleFieldChange } from "@intechprev/react-lib";
 
 import { Col, Row } from ".";
+import classNames from 'classnames';
 
 var InputMask = require('react-input-mask');
 
 interface Props {
-    col?: string;
+    tamanhoLabel?: string;
+    tamanhoCampo?: string;
     obrigatorio?: boolean;
     label?: string;
     nome: string;
@@ -26,16 +28,24 @@ interface Props {
 
 export class CampoTexto extends React.Component<Props> {
     render() {
-        var col = "col-lg-2";
+        var labelClasses = classNames({
+            "col-lg-2": !this.props.tamanhoLabel,
+            [`col-${this.props.tamanhoLabel}`]: this.props.tamanhoLabel,
+            "col-md-12": true,
+            "text-lg-right": true,
+            "col-form-label": true
+        });
 
-		if(this.props.col)
-            col = this.props.col;
+        var campoClasses = classNames({
+            "col": !this.props.tamanhoCampo,
+            [`col-${this.props.tamanhoCampo}`]: this.props.tamanhoCampo
+        });
             
         return (
             <Row formGroup>
 				
 				{this.props.label &&
-					<div className={col + " col-md-12 text-lg-right col-form-label"}>
+					<div className={labelClasses}>
 						<b>
                             <label htmlFor={this.props.nome}>
                                 {this.props.label}
@@ -45,13 +55,13 @@ export class CampoTexto extends React.Component<Props> {
 					</div>
 				}
 
-				<Col>
+				<Col className={campoClasses}>
                     {this.props.textarea ? 
-                        <textarea name={this.props.nome} id={this.props.nome} className="form-control" rows={this.props.rows} 
+                        <textarea name={this.props.nome} id={this.props.nome} className={"form-control"} rows={this.props.rows} 
                             placeholder={this.props.placeholder} value={this.props.valor} maxLength={this.props.max}
                             onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)} />
                         :
-                        <InputMask mask={this.props.mascara} name={this.props.nome} value={this.props.valor} maxLength={this.props.max} className="form-control"
+                        <InputMask mask={this.props.mascara} name={this.props.nome} value={this.props.valor} maxLength={this.props.max} className={"form-control"}
                                 type={this.props.tipo} placeholder={this.props.placeholder} id={this.props.nome} disabled={this.props.desabilitado}
                                 onChange={(e: any) => handleFieldChange(this.props.contexto, e, this.props.parent)} />
                     }

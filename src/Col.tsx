@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 
 interface Props {
     tamanho?: string;
@@ -8,14 +9,14 @@ interface Props {
 
 export class Col extends React.Component<Props> {
     render() {
-        var tamanho = this.props.tamanho;
-        var className = tamanho ? `col-${tamanho}` : "col";
-
-        if(this.props.className)
-            className += " " + this.props.className;
+        var classes = classNames(
+            {"col": !this.props.tamanho},
+            {[`col-${this.props.tamanho}`]: this.props.tamanho},
+            this.props.className
+        );
     
         return (
-            <div className={className}>
+            <div className={classes}>
                 {this.props.children}
             </div>
         )

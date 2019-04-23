@@ -5,7 +5,7 @@ import { validarEmail } from "@intechprev/react-lib";
 import { CampoTexto, Alert } from '.';
 
 interface Props {
-    children: Array<any>;
+    children: Array<any> | any;
 }
 
 export class Form extends React.Component<Props> {
@@ -27,7 +27,7 @@ export class Form extends React.Component<Props> {
 
         await this.props.children
             .filter((campo: any) => campo.type === CampoTexto) // Filtra os tipos de campo apenas para CampoTexto
-            .forEach((campo) => {
+            .forEach((campo: any) => {
 
                 // Valida cada campo
                 if(campo.props.obrigatorio)
