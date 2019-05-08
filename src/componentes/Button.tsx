@@ -13,15 +13,25 @@ export enum TipoBotao {
     link = "link"
 }
 
+export enum TamanhoBotao {
+    grande = "btn-lg",
+    normal = "btn-md",
+    pequeno = "btn-sm",
+    mini = "btn-xs"
+}
+
 interface Props {
     block?: boolean;
-    pequeno?: boolean;
+    outline?: boolean;
     submit?: boolean;
-    titulo: string;
+    titulo?: string;
+    icone?: string;
     className?: string;
     usaLoading?: boolean;
     desativado?: boolean;
+    iconeDireita?: boolean;
     tipo?: TipoBotao;
+    tamanho?: TamanhoBotao;
     children?: React.ReactNode;
 
     onClick: Function;
@@ -32,6 +42,11 @@ interface State {
 }
 
 export class Button extends React.Component<Props, State> {
+
+    static defaultProps = {
+        tipo: TipoBotao.primary,
+        tamanho: TamanhoBotao.normal
+    }
 
     constructor(props: Props) {
         super(props);
@@ -54,14 +69,22 @@ export class Button extends React.Component<Props, State> {
     }
 
     render() {
-        var type = this.props.submit ? "submit" : "button";
+        var type: any = this.props.submit ? "submit" : "button";
 
         var classes = classNames(
             "btn",
-            [`btn-${this.props.tipo}`],
+            {[`btn-${this.props.tipo}`]: !this.props.outline },
+            {[`btn-outline-${this.props.tipo}`]: this.props.outline },
             { "btn-block": this.props.block },
-            { "btn-sm": this.props.pequeno },
+            this.props.tamanho,
             this.props.className);
+
+        var classesIcone = classNames(
+            "fas",
+            {"mr-2": this.props.titulo && !this.props.iconeDireita},
+            {"ml-2": this.props.titulo && this.props.iconeDireita},
+            this.props.icone
+        );
 
         return (
             <button type={type} 
@@ -69,9 +92,15 @@ export class Button extends React.Component<Props, State> {
                 disabled={this.props.desativado || this.state.carregando}
             >
                 {!this.state.carregando && 
-                    this.props.titulo}
+                    <span>
+                        {this.props.icone && !this.props.iconeDireita && <i className={classesIcone}></i>}
+                        {this.props.titulo}
+                        {this.props.icone && this.props.iconeDireita && <i className={classesIcone}></i>}
+                    </span>
+                }
 
-                {this.props.children}
+                {!this.props.titulo && this.state.carregando && 
+                    this.props.children}
 
                 {this.state.carregando &&
                     <i className="fas fa-spinner fa-pulse"></i>}

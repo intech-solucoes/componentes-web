@@ -2,7 +2,7 @@ import React from 'react';
 
 import { validarEmail } from "@intechprev/react-lib";
 
-import { CampoTexto, Alert } from '.';
+import { CampoTexto, Alert } from '..';
 
 interface Props {
     children: Array<any> | any;

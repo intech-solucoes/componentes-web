@@ -1,11 +1,12 @@
-import { Col } from './Col';
-import { Row } from './Row';
-import { Box } from "./Box";
-import { Alert, TipoAlerta } from "./Alert";
-import { CampoTexto } from "./CampoTexto";
-import { CampoEstatico, TipoCampoEstatico } from "./CampoEstatico";
-import { Form } from "./Form";
-import { Button, TipoBotao } from "./Button";
+import { Col } from './componentes/Col';
+import { Row } from './componentes/Row';
+import { Box } from "./componentes/Box";
+import { Alert, TipoAlerta } from "./componentes/Alert";
+import { CampoTexto } from "./componentes/CampoTexto";
+import { CampoEstatico, TipoCampoEstatico } from "./componentes/CampoEstatico";
+import { Form } from "./componentes/Form";
+import { Button, TipoBotao, TamanhoBotao } from "./componentes/Button";
+import { ToggleButton } from "./componentes/ToggleButton";
 
 export {
     Col,
@@ -15,5 +16,21 @@ export {
     CampoTexto,
     CampoEstatico, TipoCampoEstatico,
     Form,
-    Button, TipoBotao
+    Button, TipoBotao, TamanhoBotao,
+    ToggleButton
 };
+
+try {
+    var React = require("react");
+    var ReactDOM = require("react-dom");
+
+    var Roteador = require("./Rotas/Roteador");
+    var Rotas = require("./exemplos/Rotas");
+    
+    if(Rotas) {
+        Roteador = Roteador.default;
+        Rotas = Rotas.default;
+        ReactDOM.render(
+            <Roteador rotas={Rotas} />, document.getElementById('root'));
+    }
+} catch(e) {}

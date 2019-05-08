@@ -39,6 +39,16 @@ function sleep(ms) {
     await sleep(300);
     await filesystem.dirAsync("./types");
 
+    // Alterando configurações do tsconfig.json para gerar build de produção
+    var tsconfig = JSON.parse(filesystem.read("./tsconfig.json"));
+    tsconfig.compilerOptions.jsx = "react";
+    tsconfig.compilerOptions.allowJs = false;
+    tsconfig.compilerOptions.isolatedModules = false;
+    tsconfig.compilerOptions.noEmit = false;
+    await filesystem.writeAsync("./tsconfig.json", JSON.stringify(tsconfig, null, 4));
+
+    await sleep(300);
+
     system.run("tsc -d --declarationDir ./types").then(() => {
         console.log("Build realizado com sucesso!");
     })

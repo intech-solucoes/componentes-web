@@ -2,7 +2,7 @@ import React from 'react';
 
 import { handleFieldChange } from "@intechprev/react-lib";
 
-import { Col, Row } from ".";
+import { Col, Row } from "..";
 import classNames from 'classnames';
 
 var InputMask = require('react-input-mask');
