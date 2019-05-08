@@ -41,7 +41,7 @@ interface State {
     carregando: boolean;
 }
 
-export class Button extends React.Component<Props, State> {
+export class Botao extends React.Component<Props, State> {
 
     static defaultProps = {
         tipo: TipoBotao.primary,

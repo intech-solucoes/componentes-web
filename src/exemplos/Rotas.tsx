@@ -3,7 +3,7 @@ import { Rota } from "../SideMenu";
 import { RouteProps } from "react-router-dom";
 
 import { Dashboard } from "./paginas/Dashboard";
-import { ButtonPage } from "./paginas/Button";
+import { BotaoPage } from "./paginas/Botao";
 
 const rotas: Array<Rota> = [
     {
@@ -20,7 +20,7 @@ const rotas: Array<Rota> = [
         titulo: "Button",
         icone: "fas fa-chevron-circle-right",
         caminho: "/button",
-        componente: (routeProps: RouteProps) => <ButtonPage {...routeProps} />,
+        componente: (routeProps: RouteProps) => <BotaoPage {...routeProps} />,
         mostrarMenu: true,
         caminhoExato: true
     }

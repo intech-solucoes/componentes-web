@@ -5,8 +5,8 @@ import { Alert, TipoAlerta } from "./componentes/Alert";
 import { CampoTexto } from "./componentes/CampoTexto";
 import { CampoEstatico, TipoCampoEstatico } from "./componentes/CampoEstatico";
 import { Form } from "./componentes/Form";
-import { Button, TipoBotao, TamanhoBotao } from "./componentes/Button";
-import { ToggleButton } from "./componentes/ToggleButton";
+import { Botao, TipoBotao, TamanhoBotao } from "./componentes/Botao";
+import { BotaoSwitch } from "./componentes/BotaoSwitch";
 
 export {
     Col,
@@ -16,8 +16,8 @@ export {
     CampoTexto,
     CampoEstatico, TipoCampoEstatico,
     Form,
-    Button, TipoBotao, TamanhoBotao,
-    ToggleButton
+    Botao, TipoBotao, TamanhoBotao,
+    BotaoSwitch
 };
 
 try {
