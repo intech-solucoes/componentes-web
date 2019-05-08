@@ -49,23 +49,17 @@ export class ButtonPage extends React.Component {
 
                     <Col tamanho={"12"} className={"col-lg-4"}>
                         <Box titulo={"Desabilitado"}>
+                            <code>{"<Button desabilitado />"}</code>
 
-                        <code>{"<Button desabilitado />"}</code>
-
-                        <Button className={"mr-1 mb-1"} titulo={"Primary"} desativado onClick={() => {}} />
-                        <Button className={"mr-1 mb-1"} titulo={"Secondary"} desativado tipo={TipoBotao.secondary} onClick={() => {}} />
-                        <Button className={"mr-1 mb-1"} titulo={"Success"} desativado tipo={TipoBotao.success} onClick={() => {}} />
-                        <Button className={"mr-1 mb-1"} titulo={"Danger"} desativado tipo={TipoBotao.danger} onClick={() => {}} />
-                        <Button className={"mr-1 mb-1"} titulo={"Warning"} desativado tipo={TipoBotao.warning} onClick={() => {}} />
-                        <Button className={"mr-1 mb-1"} titulo={"Info"} desativado tipo={TipoBotao.info} onClick={() => {}} />
-                        <Button className={"mr-1 mb-1"} titulo={"Light"} desativado tipo={TipoBotao.light} onClick={() => {}} />
-                        <Button className={"mr-1 mb-1"} titulo={"Dark"} desativado tipo={TipoBotao.dark} onClick={() => {}} />
-                        <Button className={"mr-1 mb-1"} titulo={"Link"} desativado tipo={TipoBotao.link} onClick={() => {}} />
-
-                        <h4 className={"mt-5"}>Block</h4>
-                        <p><b>Block</b> irá preencher todo o espaço disponível com o botão</p>
-                        <code>{"<Button block />"}</code>
-                        <Button className={"mr-1 mb-1"} titulo={"Block"} block onClick={() => {}} />
+                            <Button className={"mr-1 mb-1"} titulo={"Primary"} desativado onClick={() => {}} />
+                            <Button className={"mr-1 mb-1"} titulo={"Secondary"} desativado tipo={TipoBotao.secondary} onClick={() => {}} />
+                            <Button className={"mr-1 mb-1"} titulo={"Success"} desativado tipo={TipoBotao.success} onClick={() => {}} />
+                            <Button className={"mr-1 mb-1"} titulo={"Danger"} desativado tipo={TipoBotao.danger} onClick={() => {}} />
+                            <Button className={"mr-1 mb-1"} titulo={"Warning"} desativado tipo={TipoBotao.warning} onClick={() => {}} />
+                            <Button className={"mr-1 mb-1"} titulo={"Info"} desativado tipo={TipoBotao.info} onClick={() => {}} />
+                            <Button className={"mr-1 mb-1"} titulo={"Light"} desativado tipo={TipoBotao.light} onClick={() => {}} />
+                            <Button className={"mr-1 mb-1"} titulo={"Dark"} desativado tipo={TipoBotao.dark} onClick={() => {}} />
+                            <Button className={"mr-1 mb-1"} titulo={"Link"} desativado tipo={TipoBotao.link} onClick={() => {}} />
                         </Box>
                     </Col>
 
