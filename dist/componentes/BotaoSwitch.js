@@ -1,4 +1,3 @@
-"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -47,65 +46,43 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importDefault(require("react"));
-var classnames_1 = __importDefault(require("classnames"));
-var TipoBotao;
-(function (TipoBotao) {
-    TipoBotao["primary"] = "primary";
-    TipoBotao["secondary"] = "secondary";
-    TipoBotao["success"] = "success";
-    TipoBotao["danger"] = "danger";
-    TipoBotao["warning"] = "warning";
-    TipoBotao["info"] = "info";
-    TipoBotao["light"] = "light";
-    TipoBotao["dark"] = "dark";
-    TipoBotao["link"] = "link";
-})(TipoBotao = exports.TipoBotao || (exports.TipoBotao = {}));
-var Button = /** @class */ (function (_super) {
-    __extends(Button, _super);
-    function Button(props) {
-        var _this = _super.call(this, props) || this;
-        _this.onClick = function (e) { return __awaiter(_this, void 0, void 0, function () {
+import React from "react";
+import classNames from "classnames";
+import { TipoBotao } from "./Botao";
+var BotaoSwitch = /** @class */ (function (_super) {
+    __extends(BotaoSwitch, _super);
+    function BotaoSwitch() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.onChange = function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        e.preventDefault();
-                        if (!this.props.usaLoading) return [3 /*break*/, 2];
-                        return [4 /*yield*/, this.setState({ carregando: true })];
-                    case 1:
-                        _a.sent();
-                        _a.label = 2;
-                    case 2: return [4 /*yield*/, this.props.onClick()];
-                    case 3:
-                        _a.sent();
-                        if (!this.props.usaLoading) return [3 /*break*/, 5];
-                        return [4 /*yield*/, this.setState({ carregando: false })];
-                    case 4:
-                        _a.sent();
-                        _a.label = 5;
-                    case 5: return [2 /*return*/];
-                }
+                this.props.onChange();
+                return [2 /*return*/];
             });
         }); };
-        _this.state = {
-            carregando: false
-        };
         return _this;
     }
-    Button.prototype.render = function () {
-        var type = this.props.submit ? "submit" : "button";
-        var classes = classnames_1.default("btn", ["btn-" + this.props.tipo], { "btn-block": this.props.block }, { "btn-sm": this.props.pequeno }, this.props.className);
-        return (react_1.default.createElement("button", { type: type, className: classes, onClick: this.onClick, disabled: this.props.desativado || this.state.carregando },
-            !this.state.carregando &&
-                this.props.titulo,
-            this.props.children,
-            this.state.carregando &&
-                react_1.default.createElement("i", { className: "fas fa-spinner fa-pulse" })));
+    BotaoSwitch.prototype.render = function () {
+        var _this = this;
+        var _a, _b;
+        var tipo = this.props.checked ? this.props.tipoAtivo : this.props.tipoInativo;
+        var classesContainer = classNames("btn-group-toggle", this.props.className);
+        var classesLabel = classNames("btn", ["btn-" + tipo], { "active": this.props.checked });
+        var classesIcone = classNames("fas", { "mr-2": this.props.tituloAtivo && this.props.tituloInativo && !this.props.iconeDireita }, { "ml-2": this.props.tituloAtivo && this.props.tituloInativo && this.props.iconeDireita }, (_a = {}, _a["" + this.props.iconeAtivo] = this.props.iconeAtivo && this.props.checked, _a), (_b = {}, _b["" + this.props.iconeInativo] = this.props.iconeInativo && !this.props.checked, _b));
+        return (React.createElement("div", { className: classesContainer },
+            React.createElement("button", { className: classesLabel, onClick: function () { return _this.props.onChange(); } },
+                this.props.iconeAtivo && this.props.checked && !this.props.iconeDireita
+                    && React.createElement("i", { className: classesIcone }),
+                this.props.iconeInativo && !this.props.checked && !this.props.iconeDireita
+                    && React.createElement("i", { className: classesIcone }),
+                this.props.checked ? this.props.tituloAtivo : this.props.tituloInativo)));
     };
-    return Button;
-}(react_1.default.Component));
-exports.Button = Button;
+    BotaoSwitch.defaultProps = {
+        tipoAtivo: TipoBotao.primary,
+        tipoInativo: TipoBotao.dark,
+        checked: false,
+        iconeAtivo: "fa-check",
+        iconeInativo: "fa-times"
+    };
+    return BotaoSwitch;
+}(React.Component));
+export { BotaoSwitch };

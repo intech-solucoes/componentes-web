@@ -6,9 +6,7 @@ function timeout(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-interface Props {
-
-}
+interface Props { }
 
 interface State {
     botaoToggle1: boolean;
@@ -189,7 +187,7 @@ export class BotaoPage extends React.Component<Props, State> {
                                         className={"mb-2"}
                                         tituloAtivo={"Sim"} tituloInativo={"Não"}
                                         iconeAtivo={"fa-beer"} iconeInativo={"fa-hand-paper"} />
-                                
+
                                     <h4 className={"mt-5"}>Cores</h4>
                                     <code>{"<BotaoSwitch tituloAtivo={\"Sim\"} tituloInativo={\"Não\"} tipoAtivo={TipoBotao.success} tipoInativo={TipoBotao.danger} />"}</code>
                                     <BotaoSwitch checked={this.state.botaoToggle4} onChange={() => this.setState({ botaoToggle4: !this.state.botaoToggle4 })}

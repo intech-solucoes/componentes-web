@@ -1,4 +1,3 @@
-"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -12,21 +11,17 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importDefault(require("react"));
-var classnames_1 = __importDefault(require("classnames"));
+import React from "react";
+import classNames from "classnames";
 var Row = /** @class */ (function (_super) {
     __extends(Row, _super);
     function Row() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Row.prototype.render = function () {
-        var classes = classnames_1.default({ "form-group": this.props.formGroup }, "row", this.props.className);
-        return (react_1.default.createElement("div", { className: classes }, this.props.children));
+        var classes = classNames({ "form-group": this.props.formGroup }, "row", this.props.className);
+        return (React.createElement("div", { className: classes }, this.props.children));
     };
     return Row;
-}(react_1.default.Component));
-exports.Row = Row;
+}(React.Component));
+export { Row };

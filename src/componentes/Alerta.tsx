@@ -24,7 +24,7 @@ interface State {
     mensagem: string;
 }
 
-export class Alert extends React.Component<Props, State> {
+export class Alerta extends React.Component<Props, State> {
     static defaultProps = {
         mensagem: "",
         tamanho: "12",

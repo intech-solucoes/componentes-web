@@ -1,4 +1,3 @@
-"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -47,69 +46,78 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importDefault(require("react"));
-var react_lib_1 = require("@intechprev/react-lib");
-var _1 = require(".");
-var Form = /** @class */ (function (_super) {
-    __extends(Form, _super);
-    function Form(props) {
+import React from 'react';
+import classNames from "classnames";
+export var TipoBotao;
+(function (TipoBotao) {
+    TipoBotao["primary"] = "primary";
+    TipoBotao["secondary"] = "secondary";
+    TipoBotao["success"] = "success";
+    TipoBotao["danger"] = "danger";
+    TipoBotao["warning"] = "warning";
+    TipoBotao["info"] = "info";
+    TipoBotao["light"] = "light";
+    TipoBotao["dark"] = "dark";
+    TipoBotao["link"] = "link";
+})(TipoBotao || (TipoBotao = {}));
+export var TamanhoBotao;
+(function (TamanhoBotao) {
+    TamanhoBotao["grande"] = "btn-lg";
+    TamanhoBotao["normal"] = "btn-md";
+    TamanhoBotao["pequeno"] = "btn-sm";
+    TamanhoBotao["mini"] = "btn-xs";
+})(TamanhoBotao || (TamanhoBotao = {}));
+var Botao = /** @class */ (function (_super) {
+    __extends(Botao, _super);
+    function Botao(props) {
         var _this = _super.call(this, props) || this;
-        _this.erros = [];
-        _this.valido = true;
-        _this.validar = function () { return __awaiter(_this, void 0, void 0, function () {
-            var _this = this;
+        _this.onClick = function (e) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.valido = true;
-                        this.erros = [];
-                        return [4 /*yield*/, this.props.children
-                                .filter(function (campo) { return campo.type === _1.CampoTexto; }) // Filtra os tipos de campo apenas para CampoTexto
-                                .forEach(function (campo) {
-                                // Valida cada campo
-                                if (campo.props.obrigatorio) {
-                                    if (campo.props.valor === "")
-                                        _this.erros.push("Campo \"" + (campo.props.label || campo.props.placeholder) + "\" obrigat\u00F3rio.");
-                                }
-                                else if (campo.props.tipo === "email" && react_lib_1.validarEmail(campo.props.valor))
-                                    _this.erros.push("E-mail inválido.");
-                                var valorSemMascara = null;
-                                if (campo.props.valor !== undefined)
-                                    valorSemMascara = campo.props.valor.split("_").join("");
-                                if (campo.props.min && valorSemMascara.length < campo.props.min)
-                                    _this.erros.push("Campo \"" + (campo.props.label || campo.props.placeholder) + "\" inv\u00E1lido.");
-                            })];
+                        e.preventDefault();
+                        if (!this.props.usaLoading) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.setState({ carregando: true })];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, this.setState({
-                                valido: this.erros.length === 0
-                            })];
-                    case 2:
+                        _a.label = 2;
+                    case 2: return [4 /*yield*/, this.props.onClick()];
+                    case 3:
                         _a.sent();
-                        return [2 /*return*/];
+                        if (!this.props.usaLoading) return [3 /*break*/, 5];
+                        return [4 /*yield*/, this.setState({ carregando: false })];
+                    case 4:
+                        _a.sent();
+                        _a.label = 5;
+                    case 5: return [2 /*return*/];
                 }
             });
         }); };
         _this.state = {
-            valido: true
+            carregando: false
         };
         return _this;
     }
-    Form.prototype.render = function () {
-        var _this = this;
-        var children = this.props.children;
-        var childrenWithProps = react_1.default.Children.map(children, function (child) {
-            if (child && child.type === _1.Alert && child.props.padraoFormulario)
-                return react_1.default.cloneElement(child, { mensagem: _this.erros[0] });
-            else
-                return child;
-        });
-        return (react_1.default.createElement("form", null, childrenWithProps));
+    Botao.prototype.render = function () {
+        var _a, _b;
+        var type = this.props.submit ? "submit" : "button";
+        var classes = classNames("btn", (_a = {}, _a["btn-" + this.props.tipo] = !this.props.outline, _a), (_b = {}, _b["btn-outline-" + this.props.tipo] = this.props.outline, _b), { "btn-block": this.props.block }, this.props.tamanho, this.props.className);
+        var classesIcone = classNames("fas", { "mr-2": this.props.titulo && !this.props.iconeDireita }, { "ml-2": this.props.titulo && this.props.iconeDireita }, this.props.icone);
+        return (React.createElement("button", { type: type, className: classes, onClick: this.onClick, disabled: this.props.desativado || this.state.carregando },
+            !this.state.carregando &&
+                React.createElement("span", null,
+                    this.props.icone && !this.props.iconeDireita && React.createElement("i", { className: classesIcone }),
+                    this.props.titulo,
+                    this.props.icone && this.props.iconeDireita && React.createElement("i", { className: classesIcone })),
+            !this.props.titulo && this.state.carregando &&
+                this.props.children,
+            this.state.carregando &&
+                React.createElement("i", { className: "fas fa-spinner fa-pulse" })));
     };
-    return Form;
-}(react_1.default.Component));
-exports.Form = Form;
+    Botao.defaultProps = {
+        tipo: TipoBotao.primary,
+        tamanho: TamanhoBotao.normal
+    };
+    return Botao;
+}(React.Component));
+export { Botao };

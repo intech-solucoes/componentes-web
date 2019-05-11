@@ -1,4 +1,3 @@
-"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -47,73 +46,79 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importDefault(require("react"));
-var classnames_1 = __importDefault(require("classnames"));
-var TipoAlerta;
-(function (TipoAlerta) {
-    TipoAlerta["primary"] = "primary";
-    TipoAlerta["secondary"] = "secondary";
-    TipoAlerta["success"] = "success";
-    TipoAlerta["danger"] = "danger";
-    TipoAlerta["warning"] = "warning";
-    TipoAlerta["info"] = "info";
-    TipoAlerta["light"] = "light";
-    TipoAlerta["dark"] = "dark";
-})(TipoAlerta = exports.TipoAlerta || (exports.TipoAlerta = {}));
-var Alert = /** @class */ (function (_super) {
-    __extends(Alert, _super);
-    function Alert(props) {
-        var _this = _super.call(this, props) || this;
-        _this.adicionarErro = function (mensagemErro) { return __awaiter(_this, void 0, void 0, function () {
-            var temMensagem, espacamento;
+import React, { Component } from "react";
+import { handleFieldChange } from "@intechprev/react-lib";
+var Combo = /** @class */ (function (_super) {
+    __extends(Combo, _super);
+    function Combo() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.erros = [];
+        _this.possuiErros = false;
+        _this.validar = function () {
+            _this.possuiErros = false;
+            _this.erros = [];
+            if (_this.props.obrigatorio) {
+                if (_this.props.valor === "")
+                    _this.erros.push("Campo \"" + _this.props.label + "\" obrigat\u00F3rio.");
+            }
+            _this.possuiErros = _this.erros.length > 0;
+        };
+        _this.onChange = function (e) { return __awaiter(_this, void 0, void 0, function () {
+            var target;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        temMensagem = (this.props.mensagem && this.props.mensagem.length > 0) || this.state.mensagem.length > 0;
-                        espacamento = temMensagem ? "<br/>" : "";
-                        return [4 /*yield*/, this.setState({
-                                mensagem: this.state.mensagem + espacamento + mensagemErro
-                            })];
+                        target = e.target;
+                        return [4 /*yield*/, handleFieldChange(this.props.contexto, e)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/];
+                        if (!this.props.onChange) return [3 /*break*/, 3];
+                        return [4 /*yield*/, this.props.onChange(target)];
+                    case 2:
+                        _a.sent();
+                        _a.label = 3;
+                    case 3: return [2 /*return*/];
                 }
             });
         }); };
-        _this.limparErros = function () { return __awaiter(_this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.setState({
-                            mensagem: ""
-                        })];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        }); };
-        _this.possuiErro = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, this.state.mensagem.length === 0];
-        }); }); };
-        _this.state = {
-            mensagem: ""
-        };
         return _this;
     }
-    Alert.prototype.render = function () {
-        var classes = classnames_1.default("alert", ["alert-" + this.props.tipo], this.props.className);
-        return (react_1.default.createElement("div", null, (this.state.mensagem || this.props.mensagem) &&
-            react_1.default.createElement("div", { id: "alerta", className: classes, dangerouslySetInnerHTML: { __html: this.props.mensagem + this.state.mensagem } })));
+    Combo.prototype.componentDidMount = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, nome;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        nome = this.props.nome;
+                        // Atualiza o state do combo para o valor padrão selecionado via props.
+                        return [4 /*yield*/, this.props.contexto.setState((_a = {},
+                                _a[nome] = this.props.padrao,
+                                _a))];
+                    case 1:
+                        // Atualiza o state do combo para o valor padrão selecionado via props.
+                        _b.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
-    Alert.defaultProps = {
-        mensagem: "",
-        tamanho: "12",
-        padraoFormulario: false
+    Combo.prototype.render = function () {
+        var _this = this;
+        return (React.createElement("div", { className: "form-group" },
+            this.props.label &&
+                React.createElement("b", null,
+                    React.createElement("label", { htmlFor: this.props.nome }, this.props.label)),
+            React.createElement("select", { id: this.props.nome, name: this.props.nome, className: "form-control", onChange: function (e) { return _this.onChange(e); }, value: this.props.valor, disabled: this.props.desabilitado },
+                this.props.textoVazio &&
+                    React.createElement("option", { value: "" }, this.props.textoVazio),
+                this.props.opcoes.map(function (opcao, index) {
+                    return (React.createElement("option", { key: index, value: opcao[_this.props.valorMembro] }, opcao[_this.props.nomeMembro]));
+                }))));
     };
-    return Alert;
-}(react_1.default.Component));
-exports.Alert = Alert;
+    Combo.defaultProps = {
+        padrao: "",
+        opcoes: []
+    };
+    return Combo;
+}(Component));
+export { Combo };

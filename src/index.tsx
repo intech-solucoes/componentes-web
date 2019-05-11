@@ -1,9 +1,11 @@
 import { Col } from './componentes/Col';
 import { Row } from './componentes/Row';
 import { Box } from "./componentes/Box";
-import { Alert, TipoAlerta } from "./componentes/Alert";
+import { Alerta, TipoAlerta } from "./componentes/Alerta";
 import { CampoTexto } from "./componentes/CampoTexto";
 import { CampoEstatico, TipoCampoEstatico } from "./componentes/CampoEstatico";
+import { Combo } from "./componentes/Combo";
+import { Dropdown } from "./componentes/Dropdown";
 import { Form } from "./componentes/Form";
 import { Botao, TipoBotao, TamanhoBotao } from "./componentes/Botao";
 import { BotaoSwitch } from "./componentes/BotaoSwitch";
@@ -12,9 +14,11 @@ export {
     Col,
     Row,
     Box,
-    Alert, TipoAlerta,
+    Alerta, TipoAlerta,
     CampoTexto,
     CampoEstatico, TipoCampoEstatico,
+    Combo,
+    Dropdown,
     Form,
     Botao, TipoBotao, TamanhoBotao,
     BotaoSwitch

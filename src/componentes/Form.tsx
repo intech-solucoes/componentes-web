@@ -2,7 +2,7 @@ import React from 'react';
 
 import { validarEmail } from "@intechprev/react-lib";
 
-import { CampoTexto, Alert } from '..';
+import { CampoTexto, Alerta } from '..';
 
 interface Props {
     children: Array<any> | any;
@@ -57,7 +57,7 @@ export class Form extends React.Component<Props> {
         const { children } = this.props;
 
         const childrenWithProps = React.Children.map(children, child => {
-            if(child && child.type === Alert && child.props.padraoFormulario)
+            if(child && child.type === Alerta && child.props.padraoFormulario)
                 return React.cloneElement(child, { mensagem: this.erros[0] });
             else
                 return child;

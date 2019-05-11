@@ -1,4 +1,3 @@
-"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -12,17 +11,13 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importDefault(require("react"));
-var classnames_1 = __importDefault(require("classnames"));
-var TipoCampoEstatico;
+import React from 'react';
+import classNames from "classnames";
+export var TipoCampoEstatico;
 (function (TipoCampoEstatico) {
     TipoCampoEstatico[TipoCampoEstatico["texto"] = 0] = "texto";
     TipoCampoEstatico[TipoCampoEstatico["dinheiro"] = 1] = "dinheiro";
-})(TipoCampoEstatico = exports.TipoCampoEstatico || (exports.TipoCampoEstatico = {}));
+})(TipoCampoEstatico || (TipoCampoEstatico = {}));
 var CampoEstatico = /** @class */ (function (_super) {
     __extends(CampoEstatico, _super);
     function CampoEstatico() {
@@ -37,24 +32,24 @@ var CampoEstatico = /** @class */ (function (_super) {
             else
                 valor = "R$ " + this.props.valor.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
-        var classes = classnames_1.default((_a = {
+        var classes = classNames((_a = {
                 "form-group": true,
                 "col": !this.props.col
             },
             _a["col-" + this.props.col] = this.props.col,
             _a));
         if (this.props.titulo) {
-            return (react_1.default.createElement("div", { className: classes },
-                react_1.default.createElement("label", { className: "text-primary" }, this.props.titulo),
-                react_1.default.createElement("label", { id: this.props.id, className: "form-control-plaintext" }, valor)));
+            return (React.createElement("div", { className: classes },
+                React.createElement("label", { className: "text-primary" }, this.props.titulo),
+                React.createElement("label", { id: this.props.id, className: "form-control-plaintext" }, valor)));
         }
         else {
-            return (react_1.default.createElement("label", null, valor));
+            return (React.createElement("label", null, valor));
         }
     };
     CampoEstatico.defaultProps = {
         tipo: TipoCampoEstatico.texto
     };
     return CampoEstatico;
-}(react_1.default.Component));
-exports.CampoEstatico = CampoEstatico;
+}(React.Component));
+export { CampoEstatico };

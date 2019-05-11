@@ -10,22 +10,35 @@ export declare enum TipoBotao {
     dark = "dark",
     link = "link"
 }
+export declare enum TamanhoBotao {
+    grande = "btn-lg",
+    normal = "btn-md",
+    pequeno = "btn-sm",
+    mini = "btn-xs"
+}
 interface Props {
     block?: boolean;
-    pequeno?: boolean;
+    outline?: boolean;
     submit?: boolean;
-    titulo: string;
+    titulo?: string;
+    icone?: string;
     className?: string;
     usaLoading?: boolean;
     desativado?: boolean;
+    iconeDireita?: boolean;
     tipo?: TipoBotao;
+    tamanho?: TamanhoBotao;
     children?: React.ReactNode;
     onClick: Function;
 }
 interface State {
     carregando: boolean;
 }
-export declare class Button extends React.Component<Props, State> {
+export declare class Botao extends React.Component<Props, State> {
+    static defaultProps: {
+        tipo: TipoBotao;
+        tamanho: TamanhoBotao;
+    };
     constructor(props: Props);
     onClick: (e: any) => Promise<void>;
     render(): JSX.Element;
