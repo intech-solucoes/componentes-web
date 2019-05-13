@@ -22,7 +22,7 @@ export class Box extends React.Component<Props> {
                         {this.props.titulo}
 
                         {this.props.label &&
-                            <span className={"badge badge-secondary"}>{this.props.label}</span>
+                            <span className={"badge badge-secondary ml-2"}>{this.props.label}</span>
                         }
                     </div>
                 }
