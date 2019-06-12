@@ -23,7 +23,7 @@ var Box = /** @class */ (function (_super) {
                     React.createElement("div", { className: "box-title" },
                         _this.props.titulo,
                         _this.props.label &&
-                            React.createElement("span", { className: "badge badge-secondary ml-2" }, _this.props.label)),
+                            React.createElement("span", { className: "badge badge-secondary ml-2 float-right" }, _this.props.label)),
                 React.createElement("div", { className: "box-content" }, _this.props.children)));
         };
         return _this;

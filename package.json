@@ -1,6 +1,6 @@
 {
     "name": "@intechprev/componentes-web",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "main": "./dist/index.js",
     "typings": "./types/index.d.ts",
     "devDependencies": {
@@ -25,7 +25,7 @@
     },
     "scripts": {
         "start": "react-scripts start",
-        "build": "node build.js",
+        "build": "yarn && node build.js",
         "prepublishOnly": "yarn build",
         "npm:publish": "yarn build && npm publish --access public",
         "styles:build": "sass ./src/styles/main.scss:./public/css/componentes-web.css",
