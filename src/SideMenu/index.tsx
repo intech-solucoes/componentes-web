@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import { Row, Col } from "../";
 
-import { Rota } from "../Rotas/Rota";
+import { Rota } from "../Rotas";
 
 export {
     Rota

@@ -1,4 +1,4 @@
-export class Rota {
+export default class Rota {
     public id: string;
     public titulo: string;
     public caminho: string;

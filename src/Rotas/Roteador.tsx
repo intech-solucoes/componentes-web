@@ -1,7 +1,7 @@
 import React from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
 
-import { Rota } from "./Rota";
+import Rota from "./Rota";
 
 interface Props {
     rotas: Array<Rota>;
