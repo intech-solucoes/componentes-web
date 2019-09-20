@@ -48,6 +48,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import React, { Component } from "react";
 import { handleFieldChange } from "@intechprev/react-lib";
+import { Col, Row } from "..";
+import classNames from 'classnames';
 var Combo = /** @class */ (function (_super) {
     __extends(Combo, _super);
     function Combo() {
@@ -58,7 +60,7 @@ var Combo = /** @class */ (function (_super) {
             _this.possuiErros = false;
             _this.erros = [];
             if (_this.props.obrigatorio) {
-                if (typeof _this.props.valor === "undefined" || _this.props.valor == "")
+                if (_this.props.valor === "")
                     _this.erros.push("Campo \"" + _this.props.label + "\" obrigat\u00F3rio.");
             }
             _this.possuiErros = _this.erros.length > 0;
@@ -102,18 +104,45 @@ var Combo = /** @class */ (function (_super) {
             });
         });
     };
-    Combo.prototype.render = function () {
+    Combo.prototype.renderCombo = function () {
         var _this = this;
-        return (React.createElement("div", { className: "form-group" },
-            this.props.label &&
-                React.createElement("b", null,
-                    React.createElement("label", { htmlFor: this.props.nome }, this.props.label)),
+        var _a;
+        var campoClasses = classNames((_a = {
+                "col": !this.props.tamanhoCampo
+            },
+            _a["col-" + this.props.tamanhoCampo] = this.props.tamanhoCampo,
+            _a));
+        return (React.createElement(Col, { className: campoClasses },
             React.createElement("select", { id: this.props.nome, name: this.props.nome, className: "form-control", onChange: function (e) { return _this.onChange(e); }, value: this.props.valor, disabled: this.props.desabilitado },
                 this.props.textoVazio &&
                     React.createElement("option", { value: "" }, this.props.textoVazio),
                 this.props.opcoes.map(function (opcao, index) {
                     return (React.createElement("option", { key: index, value: opcao[_this.props.valorMembro] }, opcao[_this.props.nomeMembro]));
                 }))));
+    };
+    Combo.prototype.renderLabel = function () {
+        var _a;
+        if (this.props.label) {
+            var labelClasses = classNames((_a = {
+                    "col-lg-2": !this.props.tamanhoLabel
+                },
+                _a["col-" + this.props.tamanhoLabel] = this.props.tamanhoLabel,
+                _a["col-md-12"] = !this.props.tamanhoLabel,
+                _a["text-lg-right"] = true,
+                _a["col-form-label"] = true,
+                _a));
+            return (React.createElement("div", { className: labelClasses },
+                React.createElement("b", null,
+                    React.createElement("label", { htmlFor: this.props.nome },
+                        this.props.label,
+                        this.props.obrigatorio && " *"))));
+        }
+        return null;
+    };
+    Combo.prototype.render = function () {
+        return (React.createElement(Row, { formGroup: true },
+            this.renderLabel(),
+            this.renderCombo()));
     };
     Combo.defaultProps = {
         padrao: "",

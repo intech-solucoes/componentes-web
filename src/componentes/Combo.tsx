@@ -1,19 +1,25 @@
 import React, { Component } from "react";
 import { handleFieldChange } from "@intechprev/react-lib";
 
+import { Col, Row } from "..";
+import classNames from 'classnames';
+
 interface Props {
-    nome: string;
     contexto: any;
+    nome: string;
     nomeMembro: string;
     valorMembro: string;
-    valor: string | number;
-    obrigatorio?: boolean;
+    valor: string;
+    
     desabilitado?: boolean;
-    textoVazio?: string;
-    padrao?: string;
     label?: string;
-    opcoes?: Array<any>;
+    obrigatorio?: boolean;
     onChange?: Function;
+    opcoes?: Array<any>;
+    padrao?: string;
+    tamanhoLabel?: string;
+    tamanhoCampo?: string;
+    textoVazio?: string;
 }
 
 export class Combo extends Component<Props> {
@@ -41,7 +47,7 @@ export class Combo extends Component<Props> {
 
 		if(this.props.obrigatorio)
 		{
-			if(typeof this.props.valor === "undefined" || this.props.valor == "")
+			if(this.props.valor === "")
 				this.erros.push(`Campo "${this.props.label}" obrigatório.`);
 		}
 
@@ -57,18 +63,21 @@ export class Combo extends Component<Props> {
 			await this.props.onChange(target);
 		}
 	}
-
-    render() {
-        return (
-			<div className="form-group">
-				{this.props.label &&
-                    <b><label htmlFor={this.props.nome}>
-                        {this.props.label}
-                    </label></b>
-				}
-
-                <select id={this.props.nome} name={this.props.nome} className="form-control" onChange={(e: any) => this.onChange(e)} 
-                        value={this.props.valor} disabled={this.props.desabilitado}>
+  
+    renderCombo(){
+        const campoClasses = classNames({
+            "col": !this.props.tamanhoCampo,
+            [`col-${this.props.tamanhoCampo}`]: this.props.tamanhoCampo
+        });
+      
+        return(
+          <Col className={campoClasses}>
+            <select
+                id={this.props.nome}
+                name={this.props.nome}
+                className="form-control"
+                onChange={(e: any) => this.onChange(e)} 
+                value={this.props.valor} disabled={this.props.desabilitado}>
 
                     {this.props.textoVazio &&
                         <option value="">{this.props.textoVazio}</option>
@@ -83,7 +92,40 @@ export class Combo extends Component<Props> {
                     }
                     
                 </select>
-            </div>
-        )
+          </Col>
+        );
+    }
+  
+    renderLabel(){
+      if(this.props.label){
+        const labelClasses = classNames({
+            "col-lg-2": !this.props.tamanhoLabel,
+            [`col-${this.props.tamanhoLabel}`]: this.props.tamanhoLabel,
+            "col-md-12": !this.props.tamanhoLabel,
+            "text-lg-right": true,
+            "col-form-label": true
+        });
+        
+        return(
+            <div className={labelClasses}>
+						    <b>
+                    <label htmlFor={this.props.nome}>
+                        {this.props.label}
+                        {this.props.obrigatorio && " *"}
+                    </label>
+                </b>
+				  	</div>
+        );
+      }
+      return null;
+    }
+
+    render() {
+        return (
+            <Row formGroup>
+                {this.renderLabel()}
+                {this.renderCombo()}
+            </Row>
+        );
     }
 }

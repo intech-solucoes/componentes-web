@@ -1,17 +1,19 @@
 import { Component } from "react";
 interface Props {
-    nome: string;
     contexto: any;
+    nome: string;
     nomeMembro: string;
     valorMembro: string;
-    valor: string | number;
-    obrigatorio?: boolean;
+    valor: string;
     desabilitado?: boolean;
-    textoVazio?: string;
-    padrao?: string;
     label?: string;
-    opcoes?: Array<any>;
+    obrigatorio?: boolean;
     onChange?: Function;
+    opcoes?: Array<any>;
+    padrao?: string;
+    tamanhoLabel?: string;
+    tamanhoCampo?: string;
+    textoVazio?: string;
 }
 export declare class Combo extends Component<Props> {
     erros: Array<string>;
@@ -23,6 +25,8 @@ export declare class Combo extends Component<Props> {
     componentDidMount(): Promise<void>;
     validar: () => void;
     onChange: (e: Event) => Promise<void>;
+    renderCombo(): JSX.Element;
+    renderLabel(): JSX.Element;
     render(): JSX.Element;
 }
 export {};
