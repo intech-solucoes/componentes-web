@@ -10,7 +10,7 @@ interface Props {
     desabilitado?: boolean;
     max?: number;
     min?: number;
-    valor: string;
+    valor: string | Date;
     placeholder?: string;
     mascara?: string;
     tipo?: string;

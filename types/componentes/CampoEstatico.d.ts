@@ -1,12 +1,13 @@
 import React from 'react';
 export declare enum TipoCampoEstatico {
     texto = 0,
-    dinheiro = 1
+    dinheiro = 1,
+    data = 2
 }
 interface Props {
     col?: string;
     id?: string;
-    valor: string | number;
+    valor: string | number | Date;
     titulo?: string;
     tipo?: TipoCampoEstatico;
 }

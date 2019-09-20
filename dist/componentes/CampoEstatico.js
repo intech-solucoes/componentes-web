@@ -13,10 +13,12 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import React from 'react';
 import classNames from "classnames";
+import moment from "moment";
 export var TipoCampoEstatico;
 (function (TipoCampoEstatico) {
     TipoCampoEstatico[TipoCampoEstatico["texto"] = 0] = "texto";
     TipoCampoEstatico[TipoCampoEstatico["dinheiro"] = 1] = "dinheiro";
+    TipoCampoEstatico[TipoCampoEstatico["data"] = 2] = "data";
 })(TipoCampoEstatico || (TipoCampoEstatico = {}));
 var CampoEstatico = /** @class */ (function (_super) {
     __extends(CampoEstatico, _super);
@@ -26,6 +28,8 @@ var CampoEstatico = /** @class */ (function (_super) {
     CampoEstatico.prototype.render = function () {
         var _a;
         var valor = this.props.valor;
+        if (this.props.tipo === TipoCampoEstatico.data)
+            valor = moment(valor).format("dd/MM/yyyy");
         if (this.props.tipo === TipoCampoEstatico.dinheiro) {
             if (typeof (this.props.valor) === "string")
                 valor = "R$ " + Number.parseFloat(this.props.valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });

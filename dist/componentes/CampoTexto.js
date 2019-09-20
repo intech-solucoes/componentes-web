@@ -13,6 +13,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import React from 'react';
 import { handleFieldChange } from "@intechprev/react-lib";
+import moment from "moment";
 import { Col, Row } from "..";
 import classNames from 'classnames';
 var InputMask = require('react-input-mask');
@@ -37,6 +38,11 @@ var CampoTexto = /** @class */ (function (_super) {
             },
             _b["col-" + this.props.tamanhoCampo] = this.props.tamanhoCampo,
             _b));
+        var valor = "";
+        if (this.props.valor)
+            valor = this.props.valor.toString();
+        if (typeof (valor) === typeof (Date))
+            valor = moment(valor).format("dd/MM/yyyy");
         return (React.createElement(Row, { formGroup: true },
             this.props.label &&
                 React.createElement("div", { className: labelClasses },
@@ -45,9 +51,9 @@ var CampoTexto = /** @class */ (function (_super) {
                             this.props.label,
                             this.props.obrigatorio && " *"))),
             React.createElement(Col, { className: campoClasses }, this.props.textarea ?
-                React.createElement("textarea", { name: this.props.nome, id: this.props.nome, className: "form-control", rows: this.props.rows, placeholder: this.props.placeholder, value: this.props.valor, maxLength: this.props.max, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); } })
+                React.createElement("textarea", { name: this.props.nome, id: this.props.nome, className: "form-control", rows: this.props.rows, placeholder: this.props.placeholder, value: valor, maxLength: this.props.max, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); } })
                 :
-                    React.createElement(InputMask, { mask: this.props.mascara, name: this.props.nome, value: this.props.valor, maxLength: this.props.max, className: "form-control", type: this.props.tipo, placeholder: this.props.placeholder, id: this.props.nome, disabled: this.props.desabilitado, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); } }))));
+                    React.createElement(InputMask, { mask: this.props.mascara, name: this.props.nome, value: valor, maxLength: this.props.max, className: "form-control", type: this.props.tipo, placeholder: this.props.placeholder, id: this.props.nome, disabled: this.props.desabilitado, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); } }))));
     };
     return CampoTexto;
 }(React.Component));

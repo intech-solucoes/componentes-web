@@ -1,15 +1,17 @@
 import React from 'react';
 import classNames from "classnames";
+import moment from "moment";
 
 export enum TipoCampoEstatico {
     texto,
-    dinheiro
+    dinheiro,
+    data
 }
 
 interface Props {
     col?: string;
     id?: string;
-    valor: string | number;
+    valor: string | number | Date;
     titulo?: string;
     tipo?: TipoCampoEstatico;
 }
@@ -21,7 +23,10 @@ export class CampoEstatico extends React.Component<Props> {
     }
 
     render() {
-        var valor: string | number = this.props.valor;
+        var valor: string | number | Date = this.props.valor;
+
+        if(this.props.tipo === TipoCampoEstatico.data)
+            valor = moment(valor).format("dd/MM/yyyy");
 
         if(this.props.tipo === TipoCampoEstatico.dinheiro) {
             if(typeof(this.props.valor) === "string")

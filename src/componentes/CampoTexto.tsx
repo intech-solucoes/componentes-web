@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { handleFieldChange } from "@intechprev/react-lib";
+import moment from "moment";
 
 import { Col, Row } from "..";
 import classNames from 'classnames';
@@ -18,7 +18,7 @@ interface Props {
     desabilitado?: boolean;
     max?: number;
     min?: number;
-    valor: string;
+    valor: string | Date;
     placeholder?: string;
     mascara?: string;
     tipo?: string;
@@ -40,6 +40,14 @@ export class CampoTexto extends React.Component<Props> {
             "col": !this.props.tamanhoCampo,
             [`col-${this.props.tamanhoCampo}`]: this.props.tamanhoCampo
         });
+
+        var valor = "";
+
+        if(this.props.valor)
+            valor = this.props.valor.toString();
+
+        if(typeof(valor) === typeof(Date))
+            valor = moment(valor).format("dd/MM/yyyy");
             
         return (
             <Row formGroup>
@@ -53,15 +61,15 @@ export class CampoTexto extends React.Component<Props> {
                             </label>
                         </b>
 					</div>
-				}
+                }
 
 				<Col className={campoClasses}>
                     {this.props.textarea ? 
                         <textarea name={this.props.nome} id={this.props.nome} className={"form-control"} rows={this.props.rows} 
-                            placeholder={this.props.placeholder} value={this.props.valor} maxLength={this.props.max}
+                            placeholder={this.props.placeholder} value={valor} maxLength={this.props.max}
                             onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)} />
                         :
-                        <InputMask mask={this.props.mascara} name={this.props.nome} value={this.props.valor} maxLength={this.props.max} className={"form-control"}
+                        <InputMask mask={this.props.mascara} name={this.props.nome} value={valor} maxLength={this.props.max} className={"form-control"}
                                 type={this.props.tipo} placeholder={this.props.placeholder} id={this.props.nome} disabled={this.props.desabilitado}
                                 onChange={(e: any) => handleFieldChange(this.props.contexto, e, this.props.parent)} />
                     }
