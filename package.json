@@ -1,6 +1,6 @@
 {
     "name": "@intechprev/componentes-web",
-    "version": "1.0.10",
+    "version": "1.0.16",
     "main": "./dist/index.js",
     "typings": "./types/index.d.ts",
     "devDependencies": {
@@ -10,6 +10,7 @@
         "@types/react-router-dom": "^4.3.2",
         "bootstrap": "^4.3.1",
         "gluegun": "^3.2.0",
+        "moment": "^2.24.0",
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
         "react-router-dom": "^5.0.0",
@@ -17,7 +18,7 @@
         "typescript": "^3.4.3"
     },
     "dependencies": {
-        "@intechprev/react-lib": "^1.0.4",
+        "@intechprev/react-lib": "^1.0.6",
         "@types/classnames": "^2.2.7",
         "@types/react-input-mask": "^2.0.1",
         "classnames": "^2.2.6",

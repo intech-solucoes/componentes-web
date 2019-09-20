@@ -8,7 +8,11 @@ interface Props {
     children: Array<any> | any;
 }
 
-export class Form extends React.Component<Props> {
+interface State {
+    valido: boolean;
+}
+
+export class Form extends React.Component<Props, State> {
 
     erros: Array<string> = [];
     valido: boolean = true;
@@ -32,11 +36,11 @@ export class Form extends React.Component<Props> {
                 // Valida cada campo
                 if(campo.props.obrigatorio)
                 {
-                    if(campo.props.valor === "")
+                    if(typeof(campo.props.valor) === "undefined" || campo.props.valor === "")
                         this.erros.push(`Campo "${campo.props.label || campo.props.placeholder}" obrigatório.`);
                 }
 
-                else if(campo.props.tipo === "email" && validarEmail(campo.props.valor))
+                else if(campo.props.tipo === "email" && typeof(campo.props.valor) === "undefined" && validarEmail(campo.props.valor))
                     this.erros.push("E-mail inválido.");
 
                 var valorSemMascara = null;
@@ -48,6 +52,7 @@ export class Form extends React.Component<Props> {
                     this.erros.push(`Campo "${campo.props.label || campo.props.placeholder}" inválido.`);
             });
 
+        this.valido = this.erros.length === 0;
         await this.setState({
             valido: this.erros.length === 0
         });

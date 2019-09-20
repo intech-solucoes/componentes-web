@@ -6,7 +6,7 @@ interface Props {
     contexto: any;
     nomeMembro: string;
     valorMembro: string;
-    valor: string;
+    valor: string | number;
     obrigatorio?: boolean;
     desabilitado?: boolean;
     textoVazio?: string;
@@ -41,7 +41,7 @@ export class Combo extends Component<Props> {
 
 		if(this.props.obrigatorio)
 		{
-			if(this.props.valor === "")
+			if(typeof this.props.valor === "undefined" || this.props.valor == "")
 				this.erros.push(`Campo "${this.props.label}" obrigatório.`);
 		}
 

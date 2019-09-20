@@ -4,7 +4,7 @@ interface Props {
     contexto: any;
     nomeMembro: string;
     valorMembro: string;
-    valor: string;
+    valor: string | number;
     obrigatorio?: boolean;
     desabilitado?: boolean;
     textoVazio?: string;
@@ -18,7 +18,7 @@ export declare class Combo extends Component<Props> {
     possuiErros: boolean;
     static defaultProps: {
         padrao: string;
-        opcoes: never[];
+        opcoes: any[];
     };
     componentDidMount(): Promise<void>;
     validar: () => void;

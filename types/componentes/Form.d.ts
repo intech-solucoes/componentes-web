@@ -2,7 +2,10 @@ import React from 'react';
 interface Props {
     children: Array<any> | any;
 }
-export declare class Form extends React.Component<Props> {
+interface State {
+    valido: boolean;
+}
+export declare class Form extends React.Component<Props, State> {
     erros: Array<string>;
     valido: boolean;
     constructor(props: Props);
