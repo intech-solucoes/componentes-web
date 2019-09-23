@@ -1,4 +1,5 @@
 import React from 'react';
+import { Col, Row } from "..";
 import classNames from "classnames";
 import moment from "moment";
 
@@ -9,11 +10,16 @@ export enum TipoCampoEstatico {
 }
 
 interface Props {
-    col?: string;
+    valor: string | number;
+    
+    col?: string; //rename to tamanhoCampo?
     id?: string;
-    valor: string | number | Date;
-    titulo?: string;
+    label?: string;
+    obrigatorio?: boolean;
+    tamanhoCampo?: string;
+    tamanhoLabel?: string;
     tipo?: TipoCampoEstatico;
+    titulo?: string; //rename to label?
 }
 
 export class CampoEstatico extends React.Component<Props> {
@@ -21,38 +27,69 @@ export class CampoEstatico extends React.Component<Props> {
     static defaultProps = {
         tipo: TipoCampoEstatico.texto
     }
-
-    render() {
-        var valor: string | number | Date = this.props.valor;
-
+    
+    parseValue(){
         if(this.props.tipo === TipoCampoEstatico.data)
-            valor = moment(valor).format("dd/MM/yyyy");
-
-        if(this.props.tipo === TipoCampoEstatico.dinheiro) {
+            return moment(this.props.valor).format("DD/MM/YYYY");
+        if(this.props.tipo === TipoCampoEstatico.dinheiro){
             if(typeof(this.props.valor) === "string")
-                valor = `R$ ${Number.parseFloat(this.props.valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                return `R$ ${Number.parseFloat(this.props.valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
             else
-                valor = `R$ ${this.props.valor.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                return `R$ ${this.props.valor.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
         }
-
-        var classes = classNames({
-            "form-group": true,
-            "col": !this.props.col,
-            [`col-${this.props.col}`]: this.props.col
+        return this.props.valor;
+    }
+    
+    renderLabel(){
+      const auxLabel = this.props.label || this.props.titulo;
+      if(auxLabel){
+        
+        const aux = this.props.tamanhoLabel || this.props.col;
+        
+        const labelClasses = classNames({
+            "col-lg-2": !aux,
+            [`col-${aux}`]: aux,
+            "col-md-12": !aux,
+            "text-lg-right": true,
+            "col-form-label": true
         });
         
-        if(this.props.titulo) {
-            return (
-                <div className={classes}>
-                    <label className="text-primary">{this.props.titulo}</label>
-                    <label id={this.props.id} className="form-control-plaintext">{valor}</label>
-                </div>
-            );
-        } else {
-            return (
-                <label>{valor}</label>
-            );
-        }
+        return(
+            <div className={labelClasses}>
+						    <b>
+                    <label >
+                        {auxLabel}
+                        {this.props.obrigatorio && " *"}
+                    </label>
+                </b>
+				  	</div>
+        );
+      }
+      return null;
+    }
+    
+    renderCampo(){
+      let valor: string | number | Date = this.parseValue();
+      
+      const campoClasses = classNames({
+          "col": !this.props.tamanhoCampo,
+          [`col-${this.props.tamanhoCampo}`]: this.props.tamanhoCampo,
+          "align-self-center": true
+      });
+      
+      return(
+        <Col className={campoClasses}>
+          {valor}
+        </Col>
+      );
     }
 
+    render() {
+        return (
+            <Row formGroup>
+                {this.renderLabel()}
+                {this.renderCampo()}
+            </Row>
+        );
+    }
 }

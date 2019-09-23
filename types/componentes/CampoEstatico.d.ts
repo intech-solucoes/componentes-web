@@ -5,16 +5,23 @@ export declare enum TipoCampoEstatico {
     data = 2
 }
 interface Props {
+    valor: string | number;
     col?: string;
     id?: string;
-    valor: string | number | Date;
-    titulo?: string;
+    label?: string;
+    obrigatorio?: boolean;
+    tamanhoCampo?: string;
+    tamanhoLabel?: string;
     tipo?: TipoCampoEstatico;
+    titulo?: string;
 }
 export declare class CampoEstatico extends React.Component<Props> {
     static defaultProps: {
         tipo: TipoCampoEstatico;
     };
+    parseValue(): React.ReactText;
+    renderLabel(): JSX.Element;
+    renderCampo(): JSX.Element;
     render(): JSX.Element;
 }
 export {};

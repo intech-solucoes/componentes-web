@@ -12,6 +12,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import React from 'react';
+import { Col, Row } from "..";
 import classNames from "classnames";
 import moment from "moment";
 export var TipoCampoEstatico;
@@ -25,31 +26,53 @@ var CampoEstatico = /** @class */ (function (_super) {
     function CampoEstatico() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    CampoEstatico.prototype.render = function () {
-        var _a;
-        var valor = this.props.valor;
+    CampoEstatico.prototype.parseValue = function () {
         if (this.props.tipo === TipoCampoEstatico.data)
-            valor = moment(valor).format("dd/MM/yyyy");
+            return moment(this.props.valor).format("DD/MM/YYYY");
         if (this.props.tipo === TipoCampoEstatico.dinheiro) {
             if (typeof (this.props.valor) === "string")
-                valor = "R$ " + Number.parseFloat(this.props.valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                return "R$ " + Number.parseFloat(this.props.valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             else
-                valor = "R$ " + this.props.valor.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                return "R$ " + this.props.valor.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
-        var classes = classNames((_a = {
-                "form-group": true,
-                "col": !this.props.col
+        return this.props.valor;
+    };
+    CampoEstatico.prototype.renderLabel = function () {
+        var _a;
+        var auxLabel = this.props.label || this.props.titulo;
+        if (auxLabel) {
+            var aux = this.props.tamanhoLabel || this.props.col;
+            var labelClasses = classNames((_a = {
+                    "col-lg-2": !aux
+                },
+                _a["col-" + aux] = aux,
+                _a["col-md-12"] = !aux,
+                _a["text-lg-right"] = true,
+                _a["col-form-label"] = true,
+                _a));
+            return (React.createElement("div", { className: labelClasses },
+                React.createElement("b", null,
+                    React.createElement("label", null,
+                        auxLabel,
+                        this.props.obrigatorio && " *"))));
+        }
+        return null;
+    };
+    CampoEstatico.prototype.renderCampo = function () {
+        var _a;
+        var valor = this.parseValue();
+        var campoClasses = classNames((_a = {
+                "col": !this.props.tamanhoCampo
             },
-            _a["col-" + this.props.col] = this.props.col,
+            _a["col-" + this.props.tamanhoCampo] = this.props.tamanhoCampo,
+            _a["align-self-center"] = true,
             _a));
-        if (this.props.titulo) {
-            return (React.createElement("div", { className: classes },
-                React.createElement("label", { className: "text-primary" }, this.props.titulo),
-                React.createElement("label", { id: this.props.id, className: "form-control-plaintext" }, valor)));
-        }
-        else {
-            return (React.createElement("label", null, valor));
-        }
+        return (React.createElement(Col, { className: campoClasses }, valor));
+    };
+    CampoEstatico.prototype.render = function () {
+        return (React.createElement(Row, { formGroup: true },
+            this.renderLabel(),
+            this.renderCampo()));
     };
     CampoEstatico.defaultProps = {
         tipo: TipoCampoEstatico.texto
