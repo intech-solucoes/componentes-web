@@ -6,6 +6,7 @@ import { Dashboard } from "./paginas/Dashboard";
 import { BotaoPage } from "./paginas/Botao";
 import { AlertaPage } from "./paginas/Alerta";
 import { DropdownPage } from "./paginas/Dropdown";
+import { CampoEstaticoPage } from "./paginas/CampoEstatico";
 
 const rotas: Array<Rota> = [
     {
@@ -41,6 +42,24 @@ const rotas: Array<Rota> = [
         icone: "fas fa-caret-down",
         caminho: "/dropdown",
         componente: (routeProps: RouteProps) => <DropdownPage {...routeProps} />,
+        mostrarMenu: true,
+        caminhoExato: true
+    },
+    {
+        id: "campoEstatico",
+        titulo: "Campo Estático",
+        icone: "fas fa-font",
+        caminho: "/campoEstatico",
+        componente: (routeProps: RouteProps) => <CampoEstaticoPage {...routeProps} />,
+        mostrarMenu: true,
+        caminhoExato: true
+    },
+    {
+        id: "campoTexto",
+        titulo: "Campo Texto",
+        icone: "fas fa-edit",
+        caminho: "/campoTexto",
+        componente: (routeProps: RouteProps) => <CampoEstaticoPage {...routeProps} />,
         mostrarMenu: true,
         caminhoExato: true
     }

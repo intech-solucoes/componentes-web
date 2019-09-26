@@ -12,15 +12,20 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import React from 'react';
-import { Col, Row } from "..";
 import classNames from "classnames";
 import moment from "moment";
+import { Row } from '..';
 export var TipoCampoEstatico;
 (function (TipoCampoEstatico) {
     TipoCampoEstatico[TipoCampoEstatico["texto"] = 0] = "texto";
     TipoCampoEstatico[TipoCampoEstatico["dinheiro"] = 1] = "dinheiro";
     TipoCampoEstatico[TipoCampoEstatico["data"] = 2] = "data";
 })(TipoCampoEstatico || (TipoCampoEstatico = {}));
+export var PosicaoTituloCampoEstatico;
+(function (PosicaoTituloCampoEstatico) {
+    PosicaoTituloCampoEstatico[PosicaoTituloCampoEstatico["esquerda"] = 0] = "esquerda";
+    PosicaoTituloCampoEstatico[PosicaoTituloCampoEstatico["cima"] = 1] = "cima";
+})(PosicaoTituloCampoEstatico || (PosicaoTituloCampoEstatico = {}));
 var CampoEstatico = /** @class */ (function (_super) {
     __extends(CampoEstatico, _super);
     function CampoEstatico() {
@@ -39,43 +44,54 @@ var CampoEstatico = /** @class */ (function (_super) {
     };
     CampoEstatico.prototype.renderLabel = function () {
         var _a;
-        var auxLabel = this.props.label || this.props.titulo;
-        if (auxLabel) {
-            var aux = this.props.tamanhoLabel || this.props.col;
+        if (this.props.titulo) {
+            var cima = this.props.posicaoTitulo === PosicaoTituloCampoEstatico.cima;
             var labelClasses = classNames((_a = {
-                    "col-lg-2": !aux
+                    "col-lg-2": !this.props.tamanhoTitulo && !cima,
+                    "col-lg-12": !this.props.tamanhoTitulo && cima
                 },
-                _a["col-" + aux] = aux,
-                _a["col-md-12"] = !aux,
-                _a["text-lg-right"] = true,
+                _a["col-" + this.props.tamanhoTitulo] = this.props.tamanhoTitulo && !cima,
+                _a["col-md-12"] = !this.props.tamanhoTitulo,
+                _a["text-lg-right"] = !cima,
                 _a["col-form-label"] = true,
+                _a["text-primary"] = true,
                 _a));
-            return (React.createElement("div", { className: labelClasses },
-                React.createElement("b", null,
-                    React.createElement("label", null,
-                        auxLabel,
-                        this.props.obrigatorio && " *"))));
+            return (React.createElement("label", { className: labelClasses },
+                this.props.titulo,
+                this.props.obrigatorio && " *"));
         }
         return null;
     };
     CampoEstatico.prototype.renderCampo = function () {
-        var _a;
         var valor = this.parseValue();
-        var campoClasses = classNames((_a = {
+        var labelClasses = classNames({
+            "col": this.props.titulo,
+            "form-control-plaintext": this.props.titulo,
+            "align-self-center": this.props.titulo
+        });
+        return (React.createElement("label", { className: labelClasses }, valor));
+    };
+    CampoEstatico.prototype.render = function () {
+        var _a;
+        var classes = classNames((_a = {
+                "form-group": true,
                 "col": !this.props.tamanhoCampo
             },
             _a["col-" + this.props.tamanhoCampo] = this.props.tamanhoCampo,
-            _a["align-self-center"] = true,
             _a));
-        return (React.createElement(Col, { className: campoClasses }, valor));
-    };
-    CampoEstatico.prototype.render = function () {
-        return (React.createElement(Row, { formGroup: true },
-            this.renderLabel(),
-            this.renderCampo()));
+        if (this.props.titulo) {
+            return (React.createElement("div", { className: classes },
+                React.createElement(Row, null,
+                    this.renderLabel(),
+                    this.renderCampo())));
+        }
+        else {
+            return this.renderCampo();
+        }
     };
     CampoEstatico.defaultProps = {
-        tipo: TipoCampoEstatico.texto
+        tipo: TipoCampoEstatico.texto,
+        posicao: PosicaoTituloCampoEstatico.esquerda
     };
     return CampoEstatico;
 }(React.Component));

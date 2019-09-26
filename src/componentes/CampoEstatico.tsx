@@ -1,7 +1,7 @@
 import React from 'react';
-import { Col, Row } from "..";
 import classNames from "classnames";
 import moment from "moment";
+import { Row } from '..';
 
 export enum TipoCampoEstatico {
     texto,
@@ -9,87 +9,102 @@ export enum TipoCampoEstatico {
     data
 }
 
+export enum PosicaoTituloCampoEstatico {
+    esquerda,
+    cima
+}
+
 interface Props {
     valor: string | number;
-    
-    col?: string; //rename to tamanhoCampo?
+
     id?: string;
-    label?: string;
     obrigatorio?: boolean;
-    tamanhoCampo?: string;
-    tamanhoLabel?: string;
     tipo?: TipoCampoEstatico;
-    titulo?: string; //rename to label?
+
+    titulo?: string;
+    tamanhoTitulo?: string;
+    posicaoTitulo?: PosicaoTituloCampoEstatico;
+
+    tamanhoCampo?: string;
 }
 
 export class CampoEstatico extends React.Component<Props> {
 
     static defaultProps = {
-        tipo: TipoCampoEstatico.texto
+        tipo: TipoCampoEstatico.texto,
+        posicao: PosicaoTituloCampoEstatico.esquerda
     }
-    
-    parseValue(){
-        if(this.props.tipo === TipoCampoEstatico.data)
+
+    parseValue() {
+        if (this.props.tipo === TipoCampoEstatico.data)
             return moment(this.props.valor).format("DD/MM/YYYY");
-        if(this.props.tipo === TipoCampoEstatico.dinheiro){
-            if(typeof(this.props.valor) === "string")
-                return `R$ ${Number.parseFloat(this.props.valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        if (this.props.tipo === TipoCampoEstatico.dinheiro) {
+            if (typeof (this.props.valor) === "string")
+                return `R$ ${Number.parseFloat(this.props.valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
             else
-                return `R$ ${this.props.valor.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                return `R$ ${this.props.valor.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
         }
         return this.props.valor;
     }
-    
-    renderLabel(){
-      const auxLabel = this.props.label || this.props.titulo;
-      if(auxLabel){
-        
-        const aux = this.props.tamanhoLabel || this.props.col;
-        
-        const labelClasses = classNames({
-            "col-lg-2": !aux,
-            [`col-${aux}`]: aux,
-            "col-md-12": !aux,
-            "text-lg-right": true,
-            "col-form-label": true
-        });
-        
-        return(
-            <div className={labelClasses}>
-						    <b>
-                    <label >
-                        {auxLabel}
-                        {this.props.obrigatorio && " *"}
-                    </label>
-                </b>
-				  	</div>
-        );
-      }
-      return null;
+
+    renderLabel() {
+        if (this.props.titulo) {
+            const cima = this.props.posicaoTitulo === PosicaoTituloCampoEstatico.cima;
+            
+            const labelClasses = classNames({
+                "col-lg-2": !this.props.tamanhoTitulo && !cima,
+                "col-lg-12": !this.props.tamanhoTitulo && cima,
+                [`col-${this.props.tamanhoTitulo}`]: this.props.tamanhoTitulo && !cima,
+                "col-md-12": !this.props.tamanhoTitulo,
+                "text-lg-right": !cima,
+                "col-form-label": true,
+                "text-primary": true
+            });
+
+            return (
+                <label className={labelClasses}>
+                    {this.props.titulo}
+                    {this.props.obrigatorio && " *"}
+                </label>
+            );
+        }
+        return null;
     }
-    
-    renderCampo(){
-      let valor: string | number | Date = this.parseValue();
-      
-      const campoClasses = classNames({
-          "col": !this.props.tamanhoCampo,
-          [`col-${this.props.tamanhoCampo}`]: this.props.tamanhoCampo,
-          "align-self-center": true
-      });
-      
-      return(
-        <Col className={campoClasses}>
-          {valor}
-        </Col>
-      );
+
+    renderCampo() {
+        let valor: string | number | Date = this.parseValue();
+            
+        const labelClasses = classNames({
+            "col": this.props.titulo,
+            "form-control-plaintext": this.props.titulo,
+            "align-self-center": this.props.titulo
+        });
+
+        return (
+            <label className={labelClasses}>
+                {valor}
+            </label>
+        );
     }
 
     render() {
-        return (
-            <Row formGroup>
-                {this.renderLabel()}
-                {this.renderCampo()}
-            </Row>
-        );
+        const classes = classNames({
+            "form-group": true,
+            "col": !this.props.tamanhoCampo,
+            [`col-${this.props.tamanhoCampo}`]: this.props.tamanhoCampo
+        });
+
+        if(this.props.titulo) {
+            return (
+                <div className={classes}>
+                    <Row>
+                        {this.renderLabel()}
+                        {this.renderCampo()}
+                    </Row>
+                </div>
+            );
+        } else {
+            return this.renderCampo();
+        }
     }
 }
