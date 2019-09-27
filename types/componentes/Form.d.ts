@@ -9,6 +9,8 @@ export declare class Form extends React.Component<Props, State> {
     erros: Array<string>;
     valido: boolean;
     constructor(props: Props);
+    validarAux: () => Promise<void>;
+    validarAlt: () => Promise<void>;
     validar: () => Promise<void>;
     render(): JSX.Element;
 }

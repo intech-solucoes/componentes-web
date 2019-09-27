@@ -55,6 +55,52 @@ var Form = /** @class */ (function (_super) {
         var _this = _super.call(this, props) || this;
         _this.erros = [];
         _this.valido = true;
+        _this.validarAux = function () { return __awaiter(_this, void 0, void 0, function () {
+            var node, i, currentNode, currentValue, currentLabel, valorSemMascara;
+            return __generator(this, function (_a) {
+                node = document.querySelectorAll('input, select');
+                for (i = 0; i < node.length; i++) {
+                    currentNode = node[i];
+                    currentValue = currentNode.value;
+                    currentLabel = currentNode.labels[0].textContent;
+                    // Ve se obrigatório
+                    if (currentLabel.includes("*")) {
+                        if (currentValue === "") {
+                            this.erros.push("Campo \"" + currentLabel.replace("*", "") + "\" obrigat\u00F3rio.");
+                        }
+                    }
+                    else if (node[i].type === "email" && validarEmail(currentValue)) {
+                        this.erros.push("E-mail inválido.");
+                    }
+                    valorSemMascara = null;
+                    if (currentValue !== undefined) {
+                        valorSemMascara = currentValue.split("_").join("");
+                    }
+                    if (currentNode.min && valorSemMascara.length < currentNode.min) {
+                        this.erros.push("Campo \"" + currentLabel.replace("*", "") + "\" inv\u00E1lido.");
+                    }
+                }
+                return [2 /*return*/];
+            });
+        }); };
+        _this.validarAlt = function () { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.valido = true;
+                        this.erros = [];
+                        return [4 /*yield*/, this.validarAux()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, this.setState({
+                                valido: this.erros.length === 0
+                            })];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        }); };
         _this.validar = function () { return __awaiter(_this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {

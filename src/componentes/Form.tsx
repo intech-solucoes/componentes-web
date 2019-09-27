@@ -25,6 +25,55 @@ export class Form extends React.Component<Props, State> {
         }
     }
     
+    // Encapsulação do loop for para deixar async
+    validarAux = async () => {
+      const node: any = document.querySelectorAll('input, select');
+
+        for(let i = 0; i < node.length; i++){
+            // Valores de auxílio: nó/campo, valor e label atuais
+            const currentNode = node[i];
+            const currentValue = currentNode.value;
+            const currentLabel = currentNode.labels[0].textContent;
+            
+            // Ve se obrigatório (gambiarra)
+            if(currentLabel.includes("*"))
+            {
+                if(currentValue === "")
+                {
+                    this.erros.push(`Campo "${currentLabel.replace("*", "")}" obrigatório.`)
+                }
+            }
+            // Valida email
+            else if(node[i].type === "email" && validarEmail(currentValue))
+            {
+                this.erros.push("E-mail inválido.");
+            }
+            
+            // Remove mascara para validar
+            let valorSemMascara = null;
+            
+            if(currentValue !== undefined)
+            {
+                valorSemMascara = currentValue.split("_").join("");
+            }
+
+            if(currentNode.min && valorSemMascara.length < currentNode.min){
+                this.erros.push(`Campo "${currentLabel.replace("*", "")}" inválido.`);
+            }
+        }
+    }
+    
+    validarAlt = async () => {
+        this.valido = true;
+        this.erros = [];
+      
+        await this.validarAux();
+        
+        await this.setState({
+            valido: this.erros.length === 0
+        });
+    }
+    
     validar = async () => {
         this.valido = true;
         this.erros = [];
