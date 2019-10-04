@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { handleFieldChange } from "@intechprev/react-lib";
 
-import { Col, Row } from "..";
+import { Botao, Col, Row } from "..";
 import classNames from 'classnames';
 
 interface Props {
@@ -20,6 +20,13 @@ interface Props {
     tamanhoLabel?: string;
     tamanhoCampo?: string;
     textoVazio?: string;
+    
+    grupo?: boolean;
+    iconeBotao?: string;
+    iconeBotaoDireita?: boolean;
+    onBotaoClick?: any;
+    botaoEsquerda?: boolean;
+    tituloBotao?: string;
 }
 
 export class Combo extends Component<Props> {
@@ -64,36 +71,70 @@ export class Combo extends Component<Props> {
 		}
 	}
   
+    renderBotaoGrupo(){
+        if(this.props.grupo){
+            return(
+                <div className="input-group-append">
+                    <Botao
+                        titulo={this.props.tituloBotao}
+                        onClick={this.props.onBotaoClick}
+                        icone={this.props.iconeBotao}
+                        iconeDireita={this.props.iconeBotaoDireita}
+                    />
+                </div>
+            );
+        }
+        return null;
+    }
+    
+    mountCombo(){
+        return(
+            <select
+                id={this.props.nome}
+                name={this.props.nome}
+                className={"form-control"}
+                onChange={(e: any) => this.onChange(e)}
+                value={this.props.valor} disabled={this.props.desabilitado}>
+                
+                {this.props.textoVazio &&
+                    <option value="">{this.props.textoVazio}</option>
+                }
+
+                {this.props.opcoes!.map((opcao, index) => {
+                    return(
+                        <option key={index} value={opcao[this.props.valorMembro]}>{opcao[this.props.nomeMembro]}</option>
+                    )
+                })}
+            </select>
+        );
+    }
+  
     renderCombo(){
         const campoClasses = classNames({
             "col": !this.props.tamanhoCampo,
             [`col-${this.props.tamanhoCampo}`]: this.props.tamanhoCampo
         });
+        
+        if(this.props.grupo){
+            return(
+                <Col className={campoClasses}>
+                    <div className="input-group">
+                        {this.props.botaoEsquerda ? this.renderBotaoGrupo() : null}
+                        {this.mountCombo()}
+                        {this.props.botaoEsquerda ? null : this.renderBotaoGrupo()}
+                    </div>
+                </Col>
+            );
+        }
+        else{
+            return(
+                <Col className={campoClasses}>
+                    {this.mountCombo()}
+                </Col>
+            );
+        }
       
-        return(
-          <Col className={campoClasses}>
-            <select
-                id={this.props.nome}
-                name={this.props.nome}
-                className="form-control"
-                onChange={(e: any) => this.onChange(e)} 
-                value={this.props.valor} disabled={this.props.desabilitado}>
-
-                    {this.props.textoVazio &&
-                        <option value="">{this.props.textoVazio}</option>
-                    }
-
-                    {
-                        this.props.opcoes!.map((opcao, index) => {
-                            return (
-                                <option key={index} value={opcao[this.props.valorMembro]}>{opcao[this.props.nomeMembro]}</option>
-                            )
-                        })
-                    }
-                    
-                </select>
-          </Col>
-        );
+        
     }
   
     renderLabel(){

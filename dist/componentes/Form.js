@@ -55,6 +55,7 @@ var Form = /** @class */ (function (_super) {
         var _this = _super.call(this, props) || this;
         _this.erros = [];
         _this.valido = true;
+        // Encapsulação do loop for para deixar async
         _this.validarAux = function () { return __awaiter(_this, void 0, void 0, function () {
             var node, i, currentNode, currentValue, currentLabel, valorSemMascara;
             return __generator(this, function (_a) {
@@ -63,12 +64,13 @@ var Form = /** @class */ (function (_super) {
                     currentNode = node[i];
                     currentValue = currentNode.value;
                     currentLabel = currentNode.labels[0].textContent;
-                    // Ve se obrigatório
+                    // Ve se obrigatório (gambiarra)
                     if (currentLabel.includes("*")) {
                         if (currentValue === "") {
                             this.erros.push("Campo \"" + currentLabel.replace("*", "") + "\" obrigat\u00F3rio.");
                         }
                     }
+                    // Valida email
                     else if (node[i].type === "email" && validarEmail(currentValue)) {
                         this.erros.push("E-mail inválido.");
                     }

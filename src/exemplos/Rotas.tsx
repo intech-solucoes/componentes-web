@@ -7,6 +7,7 @@ import { BotaoPage } from "./paginas/Botao";
 import { AlertaPage } from "./paginas/Alerta";
 import { DropdownPage } from "./paginas/Dropdown";
 import { CampoEstaticoPage } from "./paginas/CampoEstatico";
+import { InputGroupPage } from "./paginas/InputGroup";
 
 const rotas: Array<Rota> = [
     {
@@ -60,6 +61,15 @@ const rotas: Array<Rota> = [
         icone: "fas fa-edit",
         caminho: "/campoTexto",
         componente: (routeProps: RouteProps) => <CampoEstaticoPage {...routeProps} />,
+        mostrarMenu: true,
+        caminhoExato: true
+    },
+    {
+        id: "inputGropu",
+        titulo: "Input Group",
+        icone: "fas fa-edit",
+        caminho: "/inputGropu",
+        componente: (routeProps: RouteProps) => <InputGroupPage {...routeProps} />,
         mostrarMenu: true,
         caminhoExato: true
     }

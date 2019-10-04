@@ -38,15 +38,11 @@ interface Props {
     iconeBotao?: string;
     iconeBotaoDireita?: boolean;
     onBotaoClick?: any;
-    posicaoBotao?: PosicaoBotaoGrupo;
+    botaoEsquerda?: boolean;
     tituloBotao?: string;
 }
 
 export class CampoTexto extends React.Component<Props> {
-    static defaultProps = {
-        posicao: PosicaoBotaoGrupo.direita
-    }
-  
     renderLabel(){
       if(this.props.label){
           const labelClasses = classNames({
@@ -87,13 +83,47 @@ export class CampoTexto extends React.Component<Props> {
         return null;
     }
     
+    mountCampo(valor: any){
+        if(this.props.textarea){
+            return(
+                <textarea
+                    name={this.props.nome}
+                    id={this.props.nome}
+                    className={"form-control"}
+                    rows={this.props.rows}
+                    placeholder={this.props.placeholder}
+                    value={valor}
+                    maxLength={this.props.max}
+                    onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}
+                    onBlur={this.props.onBlur}
+                />
+            );
+        }
+        else{
+            return(
+                <InputMask
+                    title={this.props.titulo}
+                    mask={this.props.mascara}
+                    name={this.props.nome}
+                    value={valor}
+                    maxLength={this.props.max}
+                    className={"form-control"}
+                    type={this.props.tipo}
+                    placeholder={this.props.placeholder}
+                    id={this.props.nome}
+                    disabled={this.props.desabilitado}
+                    onChange={(e: any) => handleFieldChange(this.props.contexto, e, this.props.parent)}
+                    onBlur={this.props.onBlur}
+                />
+            );
+        }
+    }
+    
     renderCampo(){
         const campoClasses = classNames({
             "col": !this.props.tamanhoCampo,
             [`col-${this.props.tamanhoCampo}`]: this.props.tamanhoCampo
         });
-        
-        const esquerda = this.props.posicaoBotao === PosicaoBotaoGrupo.esquerda;
         
         let valor = "";
 
@@ -103,41 +133,24 @@ export class CampoTexto extends React.Component<Props> {
         if(typeof(valor) === typeof(Date))
             valor = moment(valor).format("dd/MM/yyyy");
         
-        return(
+        if(this.props.grupo){
+            return(
+                <Col className={campoClasses}>
+                  <div className="input-group">
+                    {this.props.botaoEsquerda ? this.renderBotaoGrupo() : null}
+                    {this.mountCampo(valor)}
+                    {this.props.botaoEsquerda ? null : this.renderBotaoGrupo()}
+                  </div>
+				        </Col>
+            );
+        }
+        else{
+            return(
             <Col className={campoClasses}>
-              <div className="input-group">
-                {esquerda ? this.renderBotaoGrupo() : null}
-                {this.props.textarea ?
-                    <textarea
-                        name={this.props.nome}
-                        id={this.props.nome}
-                        className={"form-control"}
-                        rows={this.props.rows}
-                        placeholder={this.props.placeholder}
-                        value={valor}
-                        maxLength={this.props.max}
-                        onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}
-                        onBlur={this.props.onBlur}
-                    />  :
-                    <InputMask
-                        title={this.props.titulo}
-                        mask={this.props.mascara}
-                        name={this.props.nome}
-                        value={valor}
-                        maxLength={this.props.max}
-                        className={"form-control"}
-                        type={this.props.tipo}
-                        placeholder={this.props.placeholder}
-                        id={this.props.nome}
-                        disabled={this.props.desabilitado}
-                        onChange={(e: any) => handleFieldChange(this.props.contexto, e, this.props.parent)}
-                        onBlur={this.props.onBlur}
-                    />
-                }
-                {esquerda ? null : this.renderBotaoGrupo()}
-              </div>
+                {this.mountCampo(valor)}
 				    </Col>
-        );
+            );
+        }
     }
     
     render() {

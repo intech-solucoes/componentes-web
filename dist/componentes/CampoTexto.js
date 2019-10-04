@@ -52,35 +52,42 @@ var CampoTexto = /** @class */ (function (_super) {
         }
         return null;
     };
-    CampoTexto.prototype.renderCampo = function () {
+    CampoTexto.prototype.mountCampo = function (valor) {
         var _this = this;
+        if (this.props.textarea) {
+            return (React.createElement("textarea", { name: this.props.nome, id: this.props.nome, className: "form-control", rows: this.props.rows, placeholder: this.props.placeholder, value: valor, maxLength: this.props.max, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); }, onBlur: this.props.onBlur }));
+        }
+        else {
+            return (React.createElement(InputMask, { title: this.props.titulo, mask: this.props.mascara, name: this.props.nome, value: valor, maxLength: this.props.max, className: "form-control", type: this.props.tipo, placeholder: this.props.placeholder, id: this.props.nome, disabled: this.props.desabilitado, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); }, onBlur: this.props.onBlur }));
+        }
+    };
+    CampoTexto.prototype.renderCampo = function () {
         var _a;
         var campoClasses = classNames((_a = {
                 "col": !this.props.tamanhoCampo
             },
             _a["col-" + this.props.tamanhoCampo] = this.props.tamanhoCampo,
             _a));
-        var esquerda = this.props.posicaoBotao === PosicaoBotaoGrupo.esquerda;
         var valor = "";
         if (this.props.valor)
             valor = this.props.valor.toString();
         if (typeof (valor) === typeof (Date))
             valor = moment(valor).format("dd/MM/yyyy");
-        return (React.createElement(Col, { className: campoClasses },
-            React.createElement("div", { className: "input-group" },
-                esquerda ? this.renderBotaoGrupo() : null,
-                this.props.textarea ?
-                    React.createElement("textarea", { name: this.props.nome, id: this.props.nome, className: "form-control", rows: this.props.rows, placeholder: this.props.placeholder, value: valor, maxLength: this.props.max, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); }, onBlur: this.props.onBlur }) :
-                    React.createElement(InputMask, { title: this.props.titulo, mask: this.props.mascara, name: this.props.nome, value: valor, maxLength: this.props.max, className: "form-control", type: this.props.tipo, placeholder: this.props.placeholder, id: this.props.nome, disabled: this.props.desabilitado, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); }, onBlur: this.props.onBlur }),
-                esquerda ? null : this.renderBotaoGrupo())));
+        if (this.props.grupo) {
+            return (React.createElement(Col, { className: campoClasses },
+                React.createElement("div", { className: "input-group" },
+                    this.props.botaoEsquerda ? this.renderBotaoGrupo() : null,
+                    this.mountCampo(valor),
+                    this.props.botaoEsquerda ? null : this.renderBotaoGrupo())));
+        }
+        else {
+            return (React.createElement(Col, { className: campoClasses }, this.mountCampo(valor)));
+        }
     };
     CampoTexto.prototype.render = function () {
         return (React.createElement(Row, { formGroup: true },
             this.renderLabel(),
             this.renderCampo()));
-    };
-    CampoTexto.defaultProps = {
-        posicao: PosicaoBotaoGrupo.direita
     };
     return CampoTexto;
 }(React.Component));

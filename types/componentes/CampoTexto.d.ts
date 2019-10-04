@@ -26,15 +26,13 @@ interface Props {
     iconeBotao?: string;
     iconeBotaoDireita?: boolean;
     onBotaoClick?: any;
-    posicaoBotao?: PosicaoBotaoGrupo;
+    botaoEsquerda?: boolean;
     tituloBotao?: string;
 }
 export declare class CampoTexto extends React.Component<Props> {
-    static defaultProps: {
-        posicao: PosicaoBotaoGrupo;
-    };
     renderLabel(): JSX.Element;
     renderBotaoGrupo(): JSX.Element;
+    mountCampo(valor: any): JSX.Element;
     renderCampo(): JSX.Element;
     render(): JSX.Element;
 }
