@@ -10,6 +10,7 @@ import { Form } from "./componentes/Form";
 import { Botao, TipoBotao, TamanhoBotao } from "./componentes/Botao";
 import { BotaoSwitch } from "./componentes/BotaoSwitch";
 import { Roteador, Rota } from "./Rotas";
+import { Modal } from "./componentes/Modal";
 
 export {
     Col,
@@ -24,7 +25,8 @@ export {
     Botao, TipoBotao, TamanhoBotao,
     BotaoSwitch,
 
-    Rota, Roteador
+    Rota, Roteador,
+    Modal
 };
 
 try {

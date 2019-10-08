@@ -10,4 +10,5 @@ import { Form } from "./componentes/Form";
 import { Botao, TipoBotao, TamanhoBotao } from "./componentes/Botao";
 import { BotaoSwitch } from "./componentes/BotaoSwitch";
 import { Roteador, Rota } from "./Rotas";
-export { Col, Row, Box, Alerta, TipoAlerta, CampoTexto, CampoEstatico, TipoCampoEstatico, PosicaoTituloCampoEstatico, Combo, Dropdown, Form, Botao, TipoBotao, TamanhoBotao, BotaoSwitch, Rota, Roteador };
+import { Modal } from "./componentes/Modal";
+export { Col, Row, Box, Alerta, TipoAlerta, CampoTexto, CampoEstatico, TipoCampoEstatico, PosicaoTituloCampoEstatico, Combo, Dropdown, Form, Botao, TipoBotao, TamanhoBotao, BotaoSwitch, Rota, Roteador, Modal };
