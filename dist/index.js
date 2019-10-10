@@ -9,9 +9,13 @@ import { Dropdown } from "./componentes/Dropdown";
 import { Form } from "./componentes/Form";
 import { Botao, TipoBotao, TamanhoBotao } from "./componentes/Botao";
 import { BotaoSwitch } from "./componentes/BotaoSwitch";
-import { Roteador, Rota } from "./Rotas";
 import { Modal } from "./componentes/Modal";
-export { Col, Row, Box, Alerta, TipoAlerta, CampoTexto, CampoEstatico, TipoCampoEstatico, PosicaoTituloCampoEstatico, Combo, Dropdown, Form, Botao, TipoBotao, TamanhoBotao, BotaoSwitch, Rota, Roteador, Modal };
+import { Pesquisa } from "./componentes/Pesquisa";
+import { Tabela, ColunaTabela } from "./componentes/Tabela";
+import { FormEdicao } from "./componentes/FormEdicao";
+import { Roteador, Rota } from "./Rotas";
+import { SideMenuPage } from "./SideMenu";
+export { Col, Row, Box, Alerta, TipoAlerta, CampoTexto, CampoEstatico, TipoCampoEstatico, PosicaoTituloCampoEstatico, Combo, Dropdown, Form, Botao, TipoBotao, TamanhoBotao, BotaoSwitch, Modal, Pesquisa, Tabela, ColunaTabela, FormEdicao, Rota, Roteador, SideMenuPage };
 try {
     var React = require("react");
     var ReactDOM = require("react-dom");

@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import classNames from "classnames";
 import { History } from 'history';
 import { Link } from "react-router-dom";
