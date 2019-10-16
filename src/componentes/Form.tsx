@@ -2,7 +2,7 @@ import React from 'react';
 
 import { validarEmail } from "@intechprev/react-lib";
 
-import { CampoTexto, Alerta } from '..';
+import { CampoTexto, Combo, Alerta } from '..';
 
 interface Props {
     children: Array<any> | any;
@@ -23,6 +23,10 @@ export class Form extends React.Component<Props, State> {
         this.state = {
             valido: true
         }
+    }
+    
+    filtroCampos(campo: any){
+        return (campo.type === CampoTexto || campo.type === Combo);
     }
     
     // Encapsulação do loop for para deixar async
@@ -79,7 +83,9 @@ export class Form extends React.Component<Props, State> {
         this.erros = [];
 
         await this.props.children
-            .filter((campo: any) => campo.type === CampoTexto) // Filtra os tipos de campo apenas para CampoTexto
+            .filter((campo: any) => this.filtroCampos(campo)) // Filtra os tipos de campo
+            // .filter((campo: any) => campo) // Alternativa sem filtros de campos
+            // .filter((campo: any) => campo.type === CampoTexto) // Filtra os tipos de campo apenas para CampoTexto
             .forEach((campo: any) => {
 
                 // Valida cada campo
@@ -89,22 +95,44 @@ export class Form extends React.Component<Props, State> {
                         this.erros.push(`Campo "${campo.props.label || campo.props.placeholder}" obrigatório.`);
                 }
 
-                else if(campo.props.tipo === "email" && typeof(campo.props.valor) === "undefined" && validarEmail(campo.props.valor))
-                    this.erros.push("E-mail inválido.");
+                /*
+                  Essa série de ifs existe mais para organização.
+                  Como o Combo não tem props como "tipo" os ifs
+                  internos do validarCampoTexto não são executados.
+                  Em tese.
+                */
+                if(campo.type === CampoTexto){
+                    this.validarCampoTexto(campo);
+                }
 
-                var valorSemMascara = null;
-
-                if(campo.props.valor !== undefined)
-                    valorSemMascara = campo.props.valor.split("_").join("");
-
-                if(campo.props.min && valorSemMascara.length < campo.props.min)
-                    this.erros.push(`Campo "${campo.props.label || campo.props.placeholder}" inválido.`);
+                // if(campo.type === Combo){
+                    // this.validarCombo(campo);
+                // }
             });
 
         this.valido = this.erros.length === 0;
         await this.setState({
             valido: this.erros.length === 0
         });
+    }
+    
+    // validarCombo = (campo: any) => {
+        // Validações específicas de Combo vão aqui
+        // ...
+    // }
+    
+    validarCampoTexto = (campo: any) => {
+        // Validações específicas de CampoTexto vão aqui
+        if(campo.props.tipo === "email" && validarEmail(campo.props.valor))
+            this.erros.push("E-mail inválido.");
+
+        var valorSemMascara = null;
+
+        if(campo.props.valor !== undefined)
+            valorSemMascara = campo.props.valor.split("_").join("");
+
+        if(campo.props.min && valorSemMascara.length < campo.props.min)
+            this.erros.push(`Campo "${campo.props.label || campo.props.placeholder}" inválido.`);
     }
 
     render() {

@@ -21,20 +21,44 @@ export class ModalPage extends React.Component<Props, State> {
     }
     
     toggleModal_1 = () => {
-      this.setState({modalStatus_1: !this.state.modalStatus_1})
+        const body = document.querySelector("body");
+        if(!this.state.modalStatus_1){
+            body.classList.add('modal-open');
+        }
+        else{
+            body.classList.remove('modal-open');
+        }
+      
+        this.setState({modalStatus_1: !this.state.modalStatus_1})
     }
     
     toggleModal_2 = () => {
-      this.setState({modalStatus_2: !this.state.modalStatus_2})
+        const body = document.querySelector("body");
+        if(!this.state.modalStatus_2){
+            body.classList.add('modal-open');
+        }
+        else{
+            body.classList.remove('modal-open');
+        }
+        
+        this.setState({modalStatus_2: !this.state.modalStatus_2})
     }
     
     toggleModal_3 = () => {
-      this.setState({modalStatus_3: !this.state.modalStatus_3})
+        const body = document.querySelector("body");
+        if(!this.state.modalStatus_3){
+            body.classList.add('modal-open');
+        }
+        else{
+            body.classList.remove('modal-open');
+        }
+        
+        this.setState({modalStatus_3: !this.state.modalStatus_3})
     }
     
     lots = () => {
         let lots = [];
-        for(let l = 0; l < 10; l++){
+        for(let l = 0; l < 50; l++){
             lots.push(
                 <div>
                     {"WOOHOO!!!"}
@@ -51,10 +75,10 @@ export class ModalPage extends React.Component<Props, State> {
                     <Col>
                         <Box titulo={"Status do Modal"}>
                             <p>Ligue e desligue o modal utilizando a props "status"</p>
-                            
                             <code>{"toggleModal = () => {this.setState({modalStatus: !this.state.modalStatus})}"}</code>
                             <code>{"<Modal onClick={this.toggleModal} status={this.state.modalStatus}/>"}</code>
-                            
+                            <p>Para o scroll do modal funcionar corretamente é preciso adicionar a class "modal-open" no body da página.</p>
+                            <code>{"const body = document.querySelector(\"body\"); if(this.state.modalStatus){ body.classList.add('modal-open'); } else{ body.classList.remove('modal-open'); }"}</code>
                             <Modal
                                 conteudo={"..."}
                                 onClick={this.toggleModal_1}

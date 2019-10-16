@@ -48,7 +48,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import React from 'react';
 import { validarEmail } from "@intechprev/react-lib";
-import { CampoTexto, Alerta } from '..';
+import { CampoTexto, Combo, Alerta } from '..';
 var Form = /** @class */ (function (_super) {
     __extends(Form, _super);
     function Form(props) {
@@ -111,20 +111,27 @@ var Form = /** @class */ (function (_super) {
                         this.valido = true;
                         this.erros = [];
                         return [4 /*yield*/, this.props.children
-                                .filter(function (campo) { return campo.type === CampoTexto; }) // Filtra os tipos de campo apenas para CampoTexto
+                                .filter(function (campo) { return _this.filtroCampos(campo); }) // Filtra os tipos de campo
+                                // .filter((campo: any) => campo) // Alternativa sem filtros de campos
+                                // .filter((campo: any) => campo.type === CampoTexto) // Filtra os tipos de campo apenas para CampoTexto
                                 .forEach(function (campo) {
                                 // Valida cada campo
                                 if (campo.props.obrigatorio) {
                                     if (typeof (campo.props.valor) === "undefined" || campo.props.valor === "")
                                         _this.erros.push("Campo \"" + (campo.props.label || campo.props.placeholder) + "\" obrigat\u00F3rio.");
                                 }
-                                else if (campo.props.tipo === "email" && typeof (campo.props.valor) === "undefined" && validarEmail(campo.props.valor))
-                                    _this.erros.push("E-mail inválido.");
-                                var valorSemMascara = null;
-                                if (campo.props.valor !== undefined)
-                                    valorSemMascara = campo.props.valor.split("_").join("");
-                                if (campo.props.min && valorSemMascara.length < campo.props.min)
-                                    _this.erros.push("Campo \"" + (campo.props.label || campo.props.placeholder) + "\" inv\u00E1lido.");
+                                /*
+                                  Essa série de ifs existe mais para organização.
+                                  Como o Combo não tem props como "tipo" os ifs
+                                  internos do validarCampoTexto não são executados.
+                                  Em tese.
+                                */
+                                if (campo.type === CampoTexto) {
+                                    _this.validarCampoTexto(campo);
+                                }
+                                // if(campo.type === Combo){
+                                // this.validarCombo(campo);
+                                // }
                             })];
                     case 1:
                         _a.sent();
@@ -138,11 +145,28 @@ var Form = /** @class */ (function (_super) {
                 }
             });
         }); };
+        // validarCombo = (campo: any) => {
+        // Validações específicas de Combo vão aqui
+        // ...
+        // }
+        _this.validarCampoTexto = function (campo) {
+            // Validações específicas de CampoTexto vão aqui
+            if (campo.props.tipo === "email" && validarEmail(campo.props.valor))
+                _this.erros.push("E-mail inválido.");
+            var valorSemMascara = null;
+            if (campo.props.valor !== undefined)
+                valorSemMascara = campo.props.valor.split("_").join("");
+            if (campo.props.min && valorSemMascara.length < campo.props.min)
+                _this.erros.push("Campo \"" + (campo.props.label || campo.props.placeholder) + "\" inv\u00E1lido.");
+        };
         _this.state = {
             valido: true
         };
         return _this;
     }
+    Form.prototype.filtroCampos = function (campo) {
+        return (campo.type === CampoTexto || campo.type === Combo);
+    };
     Form.prototype.render = function () {
         var _this = this;
         var children = this.props.children;
