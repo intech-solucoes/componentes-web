@@ -159,12 +159,13 @@ var Combo = /** @class */ (function (_super) {
     };
     Combo.prototype.render = function () {
         return (React.createElement(Row, { formGroup: true },
-            this.renderLabel(),
+            !this.props.labelOculta && this.renderLabel(),
             this.renderCombo()));
     };
     Combo.defaultProps = {
         padrao: "",
-        opcoes: []
+        opcoes: [],
+        labelOculta: false
     };
     return Combo;
 }(Component));

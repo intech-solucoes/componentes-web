@@ -27,6 +27,7 @@ interface Props {
     onBotaoClick?: any;
     botaoEsquerda?: boolean;
     tituloBotao?: string;
+    labelOculta?: boolean;
 }
 
 export class Combo extends Component<Props> {
@@ -36,7 +37,8 @@ export class Combo extends Component<Props> {
 
 	static defaultProps = {
 		padrao: "",
-		opcoes: []
+        opcoes: [],
+        labelOculta: false
 	}
 
 	async componentDidMount() {
@@ -88,13 +90,15 @@ export class Combo extends Component<Props> {
     }
     
     mountCombo(){
+
         return(
             <select
                 id={this.props.nome}
                 name={this.props.nome}
                 className={"form-control"}
                 onChange={(e: any) => this.onChange(e)}
-                value={this.props.valor} disabled={this.props.desabilitado}>
+                value={this.props.valor} 
+                disabled={this.props.desabilitado}>
                 
                 {this.props.textoVazio &&
                     <option value="">{this.props.textoVazio}</option>
@@ -164,7 +168,7 @@ export class Combo extends Component<Props> {
     render() {
         return (
             <Row formGroup>
-                {this.renderLabel()}
+                {!this.props.labelOculta && this.renderLabel()}
                 {this.renderCombo()}
             </Row>
         );

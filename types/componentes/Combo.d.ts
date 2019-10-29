@@ -20,6 +20,7 @@ interface Props {
     onBotaoClick?: any;
     botaoEsquerda?: boolean;
     tituloBotao?: string;
+    labelOculta?: boolean;
 }
 export declare class Combo extends Component<Props> {
     erros: Array<string>;
@@ -27,6 +28,7 @@ export declare class Combo extends Component<Props> {
     static defaultProps: {
         padrao: string;
         opcoes: any[];
+        labelOculta: boolean;
     };
     componentDidMount(): Promise<void>;
     validar: () => void;
