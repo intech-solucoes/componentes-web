@@ -9,6 +9,7 @@ import { DropdownPage } from "./paginas/Dropdown";
 import { CampoEstaticoPage } from "./paginas/CampoEstatico";
 import { InputGroupPage } from "./paginas/InputGroup";
 import { ModalPage } from "./paginas/Modal";
+import { FormPage } from "./paginas/Form";
 
 const rotas: Array<Rota> = [
     {
@@ -66,10 +67,10 @@ const rotas: Array<Rota> = [
         caminhoExato: true
     },
     {
-        id: "inputGropu",
+        id: "inputGroup",
         titulo: "Input Group",
         icone: "fas fa-object-group",
-        caminho: "/inputGropu",
+        caminho: "/inputGroup",
         componente: (routeProps: RouteProps) => <InputGroupPage {...routeProps} />,
         mostrarMenu: true,
         caminhoExato: true
@@ -80,6 +81,15 @@ const rotas: Array<Rota> = [
         icone: "fas fa-layer-group",
         caminho: "/modal",
         componente: (routeProps: RouteProps) => <ModalPage {...routeProps} />,
+        mostrarMenu: true,
+        caminhoExato: true
+    },
+    {
+        id: "form",
+        titulo: "Form",
+        icone: "fas fa-layer-group",
+        caminho: "/form",
+        componente: (routeProps: RouteProps) => <FormPage {...routeProps} />,
         mostrarMenu: true,
         caminhoExato: true
     }

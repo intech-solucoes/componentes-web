@@ -7,8 +7,10 @@ export { ColunaTabela };
 interface Props {
     children?: React.ReactNode;
     dados: Array<any>
-    onSelecionar: Function;
-    onPesquisar: Function;
+    onSelecionar?: Function;
+    onPesquisar?: Function;
+    paginacaoHabilitada?: boolean;
+    edicaoHabilitada?: boolean;
 }
 
 interface State {
@@ -16,6 +18,10 @@ interface State {
 }
 
 export class Tabela extends React.Component<Props, State> {
+    static defaultProps = {
+        paginacaoHabilitada: true,
+        edicaoHabilitada: true
+    }
 
     constructor(props: Props) {
         super(props);
@@ -58,7 +64,9 @@ export class Tabela extends React.Component<Props, State> {
                         <table className={"table table-sm table-striped table-bordered table-hover"}>
                             <thead>
                                 <tr>
-                                    <th style={{ width: 40 }}></th>
+                                    {this.props.edicaoHabilitada &&
+                                        <th style={{ width: 40 }}></th>
+                                    }
 
                                     {this.renderHeader()}
                                 </tr>
@@ -67,9 +75,11 @@ export class Tabela extends React.Component<Props, State> {
                                 {this.props.dados.map((item, index) => {
                                     return (
                                         <tr key={index}>
-                                            <td>
-                                                <Botao icone={"fa-pencil-alt"} tamanho={TamanhoBotao.pequeno} onClick={() => this.props.onSelecionar(item)} />
-                                            </td>
+                                            {this.props.edicaoHabilitada &&
+                                                <td>
+                                                    <Botao icone={"fa-pencil-alt"} tamanho={TamanhoBotao.pequeno} onClick={() => this.props.onSelecionar(item)} />
+                                                </td>
+                                            }
                                             
                                             {this.renderRow(item)}
                                         </tr>
@@ -78,18 +88,20 @@ export class Tabela extends React.Component<Props, State> {
                             </tbody>
                         </table>
 
-                        <div>
-                            <div className="btn-group btn-group-sm">
-                                <button type="button" className="btn btn-light">
-                                    <i className="fas fa-chevron-left mr-2"></i>
-                                    Anterior
-                                </button>
-                                <button type="button" className="btn btn-light">
-                                    Próxima
-                                    <i className="fas fa-chevron-right ml-2"></i>
-                                </button>
+                        {this.props.paginacaoHabilitada &&
+                            <div>
+                                <div className="btn-group btn-group-sm">
+                                    <button type="button" className="btn btn-light">
+                                        <i className="fas fa-chevron-left mr-2"></i>
+                                        Anterior
+                                    </button>
+                                    <button type="button" className="btn btn-light">
+                                        Próxima
+                                        <i className="fas fa-chevron-right ml-2"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                        }
                     </div>
                     
                 </Box>

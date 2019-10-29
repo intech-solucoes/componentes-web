@@ -50,26 +50,33 @@ var Tabela = /** @class */ (function (_super) {
                     React.createElement("table", { className: "table table-sm table-striped table-bordered table-hover" },
                         React.createElement("thead", null,
                             React.createElement("tr", null,
-                                React.createElement("th", { style: { width: 40 } }),
+                                this.props.edicaoHabilitada &&
+                                    React.createElement("th", { style: { width: 40 } }),
                                 this.renderHeader())),
                         React.createElement("tbody", null, this.props.dados.map(function (item, index) {
                             return (React.createElement("tr", { key: index },
-                                React.createElement("td", null,
-                                    React.createElement(Botao, { icone: "fa-pencil-alt", tamanho: TamanhoBotao.pequeno, onClick: function () { return _this.props.onSelecionar(item); } })),
+                                _this.props.edicaoHabilitada &&
+                                    React.createElement("td", null,
+                                        React.createElement(Botao, { icone: "fa-pencil-alt", tamanho: TamanhoBotao.pequeno, onClick: function () { return _this.props.onSelecionar(item); } })),
                                 _this.renderRow(item)));
                         }))),
-                    React.createElement("div", null,
-                        React.createElement("div", { className: "btn-group btn-group-sm" },
-                            React.createElement("button", { type: "button", className: "btn btn-light" },
-                                React.createElement("i", { className: "fas fa-chevron-left mr-2" }),
-                                "Anterior"),
-                            React.createElement("button", { type: "button", className: "btn btn-light" },
-                                "Pr\u00F3xima",
-                                React.createElement("i", { className: "fas fa-chevron-right ml-2" })))))));
+                    this.props.paginacaoHabilitada &&
+                        React.createElement("div", null,
+                            React.createElement("div", { className: "btn-group btn-group-sm" },
+                                React.createElement("button", { type: "button", className: "btn btn-light" },
+                                    React.createElement("i", { className: "fas fa-chevron-left mr-2" }),
+                                    "Anterior"),
+                                React.createElement("button", { type: "button", className: "btn btn-light" },
+                                    "Pr\u00F3xima",
+                                    React.createElement("i", { className: "fas fa-chevron-right ml-2" })))))));
         }
         else {
             return null;
         }
+    };
+    Tabela.defaultProps = {
+        paginacaoHabilitada: true,
+        edicaoHabilitada: true
     };
     return Tabela;
 }(React.Component));

@@ -1,18 +1,15 @@
 import React from "react";
-//import { Botao } from "..";
 
-interface Props{
-    conteudo: any;
-    nome?: string;
-    onClick: any;
-    status: boolean;
+interface Props {
+    onClose: any;
+    visivel: boolean;
     titulo: string;
+
+    nome?: string;
+    tituloBotaoFechar?: string;
 }
 
-// allow name giving
-// edit label name
-
-export class Modal extends React.Component<Props>{
+export class Modal extends React.Component<Props> {
     static defaultProps = {
         nome: "somemodal"
     }
@@ -20,8 +17,11 @@ export class Modal extends React.Component<Props>{
     renderHeader(){
         return(
             <div className={"modal-header"}>
-                <h5 className={"modal-title"} id={"exampleModalLabel"}>{this.props.titulo}</h5>
-                <button onClick={this.props.onClick} type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <h5 className={"modal-title"}>
+                    {this.props.titulo}
+                </h5>
+
+                <button onClick={this.props.onClose} type="button" className="close">
                     <span aria-hidden={"true"}>&times;</span>
                 </button>
             </div>
@@ -31,7 +31,7 @@ export class Modal extends React.Component<Props>{
     renderBody(){
         return(
             <div className={"modal-body"}>
-                {this.props.conteudo}
+                {this.props.children}
             </div>
         );
     }
@@ -39,16 +39,26 @@ export class Modal extends React.Component<Props>{
     renderFooter(){
         return(
             <div className={"modal-footer"}>
-                {/*<Botao onClick={this.props.onClick} className={"btn btn-secondary"} titulo={"Close"}/>*/}
-                <button onClick={this.props.onClick} type={"button"} className={"btn btn-secondary"} data-dismiss={"modal"}>Close</button>
+                <button onClick={this.props.onClose} type={"button"} className={"btn btn-primary"} data-dismiss={"modal"}>
+                    {this.props.tituloBotaoFechar}
+
+                    {!this.props.tituloBotaoFechar &&
+                        'Fechar'
+                    }
+                </button>
             </div>
         );
     }
     
     render(){
         return(
-            <div onClick={this.props.onClick} style={(this.props.status ? {display: "block"} : {display: "none"})} className={`modal fade ${(this.props.status ? "show" : "low-z-index")}`}  id={this.props.nome} role={"dialog"} aria-labelledby={"exampleModalLabel"}>
-                <div className={"modal-dialog"} role={"document"}>
+            <div
+                style={{
+                    display: this.props.visivel ? "block" : "none"
+                }}
+                className={`modal`}
+            >
+                <div className={"modal-dialog"}>
                     <div className={"modal-content"}>
                         {this.renderHeader()}
                         {this.renderBody()}
