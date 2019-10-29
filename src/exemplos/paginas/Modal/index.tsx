@@ -80,11 +80,12 @@ export class ModalPage extends React.Component<Props, State> {
                             <p>Para o scroll do modal funcionar corretamente é preciso adicionar a class "modal-open" no body da página.</p>
                             <code>{"const body = document.querySelector(\"body\"); if(this.state.modalStatus){ body.classList.add('modal-open'); } else{ body.classList.remove('modal-open'); }"}</code>
                             <Modal
-                                conteudo={"..."}
-                                onClick={this.toggleModal_1}
-                                status={this.state.modalStatus_1}
+                                onClose={this.toggleModal_1}
+                                visivel={this.state.modalStatus_1}
                                 titulo={"some modal"}
-                            />
+                            >
+                                ...
+                            </Modal>
                             
                             <Botao
                                 titulo={"Mostrar Modal"}
@@ -102,11 +103,12 @@ export class ModalPage extends React.Component<Props, State> {
                             <code>{"<Modal titulo={\"Título muito criativo!\"}/>"}</code>
                             
                             <Modal
-                                conteudo={"..."}
-                                onClick={this.toggleModal_2}
-                                status={this.state.modalStatus_2}
+                                onClose={this.toggleModal_2}
+                                visivel={this.state.modalStatus_2}
                                 titulo={"Título muito criativo!"}
-                            />
+                            >
+                                ...
+                            </Modal>
                             
                             <Botao
                                 titulo={"Mostrar Modal"}
@@ -124,11 +126,13 @@ export class ModalPage extends React.Component<Props, State> {
                             <code>{"<Modal conteudo={...muito html aqui}/>"}</code>
                             
                             <Modal
-                                conteudo={this.lots()}
-                                onClick={this.toggleModal_3}
-                                status={this.state.modalStatus_3}
+                                onClose={this.toggleModal_3}
+                                visivel={this.state.modalStatus_3}
                                 titulo={"Título muito criativo!"}
-                            />
+                                tituloBotaoFechar={"Salvar"}
+                            >
+                                {this.lots()}
+                            </Modal>
                             
                             <Botao
                                 titulo={"Mostrar Modal"}

@@ -12,8 +12,6 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import React from "react";
-// allow name giving
-// edit label name
 var Modal = /** @class */ (function (_super) {
     __extends(Modal, _super);
     function Modal() {
@@ -21,20 +19,25 @@ var Modal = /** @class */ (function (_super) {
     }
     Modal.prototype.renderHeader = function () {
         return (React.createElement("div", { className: "modal-header" },
-            React.createElement("h5", { className: "modal-title", id: "exampleModalLabel" }, this.props.titulo),
-            React.createElement("button", { onClick: this.props.onClick, type: "button", className: "close", "data-dismiss": "modal", "aria-label": "Close" },
+            React.createElement("h5", { className: "modal-title" }, this.props.titulo),
+            React.createElement("button", { onClick: this.props.onClose, type: "button", className: "close" },
                 React.createElement("span", { "aria-hidden": "true" }, "\u00D7"))));
     };
     Modal.prototype.renderBody = function () {
-        return (React.createElement("div", { className: "modal-body" }, this.props.conteudo));
+        return (React.createElement("div", { className: "modal-body" }, this.props.children));
     };
     Modal.prototype.renderFooter = function () {
         return (React.createElement("div", { className: "modal-footer" },
-            React.createElement("button", { onClick: this.props.onClick, type: "button", className: "btn btn-secondary", "data-dismiss": "modal" }, "Close")));
+            React.createElement("button", { onClick: this.props.onClose, type: "button", className: "btn btn-primary", "data-dismiss": "modal" },
+                this.props.tituloBotaoFechar,
+                !this.props.tituloBotaoFechar &&
+                    'Fechar')));
     };
     Modal.prototype.render = function () {
-        return (React.createElement("div", { onClick: this.props.onClick, style: (this.props.status ? { display: "block" } : { display: "none" }), className: "modal fade " + (this.props.status ? "show" : "low-z-index"), id: this.props.nome, role: "dialog", "aria-labelledby": "exampleModalLabel" },
-            React.createElement("div", { className: "modal-dialog", role: "document" },
+        return (React.createElement("div", { style: {
+                display: this.props.visivel ? "block" : "none"
+            }, className: "modal" },
+            React.createElement("div", { className: "modal-dialog" },
                 React.createElement("div", { className: "modal-content" },
                     this.renderHeader(),
                     this.renderBody(),

@@ -1,10 +1,10 @@
 import React from "react";
 interface Props {
-    conteudo: any;
-    nome?: string;
-    onClick: any;
-    status: boolean;
+    onClose: any;
+    visivel: boolean;
     titulo: string;
+    nome?: string;
+    tituloBotaoFechar?: string;
 }
 export declare class Modal extends React.Component<Props> {
     static defaultProps: {
