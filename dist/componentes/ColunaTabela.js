@@ -20,6 +20,10 @@ var ColunaTabela = /** @class */ (function (_super) {
     ColunaTabela.prototype.render = function () {
         return "";
     };
+    ColunaTabela.defaultProps = {
+        prefixo: "",
+        sufixo: ""
+    };
     return ColunaTabela;
 }(React.Component));
 export { ColunaTabela };

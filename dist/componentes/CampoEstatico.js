@@ -54,11 +54,11 @@ var CampoEstatico = /** @class */ (function (_super) {
                 _a["col-md-12"] = !this.props.tamanhoTitulo,
                 _a["text-lg-right"] = !cima,
                 _a["col-form-label"] = true,
-                _a["text-primary"] = true,
                 _a));
             return (React.createElement("label", { className: labelClasses },
-                this.props.titulo,
-                this.props.obrigatorio && " *"));
+                React.createElement("b", null,
+                    this.props.titulo,
+                    this.props.obrigatorio && " *")));
         }
         return null;
     };

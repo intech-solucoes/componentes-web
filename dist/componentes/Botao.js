@@ -103,7 +103,7 @@ var Botao = /** @class */ (function (_super) {
         var type = this.props.submit ? "submit" : "button";
         var classes = classNames("btn", (_a = {}, _a["btn-" + this.props.tipo] = !this.props.outline, _a), (_b = {}, _b["btn-outline-" + this.props.tipo] = this.props.outline, _b), { "btn-block": this.props.block }, this.props.tamanho, this.props.className);
         var classesIcone = classNames("fas", { "mr-2": this.props.titulo && !this.props.iconeDireita }, { "ml-2": this.props.titulo && this.props.iconeDireita }, this.props.icone);
-        return (React.createElement("button", { type: type, className: classes, onClick: this.onClick, disabled: this.props.desativado || this.state.carregando },
+        return (React.createElement("button", { type: type, className: classes, onClick: this.onClick, style: this.props.style, disabled: this.props.desativado || this.state.carregando },
             !this.state.carregando &&
                 React.createElement("span", null,
                     this.props.icone && !this.props.iconeDireita && React.createElement("i", { className: classesIcone }),

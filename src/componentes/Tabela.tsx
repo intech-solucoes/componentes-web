@@ -2,15 +2,19 @@ import React from "react";
 import { Box, Botao, TamanhoBotao } from "..";
 
 import { ColunaTabela } from "./ColunaTabela";
+import { TipoBotao } from "./Botao";
 export { ColunaTabela };
 
 interface Props {
     children?: React.ReactNode;
     dados: Array<any>
     onSelecionar?: Function;
+    onExcluir?: Function;
     onPesquisar?: Function;
     paginacaoHabilitada?: boolean;
     edicaoHabilitada?: boolean;
+    exclusaoHabilitada?: boolean;
+    titulo?: string;
 }
 
 interface State {
@@ -20,7 +24,9 @@ interface State {
 export class Tabela extends React.Component<Props, State> {
     static defaultProps = {
         paginacaoHabilitada: true,
-        edicaoHabilitada: true
+        edicaoHabilitada: true,
+        exclusaoHabilitada: true,
+        titulo: "Lista"
     }
 
     constructor(props: Props) {
@@ -48,7 +54,10 @@ export class Tabela extends React.Component<Props, State> {
         var children = React.Children.toArray(this.props.children);
 
         children.forEach((coluna: any, index: number) => {
-            var row = <td key={index}>{item[coluna.props.propriedadeValor]}</td>;
+            var row = 
+                <td key={index} className={"align-middle"}>
+                    {`${coluna.props.prefixo}${item[coluna.props.propriedadeValor]}${coluna.props.sufixo}`}
+                </td>;
             rowColumns.push(row);
         });
 
@@ -58,14 +67,14 @@ export class Tabela extends React.Component<Props, State> {
     render() {
         if(this.props.dados.length > 0) {
             return (
-                <Box titulo={"Lista"}>
+                <Box titulo={this.props.titulo}>
                     
                     <div className={"table-responsive"}>
                         <table className={"table table-sm table-striped table-bordered table-hover"}>
                             <thead>
                                 <tr>
-                                    {this.props.edicaoHabilitada &&
-                                        <th style={{ width: 40 }}></th>
+                                    {(this.props.edicaoHabilitada || this.props.exclusaoHabilitada) &&
+                                        <th style={{ width: 66 }}></th>
                                     }
 
                                     {this.renderHeader()}
@@ -75,9 +84,17 @@ export class Tabela extends React.Component<Props, State> {
                                 {this.props.dados.map((item, index) => {
                                     return (
                                         <tr key={index}>
-                                            {this.props.edicaoHabilitada &&
-                                                <td>
-                                                    <Botao icone={"fa-pencil-alt"} tamanho={TamanhoBotao.pequeno} onClick={() => this.props.onSelecionar(item)} />
+                                            {(this.props.edicaoHabilitada || this.props.exclusaoHabilitada) &&
+                                                <td className={"align-middle text-center"}>
+                                                    {this.props.edicaoHabilitada &&
+                                                        <Botao icone={"fa-pencil-alt"} 
+                                                               tamanho={TamanhoBotao.pequeno} 
+                                                               style={{ marginRight: this.props.exclusaoHabilitada ? 5 : 0 }}
+                                                               onClick={() => this.props.onSelecionar(item)} />
+                                                    }
+                                                    {this.props.exclusaoHabilitada &&
+                                                        <Botao icone={"fa-trash"} tipo={TipoBotao.danger} tamanho={TamanhoBotao.pequeno} onClick={() => this.props.onExcluir(item)} />
+                                                    }
                                                 </td>
                                             }
                                             

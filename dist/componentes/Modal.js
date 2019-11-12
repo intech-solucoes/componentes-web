@@ -28,10 +28,7 @@ var Modal = /** @class */ (function (_super) {
     };
     Modal.prototype.renderFooter = function () {
         return (React.createElement("div", { className: "modal-footer" },
-            React.createElement("button", { onClick: this.props.onClose, type: "button", className: "btn btn-primary", "data-dismiss": "modal" },
-                this.props.tituloBotaoFechar,
-                !this.props.tituloBotaoFechar &&
-                    'Fechar')));
+            React.createElement("button", { onClick: this.props.onConfirm, type: "button", className: "btn btn-primary", "data-dismiss": "modal" }, this.props.tituloBotaoFechar)));
     };
     Modal.prototype.render = function () {
         return (React.createElement("div", { style: {
@@ -44,7 +41,7 @@ var Modal = /** @class */ (function (_super) {
                     this.renderFooter()))));
     };
     Modal.defaultProps = {
-        nome: "somemodal"
+        tituloBotaoFechar: "Fechar"
     };
     return Modal;
 }(React.Component));

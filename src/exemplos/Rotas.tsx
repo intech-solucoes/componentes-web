@@ -10,6 +10,8 @@ import { CampoEstaticoPage } from "./paginas/CampoEstatico";
 import { InputGroupPage } from "./paginas/InputGroup";
 import { ModalPage } from "./paginas/Modal";
 import { FormPage } from "./paginas/Form";
+import { TabelaPage } from "./paginas/Tabela";
+import { CrudPage } from "./paginas/Crud";
 
 const rotas: Array<Rota> = [
     {
@@ -90,6 +92,24 @@ const rotas: Array<Rota> = [
         icone: "fas fa-layer-group",
         caminho: "/form",
         componente: (routeProps: RouteProps) => <FormPage {...routeProps} />,
+        mostrarMenu: true,
+        caminhoExato: true
+    },
+    {
+        id: "tabela",
+        titulo: "Tabela",
+        icone: "fas fa-layer-group",
+        caminho: "/tabela",
+        componente: (routeProps: RouteProps) => <TabelaPage {...routeProps} />,
+        mostrarMenu: true,
+        caminhoExato: true
+    },
+    {
+        id: "crud",
+        titulo: "CRUD",
+        icone: "fas fa-layer-group",
+        caminho: "/crud",
+        componente: (routeProps: RouteProps) => <CrudPage {...routeProps} />,
         mostrarMenu: true,
         caminhoExato: true
     }

@@ -1,17 +1,18 @@
 import React from "react";
 
 interface Props {
-    onClose: any;
     visivel: boolean;
     titulo: string;
 
     nome?: string;
     tituloBotaoFechar?: string;
+    onClose?: any;
+    onConfirm?: any;
 }
 
 export class Modal extends React.Component<Props> {
     static defaultProps = {
-        nome: "somemodal"
+        tituloBotaoFechar: "Fechar"
     }
   
     renderHeader(){
@@ -39,12 +40,8 @@ export class Modal extends React.Component<Props> {
     renderFooter(){
         return(
             <div className={"modal-footer"}>
-                <button onClick={this.props.onClose} type={"button"} className={"btn btn-primary"} data-dismiss={"modal"}>
+                <button onClick={this.props.onConfirm} type={"button"} className={"btn btn-primary"} data-dismiss={"modal"}>
                     {this.props.tituloBotaoFechar}
-
-                    {!this.props.tituloBotaoFechar &&
-                        'Fechar'
-                    }
                 </button>
             </div>
         );

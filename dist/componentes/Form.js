@@ -51,104 +51,57 @@ import { validarEmail } from "@intechprev/react-lib";
 import { CampoTexto, Combo, Alerta } from '..';
 var Form = /** @class */ (function (_super) {
     __extends(Form, _super);
-    function Form(props) {
-        var _this = _super.call(this, props) || this;
+    function Form() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.erros = [];
         _this.valido = true;
-        // Encapsulação do loop for para deixar async
-        _this.validarAux = function () { return __awaiter(_this, void 0, void 0, function () {
-            var node, i, currentNode, currentValue, currentLabel, valorSemMascara;
-            return __generator(this, function (_a) {
-                node = document.querySelectorAll('input, select');
-                for (i = 0; i < node.length; i++) {
-                    currentNode = node[i];
-                    currentValue = currentNode.value;
-                    currentLabel = currentNode.labels[0].textContent;
-                    // Ve se obrigatório (gambiarra)
-                    if (currentLabel.includes("*")) {
-                        if (currentValue === "") {
-                            this.erros.push("Campo \"" + currentLabel.replace("*", "") + "\" obrigat\u00F3rio.");
+        _this.state = {
+            valido: true
+        };
+        _this.validarRecursivo = function (children) {
+            if (children.forEach) {
+                children.forEach(function (campo) {
+                    if (_this.filtroCampos(campo)) {
+                        // Valida cada campo
+                        if (campo.props.obrigatorio) {
+                            if (typeof (campo.props.valor) === "undefined" || campo.props.valor === "")
+                                _this.erros.push("Campo \"" + (campo.props.label || campo.props.placeholder) + "\" obrigat\u00F3rio.");
+                        }
+                        /*
+                            Essa série de ifs existe mais para organização.
+                            Como o Combo não tem props como "tipo" os ifs
+                            internos do validarCampoTexto não são executados.
+                            Em tese.
+                        */
+                        if (campo.type === CampoTexto) {
+                            _this.validarCampoTexto(campo);
                         }
                     }
-                    // Valida email
-                    else if (node[i].type === "email" && validarEmail(currentValue)) {
-                        this.erros.push("E-mail inválido.");
+                    else {
+                        if (campo.props && campo.props.children && campo.props.children.length > 0)
+                            _this.validarRecursivo(campo.props.children);
                     }
-                    valorSemMascara = null;
-                    if (currentValue !== undefined) {
-                        valorSemMascara = currentValue.split("_").join("");
-                    }
-                    if (currentNode.min && valorSemMascara.length < currentNode.min) {
-                        this.erros.push("Campo \"" + currentLabel.replace("*", "") + "\" inv\u00E1lido.");
-                    }
-                }
-                return [2 /*return*/];
-            });
-        }); };
-        _this.validarAlt = function () { return __awaiter(_this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.valido = true;
-                        this.erros = [];
-                        return [4 /*yield*/, this.validarAux()];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, this.setState({
-                                valido: this.erros.length === 0
-                            })];
-                    case 2:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        }); };
+                });
+            }
+        };
         _this.validar = function () { return __awaiter(_this, void 0, void 0, function () {
-            var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         this.valido = true;
                         this.erros = [];
-                        return [4 /*yield*/, this.props.children
-                                .filter(function (campo) { return _this.filtroCampos(campo); }) // Filtra os tipos de campo
-                                // .filter((campo: any) => campo) // Alternativa sem filtros de campos
-                                // .filter((campo: any) => campo.type === CampoTexto) // Filtra os tipos de campo apenas para CampoTexto
-                                .forEach(function (campo) {
-                                // Valida cada campo
-                                if (campo.props.obrigatorio) {
-                                    if (typeof (campo.props.valor) === "undefined" || campo.props.valor === "")
-                                        _this.erros.push("Campo \"" + (campo.props.label || campo.props.placeholder) + "\" obrigat\u00F3rio.");
-                                }
-                                /*
-                                  Essa série de ifs existe mais para organização.
-                                  Como o Combo não tem props como "tipo" os ifs
-                                  internos do validarCampoTexto não são executados.
-                                  Em tese.
-                                */
-                                if (campo.type === CampoTexto) {
-                                    _this.validarCampoTexto(campo);
-                                }
-                                // if(campo.type === Combo){
-                                // this.validarCombo(campo);
-                                // }
-                            })];
-                    case 1:
-                        _a.sent();
+                        if (this.props.children.length > 0)
+                            this.validarRecursivo(this.props.children);
                         this.valido = this.erros.length === 0;
                         return [4 /*yield*/, this.setState({
                                 valido: this.erros.length === 0
                             })];
-                    case 2:
+                    case 1:
                         _a.sent();
                         return [2 /*return*/];
                 }
             });
         }); };
-        // validarCombo = (campo: any) => {
-        // Validações específicas de Combo vão aqui
-        // ...
-        // }
         _this.validarCampoTexto = function (campo) {
             // Validações específicas de CampoTexto vão aqui
             if (campo.props.tipo === "email" && validarEmail(campo.props.valor))
@@ -158,9 +111,6 @@ var Form = /** @class */ (function (_super) {
                 valorSemMascara = campo.props.valor.split("_").join("");
             if (campo.props.min && valorSemMascara.length < campo.props.min)
                 _this.erros.push("Campo \"" + (campo.props.label || campo.props.placeholder) + "\" inv\u00E1lido.");
-        };
-        _this.state = {
-            valido: true
         };
         return _this;
     }

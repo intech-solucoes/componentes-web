@@ -54,80 +54,90 @@ export class FormPage extends React.Component<Props, State> {
             <MasterPage {...this.props}>
                 <Box titulo={"Form"}>
                     <Form ref={this.form}>
-                        
-                        <CampoTexto
-                            contexto={this}
-                            tamanhoLabel={"lg-3"}
-                            label={"Campo Não Obrigatório"}
-                            nome={"campoNaoObrigatorio"}
-                            valor={this.state.campoNaoObrigatorio}
-                        />
-                        
-                        <CampoTexto
-                            contexto={this}
-                            tamanhoLabel={"lg-3"}
-                            label={"Campo Obrigatório"}
-                            nome={"campoObrigatorio"}
-                            valor={this.state.campoObrigatorio}
-                            obrigatorio
-                        />
+                        <div>
+                            <p>
+                                São consideradas pessoas politicamente expostas detentores de mandatos eletivos, ocupantes de cargo do Poder Executivo da União, 
+                                Membros do Conselho Nacional de Justiça/STF e dos Tribunais Superiores (dentre outros).
+                            </p>
 
-                        <CampoTexto
-                            contexto={this}
-                            tamanhoLabel={"lg-3"}
-                            tipo={"date"}
-                            label={"Campo Data Não Obrigatória"}
-                            nome={"campoDataNaoObrigatoria"}
-                            valor={this.state.campoDataNaoObrigatoria}
-                        />
+                            <p>
+                                Considera-se enquadrado como PESSOA POLITICAMENTE EXPOSTA* (IN PREVIC 18/2014)?
+                            </p>
 
-                        <CampoTexto
-                            contexto={this}
-                            tamanhoLabel={"lg-3"}
-                            tipo={"date"}
-                            label={"Campo Data Obrigatória"}
-                            nome={"campoDataObrigatoria"}
-                            valor={this.state.campoDataObrigatoria}
-                            obrigatorio
-                        />
+                            <CampoTexto
+                                contexto={this}
+                                tamanhoLabel={"lg-3"}
+                                label={"Campo Não Obrigatório"}
+                                nome={"campoNaoObrigatorio"}
+                                valor={this.state.campoNaoObrigatorio}
+                            />
+                            
+                            <CampoTexto
+                                contexto={this}
+                                tamanhoLabel={"lg-3"}
+                                label={"Campo Obrigatório"}
+                                nome={"campoObrigatorio"}
+                                valor={this.state.campoObrigatorio}
+                                obrigatorio
+                            />
 
-                        <Combo
-                            contexto={this}
-                            tamanhoLabel={"lg-3"}
-                            label={"Combo Não Obrigatório"}
-                            nome={"comboNaoObrigatorio"}
-                            valor={this.state.comboNaoObrigatorio}
-                            textoVazio={"Selecione uma opção..."}
-                            opcoes={opcoesSimNao}
-                            nomeMembro={"name"}
-                            valorMembro={"value"}
-                        />
+                            <CampoTexto
+                                contexto={this}
+                                tamanhoLabel={"lg-3"}
+                                tipo={"date"}
+                                label={"Campo Data Não Obrigatória"}
+                                nome={"campoDataNaoObrigatoria"}
+                                valor={this.state.campoDataNaoObrigatoria}
+                            />
 
-                        <Combo
-                            contexto={this}
-                            tamanhoLabel={"lg-3"}
-                            label={"Combo Obrigatório"}
-                            nome={"comboObrigatorio"}
-                            opcoes={opcoesSimNao}
-                            valor={this.state.comboObrigatorio}
-                            textoVazio={"Selecione uma opção..."}
-                            nomeMembro={"name"}
-                            valorMembro={"value"}
-                            obrigatorio
-                        />
-                        
-                        <Combo
-                            contexto={this}
-                            label={"Combo obrigatório sem label"}
-                            nome={"comboObrigatorioSemLabel"}
-                            valor={this.state.comboObrigatorioSemLabel}
-                            textoVazio={"Combo obrigatório sem label..."}
-                            opcoes={opcoesSimNao}
-                            nomeMembro={"name"}
-                            valorMembro={"value"}
-                            obrigatorio
-                            labelOculta
-                        />
+                            <CampoTexto
+                                contexto={this}
+                                tamanhoLabel={"lg-3"}
+                                tipo={"date"}
+                                label={"Campo Data Obrigatória"}
+                                nome={"campoDataObrigatoria"}
+                                valor={this.state.campoDataObrigatoria}
+                                obrigatorio
+                            />
+
+                            <Combo
+                                contexto={this}
+                                tamanhoLabel={"lg-3"}
+                                label={"Combo Não Obrigatório"}
+                                nome={"comboNaoObrigatorio"}
+                                valor={this.state.comboNaoObrigatorio}
+                                textoVazio={"Selecione uma opção..."}
+                                opcoes={opcoesSimNao}
+                                nomeMembro={"name"}
+                                valorMembro={"value"}
+                            />
+
+                            <Combo
+                                contexto={this}
+                                tamanhoLabel={"lg-3"}
+                                label={"Combo Obrigatório"}
+                                nome={"comboObrigatorio"}
+                                opcoes={opcoesSimNao}
+                                valor={this.state.comboObrigatorio}
+                                textoVazio={"Selecione uma opção..."}
+                                nomeMembro={"name"}
+                                valorMembro={"value"}
+                                obrigatorio
+                            />
+                            
+                            <Combo
+                                contexto={this}
+                                label={"Combo obrigatório sem label"}
+                                nome={"comboObrigatorioSemLabel"}
+                                valor={this.state.comboObrigatorioSemLabel}
+                                textoVazio={"Combo obrigatório sem label..."}
+                                opcoes={opcoesSimNao}
+                                nomeMembro={"name"}
+                                valorMembro={"value"}
+                                obrigatorio
+                                labelOculta
+                            />
+                        </div>
 
                         <Alerta ref={this.alert} tipo={TipoAlerta.danger} padraoFormulario />
                         <Botao onClick={this.validar} titulo={"Continuar"} submit />

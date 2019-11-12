@@ -1,6 +1,6 @@
 {
     "name": "@intechprev/componentes-web",
-    "version": "1.3.4",
+    "version": "1.3.7",
     "main": "./dist/index.js",
     "typings": "./types/index.d.ts",
     "devDependencies": {

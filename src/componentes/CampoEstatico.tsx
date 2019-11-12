@@ -58,13 +58,15 @@ export class CampoEstatico extends React.Component<Props> {
                 "col-md-12": !this.props.tamanhoTitulo,
                 "text-lg-right": !cima,
                 "col-form-label": true,
-                "text-primary": true
+                //"text-primary": true
             });
 
             return (
                 <label className={labelClasses}>
-                    {this.props.titulo}
-                    {this.props.obrigatorio && " *"}
+                    <b>
+                        {this.props.titulo}
+                        {this.props.obrigatorio && " *"}
+                    </b>
                 </label>
             );
         }

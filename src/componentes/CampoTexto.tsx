@@ -17,7 +17,7 @@ interface Props {
     contexto: any;
     nome: string;
     valor: string;
-    
+
     desabilitado?: boolean;
     label?: string;
     mascara?: string;
@@ -33,7 +33,7 @@ interface Props {
     tamanhoLabel?: string;
     titulo?: string;
     tipo?: string;
-    
+
     grupo?: boolean;
     iconeBotao?: string;
     iconeBotaoDireita?: boolean;
@@ -43,33 +43,33 @@ interface Props {
 }
 
 export class CampoTexto extends React.Component<Props> {
-    renderLabel(){
-      if(this.props.label){
-          const labelClasses = classNames({
-              ["col-lg-2"]: !this.props.tamanhoLabel,
-              [`col-${this.props.tamanhoLabel}`]: this.props.tamanhoLabel,
-              "col-md-12": true,
-              "text-lg-right": true,
-              "col-form-label": true
-          });
-      
-          return(
-              <div className={labelClasses}>
-                  <b>
-                      <label htmlFor={this.props.nome}>
-                          {this.props.label}
-                          {this.props.obrigatorio && " *"}
-                      </label>
-                  </b>
-              </div>
-          );
-      }
-      return null;
+    renderLabel() {
+        if (this.props.label) {
+            const labelClasses = classNames({
+                ["col-lg-2"]: !this.props.tamanhoLabel,
+                [`col-${this.props.tamanhoLabel}`]: this.props.tamanhoLabel,
+                "col-md-12": true,
+                "text-lg-right": true,
+                "col-form-label": true
+            });
+
+            return (
+                <div className={labelClasses}>
+                    <b>
+                        <label htmlFor={this.props.nome}>
+                            {this.props.label}
+                            {this.props.obrigatorio && " *"}
+                        </label>
+                    </b>
+                </div>
+            );
+        }
+        return null;
     }
-    
-    renderBotaoGrupo(){
-        if(this.props.grupo){
-            return(
+
+    renderBotaoGrupo() {
+        if (this.props.grupo) {
+            return (
                 <div className="input-group-append">
                     <Botao
                         titulo={this.props.tituloBotao}
@@ -82,10 +82,10 @@ export class CampoTexto extends React.Component<Props> {
         }
         return null;
     }
-    
-    mountCampo(valor: any){
-        if(this.props.textarea){
-            return(
+
+    mountCampo(valor: any) {
+        if (this.props.textarea) {
+            return (
                 <textarea
                     name={this.props.nome}
                     id={this.props.nome}
@@ -99,8 +99,8 @@ export class CampoTexto extends React.Component<Props> {
                 />
             );
         }
-        else{
-            return(
+        else {
+            return (
                 <InputMask
                     title={this.props.titulo}
                     mask={this.props.mascara}
@@ -118,42 +118,43 @@ export class CampoTexto extends React.Component<Props> {
             );
         }
     }
-    
-    renderCampo(){
+
+    renderCampo() {
         const campoClasses = classNames({
             "col": !this.props.tamanhoCampo,
             [`col-${this.props.tamanhoCampo}`]: this.props.tamanhoCampo
         });
-        
+
         let valor = "";
 
-        if(this.props.valor)
+        if (this.props.valor)
             valor = this.props.valor.toString();
 
-        if(typeof(valor) === typeof(Date))
+        if (typeof (valor) === typeof (Date))
             valor = moment(valor).format("dd/MM/yyyy");
-        
-        if(this.props.grupo){
-            return(
+
+        if (this.props.grupo) {
+            return (
                 <Col className={campoClasses}>
-                  <div className="input-group">
-                    {this.props.botaoEsquerda ? this.renderBotaoGrupo() : null}
-                    {this.mountCampo(valor)}
-                    {this.props.botaoEsquerda ? null : this.renderBotaoGrupo()}
-                  </div>
-				        </Col>
+                    <div className="input-group">
+                        {this.props.botaoEsquerda ? this.renderBotaoGrupo() : null}
+                        {this.mountCampo(valor)}
+                        {this.props.botaoEsquerda ? null : this.renderBotaoGrupo()}
+                    </div>
+                </Col>
             );
         }
-        else{
-            return(
-            <Col className={campoClasses}>
-                {this.mountCampo(valor)}
-				    </Col>
+        else {
+            return (
+                <Col className={campoClasses}>
+                    {this.mountCampo(valor)}
+                </Col>
             );
         }
     }
-    
+
     render() {
+        
         return (
             <Row formGroup>
                 {this.renderLabel()}

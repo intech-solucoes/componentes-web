@@ -12,7 +12,7 @@ import { BotaoSwitch } from "./componentes/BotaoSwitch";
 import { Modal } from "./componentes/Modal";
 import { Pesquisa } from "./componentes/Pesquisa";
 import { Tabela, ColunaTabela } from "./componentes/Tabela";
-import { FormEdicao } from "./componentes/FormEdicao";
+import { FormEdicao, ModoFormEdicao } from "./componentes/FormEdicao";
 
 import { Roteador, Rota } from "./Rotas";
 
@@ -27,11 +27,11 @@ export {
     CampoEstatico, TipoCampoEstatico, PosicaoTituloCampoEstatico,
     Combo,
     Dropdown,
-    Form,
+    Form, 
     Botao, TipoBotao, TamanhoBotao,
     BotaoSwitch,
     Modal,
-    Pesquisa, Tabela, ColunaTabela, FormEdicao, 
+    Pesquisa, Tabela, ColunaTabela, FormEdicao, ModoFormEdicao,
 
     Rota, Roteador,
 

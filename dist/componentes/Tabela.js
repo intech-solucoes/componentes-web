@@ -14,6 +14,7 @@ var __extends = (this && this.__extends) || (function () {
 import React from "react";
 import { Box, Botao, TamanhoBotao } from "..";
 import { ColunaTabela } from "./ColunaTabela";
+import { TipoBotao } from "./Botao";
 export { ColunaTabela };
 var Tabela = /** @class */ (function (_super) {
     __extends(Tabela, _super);
@@ -32,7 +33,7 @@ var Tabela = /** @class */ (function (_super) {
             var rowColumns = new Array();
             var children = React.Children.toArray(_this.props.children);
             children.forEach(function (coluna, index) {
-                var row = React.createElement("td", { key: index }, item[coluna.props.propriedadeValor]);
+                var row = React.createElement("td", { key: index, className: "align-middle" }, "" + coluna.props.prefixo + item[coluna.props.propriedadeValor] + coluna.props.sufixo);
                 rowColumns.push(row);
             });
             return rowColumns;
@@ -45,19 +46,22 @@ var Tabela = /** @class */ (function (_super) {
     Tabela.prototype.render = function () {
         var _this = this;
         if (this.props.dados.length > 0) {
-            return (React.createElement(Box, { titulo: "Lista" },
+            return (React.createElement(Box, { titulo: this.props.titulo },
                 React.createElement("div", { className: "table-responsive" },
                     React.createElement("table", { className: "table table-sm table-striped table-bordered table-hover" },
                         React.createElement("thead", null,
                             React.createElement("tr", null,
-                                this.props.edicaoHabilitada &&
-                                    React.createElement("th", { style: { width: 40 } }),
+                                (this.props.edicaoHabilitada || this.props.exclusaoHabilitada) &&
+                                    React.createElement("th", { style: { width: 66 } }),
                                 this.renderHeader())),
                         React.createElement("tbody", null, this.props.dados.map(function (item, index) {
                             return (React.createElement("tr", { key: index },
-                                _this.props.edicaoHabilitada &&
-                                    React.createElement("td", null,
-                                        React.createElement(Botao, { icone: "fa-pencil-alt", tamanho: TamanhoBotao.pequeno, onClick: function () { return _this.props.onSelecionar(item); } })),
+                                (_this.props.edicaoHabilitada || _this.props.exclusaoHabilitada) &&
+                                    React.createElement("td", { className: "align-middle text-center" },
+                                        _this.props.edicaoHabilitada &&
+                                            React.createElement(Botao, { icone: "fa-pencil-alt", tamanho: TamanhoBotao.pequeno, style: { marginRight: _this.props.exclusaoHabilitada ? 5 : 0 }, onClick: function () { return _this.props.onSelecionar(item); } }),
+                                        _this.props.exclusaoHabilitada &&
+                                            React.createElement(Botao, { icone: "fa-trash", tipo: TipoBotao.danger, tamanho: TamanhoBotao.pequeno, onClick: function () { return _this.props.onExcluir(item); } })),
                                 _this.renderRow(item)));
                         }))),
                     this.props.paginacaoHabilitada &&
@@ -76,7 +80,9 @@ var Tabela = /** @class */ (function (_super) {
     };
     Tabela.defaultProps = {
         paginacaoHabilitada: true,
-        edicaoHabilitada: true
+        edicaoHabilitada: true,
+        exclusaoHabilitada: true,
+        titulo: "Lista"
     };
     return Tabela;
 }(React.Component));

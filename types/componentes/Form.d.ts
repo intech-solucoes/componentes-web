@@ -8,10 +8,11 @@ interface State {
 export declare class Form extends React.Component<Props, State> {
     erros: Array<string>;
     valido: boolean;
-    constructor(props: Props);
+    state: {
+        valido: boolean;
+    };
     filtroCampos(campo: any): boolean;
-    validarAux: () => Promise<void>;
-    validarAlt: () => Promise<void>;
+    validarRecursivo: (children: any) => void;
     validar: () => Promise<void>;
     validarCampoTexto: (campo: any) => void;
     render(): JSX.Element;

@@ -29,6 +29,7 @@ interface Props {
     tipo?: TipoBotao;
     tamanho?: TamanhoBotao;
     children?: React.ReactNode;
+    style?: any;
     onClick: Function;
 }
 interface State {

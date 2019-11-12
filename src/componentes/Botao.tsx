@@ -33,6 +33,7 @@ interface Props {
     tipo?: TipoBotao;
     tamanho?: TamanhoBotao;
     children?: React.ReactNode;
+    style?: any;
 
     onClick: Function;
 }
@@ -89,6 +90,7 @@ export class Botao extends React.Component<Props, State> {
         return (
             <button type={type} 
                 className={classes} onClick={this.onClick} 
+                style={this.props.style}
                 disabled={this.props.desativado || this.state.carregando}
             >
                 {!this.state.carregando && 
