@@ -18,6 +18,7 @@ interface Props {
     nomeUsuario: string;
 
     history?: History;
+    match?: any;
 }
 
 interface State {

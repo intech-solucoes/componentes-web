@@ -8,6 +8,7 @@ interface Props {
     admin: boolean;
     nomeUsuario: string;
     history?: History;
+    match?: any;
 }
 interface State {
     menuAberto: boolean;
