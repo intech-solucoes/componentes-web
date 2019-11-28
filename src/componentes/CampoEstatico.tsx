@@ -15,7 +15,7 @@ export enum PosicaoTituloCampoEstatico {
 }
 
 interface Props {
-    valor: string | number;
+    valor: string | number | Date;
 
     id?: string;
     obrigatorio?: boolean;

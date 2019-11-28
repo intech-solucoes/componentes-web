@@ -9,7 +9,7 @@ export declare enum PosicaoTituloCampoEstatico {
     cima = 1
 }
 interface Props {
-    valor: string | number;
+    valor: string | number | Date;
     id?: string;
     obrigatorio?: boolean;
     tipo?: TipoCampoEstatico;
@@ -23,7 +23,7 @@ export declare class CampoEstatico extends React.Component<Props> {
         tipo: TipoCampoEstatico;
         posicao: PosicaoTituloCampoEstatico;
     };
-    parseValue(): React.ReactText;
+    parseValue(): string | number | Date;
     renderLabel(): JSX.Element;
     renderCampo(): JSX.Element;
     render(): JSX.Element;
