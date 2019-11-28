@@ -1,29 +1,44 @@
 {
     "name": "@intechprev/componentes-web",
-    "version": "1.0.8",
-    "main": "dist/index.js",
+    "version": "1.4.2",
+    "main": "./dist/index.js",
     "typings": "./types/index.d.ts",
-    "eslintConfig": {
-        "extends": "react-app"
-    },
     "devDependencies": {
         "@types/node": "10.12.18",
+        "@types/react": "16.8.10",
+        "@types/react-dom": "^16.8.3",
+        "@types/react-router-dom": "^4.3.2",
+        "bootstrap": "^4.3.1",
         "gluegun": "^3.2.0",
+        "moment": "^2.24.0",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "react-router-dom": "^5.0.0",
+        "react-scripts": "2.1.8",
         "typescript": "^3.4.3"
     },
     "dependencies": {
-        "@intechprev/react-lib": "^1.0.3",
+        "@intechprev/react-lib": "^1.0.6",
         "@types/classnames": "^2.2.7",
-        "@types/react": "^16.8.7",
         "@types/react-input-mask": "^2.0.1",
-        "axios": "^0.18.0",
         "classnames": "^2.2.6",
-        "react": "^16.8.4",
         "react-input-mask": "^2.0.4"
     },
     "scripts": {
-        "build": "node build.js",
+        "start": "yarn && react-scripts start",
+        "build": "yarn && node build.js",
         "prepublishOnly": "yarn build",
-        "npm:publish": "yarn build && npm publish --access public"
-    }
+        "npm:publish": "yarn build && npm publish --access public",
+        "styles:build": "sass ./src/styles/main.scss:./public/css/componentes-web.css",
+        "styles:watch": "sass --watch ./src/styles/main.scss:./public/css/componentes-web.css"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": [
+        ">0.2%",
+        "not dead",
+        "not ie <= 11",
+        "not op_mini all"
+    ]
 }

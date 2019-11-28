@@ -5,7 +5,7 @@
             "dom",
             "esnext"
         ],
-        "module": "commonjs",
+        "module": "esnext",
         "outDir": "./dist",
         "strict": true,
         "target": "es5",
@@ -13,7 +13,23 @@
         "noUnusedParameters": true,
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
-        "jsx": "react"
+        "skipLibCheck": true,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "jsx": "react",
+        "allowJs": false,
+        "isolatedModules": false,
+        "noEmit": false,
+        "strictNullChecks": false,
+        "noImplicitAny": false
     },
-    "include": ["./src"]
+    "include": [
+        "src/index.tsx"
+    ],
+    "exclude": [
+        "node_modules",
+        "src/test"
+    ]
 }

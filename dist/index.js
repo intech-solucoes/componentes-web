@@ -1,23 +1,28 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Col_1 = require("./Col");
-exports.Col = Col_1.Col;
-var Row_1 = require("./Row");
-exports.Row = Row_1.Row;
-var Box_1 = require("./Box");
-exports.Box = Box_1.Box;
-var Alert_1 = require("./Alert");
-exports.Alert = Alert_1.Alert;
-exports.TipoAlerta = Alert_1.TipoAlerta;
-var CampoTexto_1 = require("./CampoTexto");
-exports.CampoTexto = CampoTexto_1.CampoTexto;
-var CampoEstatico_1 = require("./CampoEstatico");
-exports.CampoEstatico = CampoEstatico_1.CampoEstatico;
-exports.TipoCampoEstatico = CampoEstatico_1.TipoCampoEstatico;
-var Form_1 = require("./Form");
-exports.Form = Form_1.Form;
-var Button_1 = require("./Button");
-exports.Button = Button_1.Button;
-exports.TipoBotao = Button_1.TipoBotao;
-var Combo_1 = require("./Combo");
-exports.Combo = Combo_1.Combo;
+import { Col } from './componentes/Col';
+import { Row } from './componentes/Row';
+import { Box } from "./componentes/Box";
+import { Alerta, TipoAlerta } from "./componentes/Alerta";
+import { CampoTexto } from "./componentes/CampoTexto";
+import { CampoEstatico, TipoCampoEstatico, PosicaoTituloCampoEstatico } from "./componentes/CampoEstatico";
+import { Combo } from "./componentes/Combo";
+import { Dropdown } from "./componentes/Dropdown";
+import { Form } from "./componentes/Form";
+import { Botao, TipoBotao, TamanhoBotao } from "./componentes/Botao";
+import { BotaoSwitch } from "./componentes/BotaoSwitch";
+import { Modal } from "./componentes/Modal";
+import { Pesquisa } from "./componentes/Pesquisa";
+import { Tabela, ColunaTabela } from "./componentes/Tabela";
+import { FormEdicao, ModoFormEdicao } from "./componentes/FormEdicao";
+import { Roteador, Rota } from "./Rotas";
+import { SideMenuPage } from "./SideMenu";
+export { Col, Row, Box, Alerta, TipoAlerta, CampoTexto, CampoEstatico, TipoCampoEstatico, PosicaoTituloCampoEstatico, Combo, Dropdown, Form, Botao, TipoBotao, TamanhoBotao, BotaoSwitch, Modal, Pesquisa, Tabela, ColunaTabela, FormEdicao, ModoFormEdicao, Rota, Roteador, SideMenuPage };
+try {
+    var React = require("react");
+    var ReactDOM = require("react-dom");
+    var Rotas = require("./exemplos/Rotas");
+    if (Rotas) {
+        Rotas = Rotas.default;
+        ReactDOM.render(React.createElement(Roteador, { rotas: Rotas }), document.getElementById('root'));
+    }
+}
+catch (e) { }
