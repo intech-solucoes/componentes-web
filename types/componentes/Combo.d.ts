@@ -4,7 +4,7 @@ interface Props {
     nome: string;
     nomeMembro: string;
     valorMembro: string;
-    valor: string;
+    valor: string | number;
     desabilitado?: boolean;
     label?: string;
     obrigatorio?: boolean;

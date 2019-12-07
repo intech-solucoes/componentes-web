@@ -9,7 +9,7 @@ interface Props {
     nome: string;
     nomeMembro: string;
     valorMembro: string;
-    valor: string;
+    valor: string | number;
     
     desabilitado?: boolean;
     label?: string;
@@ -56,7 +56,7 @@ export class Combo extends Component<Props> {
 
 		if(this.props.obrigatorio)
 		{
-			if(this.props.valor === "")
+			if(typeof this.props.valor === "undefined" || this.props.valor === "")
 				this.erros.push(`Campo "${this.props.label}" obrigatório.`);
 		}
 

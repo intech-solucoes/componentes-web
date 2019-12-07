@@ -60,7 +60,7 @@ var Combo = /** @class */ (function (_super) {
             _this.possuiErros = false;
             _this.erros = [];
             if (_this.props.obrigatorio) {
-                if (_this.props.valor === "")
+                if (typeof _this.props.valor === "undefined" || _this.props.valor === "")
                     _this.erros.push("Campo \"" + _this.props.label + "\" obrigat\u00F3rio.");
             }
             _this.possuiErros = _this.erros.length > 0;
