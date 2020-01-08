@@ -5,6 +5,7 @@ import { RouteProps } from "react-router-dom";
 import { Dashboard } from "./paginas/Dashboard";
 import { BotaoPage } from "./paginas/Botao";
 import { AlertaPage } from "./paginas/Alerta";
+import { CardPage } from "./paginas/Card";
 import { DropdownPage } from "./paginas/Dropdown";
 import { CampoEstaticoPage } from "./paginas/CampoEstatico";
 import { InputGroupPage } from "./paginas/InputGroup";
@@ -29,6 +30,15 @@ const rotas: Array<Rota> = [
         icone: "fas fa-exclamation-triangle",
         caminho: "/alerta",
         componente: (routeProps: RouteProps) => <AlertaPage {...routeProps} />,
+        mostrarMenu: true,
+        caminhoExato: true
+    },
+    {
+        id: "card",
+        titulo: "Card",
+        icone: "fas fa-check-square",
+        caminho: "/card",
+        componente: (routeProps: RouteProps) => <CardPage {...routeProps} />,
         mostrarMenu: true,
         caminhoExato: true
     },

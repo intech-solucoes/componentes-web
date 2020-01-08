@@ -2,6 +2,7 @@ import { Col } from './componentes/Col';
 import { Row } from './componentes/Row';
 import { Box } from "./componentes/Box";
 import { Alerta, TipoAlerta } from "./componentes/Alerta";
+import { Card } from "./componentes/Card";
 import { CampoTexto } from "./componentes/CampoTexto";
 import { CampoEstatico, TipoCampoEstatico, PosicaoTituloCampoEstatico } from "./componentes/CampoEstatico";
 import { Combo } from "./componentes/Combo";
@@ -23,6 +24,7 @@ export {
     Row,
     Box,
     Alerta, TipoAlerta,
+    Card,
     CampoTexto,
     CampoEstatico, TipoCampoEstatico, PosicaoTituloCampoEstatico,
     Combo,

@@ -26,8 +26,12 @@ var SideMenuPage = /** @class */ (function (_super) {
             loading: false
         };
         _this.logout = function () {
-            localStorage.removeItem("token");
-            localStorage.removeItem("token-admin");
+            var tokens = {
+                "user": _this.props.appName ? "@" + _this.props.appName + ":token" : "token",
+                "admin": _this.props.appName ? "@" + _this.props.appName + ":token-admin" : "token-admin"
+            };
+            localStorage.removeItem(tokens.user);
+            localStorage.removeItem(tokens.admin);
             _this.props.history.push("login");
         };
         return _this;

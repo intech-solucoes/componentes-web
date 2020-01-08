@@ -12,6 +12,7 @@ export {
 }
 
 interface Props {
+    appName?: string;
     logo: string;
     rotas: Array<Rota>;
     admin: boolean;
@@ -34,8 +35,13 @@ export class SideMenuPage extends React.Component<Props, State> {
     }
 
     logout = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("token-admin");
+        const tokens = {
+            "user": this.props.appName ? `@${this.props.appName}:token` : "token",
+            "admin": this.props.appName ? `@${this.props.appName}:token-admin` : "token-admin"
+        };
+       
+        localStorage.removeItem(tokens.user);
+        localStorage.removeItem(tokens.admin);
         this.props.history.push("login");
     }
 

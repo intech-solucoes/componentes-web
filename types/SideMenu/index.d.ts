@@ -3,6 +3,7 @@ import { History } from 'history';
 import { Rota } from "../Rotas";
 export { Rota };
 interface Props {
+    appName?: string;
     logo: string;
     rotas: Array<Rota>;
     admin: boolean;
