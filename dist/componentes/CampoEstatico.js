@@ -32,13 +32,16 @@ var CampoEstatico = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     CampoEstatico.prototype.parseValue = function () {
+        var valor = this.props.valor;
+        if (typeof this.props.valor === "undefined")
+            valor = "0";
         if (this.props.tipo === TipoCampoEstatico.data)
-            return moment(this.props.valor).format("DD/MM/YYYY");
+            return moment(valor).format("DD/MM/YYYY");
         if (this.props.tipo === TipoCampoEstatico.dinheiro) {
             if (typeof (this.props.valor) === "string")
-                return "R$ " + Number.parseFloat(this.props.valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                return "R$ " + parseFloat(valor.toString()).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             else
-                return "R$ " + this.props.valor.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                return "R$ " + valor.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
         return this.props.valor;
     };
