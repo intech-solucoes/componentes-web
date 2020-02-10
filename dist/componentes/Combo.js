@@ -113,12 +113,20 @@ var Combo = /** @class */ (function (_super) {
     };
     Combo.prototype.mountCombo = function () {
         var _this = this;
-        return (React.createElement("select", { id: this.props.nome, name: this.props.nome, className: "form-control", onChange: function (e) { return _this.onChange(e); }, value: this.props.valor, disabled: this.props.desabilitado },
-            this.props.textoVazio &&
-                React.createElement("option", { value: "" }, this.props.textoVazio),
-            this.props.opcoes.map(function (opcao, index) {
-                return (React.createElement("option", { key: index, value: opcao[_this.props.valorMembro] }, opcao[_this.props.nomeMembro]));
-            })));
+        if (this.props.opcoes.length > 0) {
+            return (React.createElement("select", { id: this.props.nome, name: this.props.nome, className: "form-control", onChange: function (e) { return _this.onChange(e); }, value: this.props.valor, disabled: this.props.desabilitado },
+                this.props.textoVazio &&
+                    React.createElement("option", { value: "" }, this.props.textoVazio),
+                this.props.opcoes.map(function (opcao, index) {
+                    if (_this.props.valorMembro && _this.props.nomeMembro)
+                        return React.createElement("option", { key: index, value: opcao[_this.props.valorMembro] }, opcao[_this.props.nomeMembro]);
+                    else
+                        return React.createElement("option", { key: index, value: opcao }, opcao);
+                })));
+        }
+        else {
+            return null;
+        }
     };
     Combo.prototype.renderCombo = function () {
         var _a;

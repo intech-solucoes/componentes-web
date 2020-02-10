@@ -13,6 +13,7 @@ import { ModalPage } from "./paginas/Modal";
 import { FormPage } from "./paginas/Form";
 import { TabelaPage } from "./paginas/Tabela";
 import { CrudPage } from "./paginas/Crud";
+import { ComboPage } from "./paginas/Combo";
 
 const rotas: Array<Rota> = [
     {
@@ -120,6 +121,15 @@ const rotas: Array<Rota> = [
         icone: "fas fa-layer-group",
         caminho: "/crud",
         componente: (routeProps: RouteProps) => <CrudPage {...routeProps} />,
+        mostrarMenu: true,
+        caminhoExato: true
+    },
+    {
+        id: "combo",
+        titulo: "Combo",
+        icone: "fas fa-layer-group",
+        caminho: "/combo",
+        componente: (routeProps: RouteProps) => <ComboPage {...routeProps} />,
         mostrarMenu: true,
         caminhoExato: true
     }

@@ -2,15 +2,15 @@ import { Component } from "react";
 interface Props {
     contexto: any;
     nome: string;
-    nomeMembro: string;
-    valorMembro: string;
     valor: string | number;
+    nomeMembro?: string;
+    valorMembro?: string;
     desabilitado?: boolean;
     label?: string;
     obrigatorio?: boolean;
     onChange?: Function;
     opcoes?: Array<any>;
-    padrao?: string;
+    padrao?: any;
     tamanhoLabel?: string;
     tamanhoCampo?: string;
     textoVazio?: string;
