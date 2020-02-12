@@ -16,7 +16,7 @@ export enum PosicaoBotaoGrupo {
 interface Props {
     contexto: any;
     nome: string;
-    valor: string;
+    valor: string | number;
 
     desabilitado?: boolean;
     label?: string;

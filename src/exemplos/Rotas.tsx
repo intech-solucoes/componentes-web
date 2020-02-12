@@ -14,6 +14,7 @@ import { FormPage } from "./paginas/Form";
 import { TabelaPage } from "./paginas/Tabela";
 import { CrudPage } from "./paginas/Crud";
 import { ComboPage } from "./paginas/Combo";
+import { CampoTextoPage } from "./paginas/CampoTexto";
 
 const rotas: Array<Rota> = [
     {
@@ -75,7 +76,7 @@ const rotas: Array<Rota> = [
         titulo: "Campo Texto",
         icone: "fas fa-edit",
         caminho: "/campoTexto",
-        componente: (routeProps: RouteProps) => <CampoEstaticoPage {...routeProps} />,
+        componente: (routeProps: RouteProps) => <CampoTextoPage {...routeProps} />,
         mostrarMenu: true,
         caminhoExato: true
     },
