@@ -2,7 +2,8 @@ import React from 'react';
 export declare enum TipoCampoEstatico {
     texto = 0,
     dinheiro = 1,
-    data = 2
+    data = 2,
+    percentual = 3
 }
 export declare enum PosicaoTituloCampoEstatico {
     esquerda = 0,
@@ -16,6 +17,7 @@ interface Props {
     titulo?: string;
     tamanhoTitulo?: string;
     posicaoTitulo?: PosicaoTituloCampoEstatico;
+    tituloClassName?: any;
     tamanhoCampo?: string;
 }
 export declare class CampoEstatico extends React.Component<Props> {

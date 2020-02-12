@@ -20,6 +20,7 @@ export var TipoCampoEstatico;
     TipoCampoEstatico[TipoCampoEstatico["texto"] = 0] = "texto";
     TipoCampoEstatico[TipoCampoEstatico["dinheiro"] = 1] = "dinheiro";
     TipoCampoEstatico[TipoCampoEstatico["data"] = 2] = "data";
+    TipoCampoEstatico[TipoCampoEstatico["percentual"] = 3] = "percentual";
 })(TipoCampoEstatico || (TipoCampoEstatico = {}));
 export var PosicaoTituloCampoEstatico;
 (function (PosicaoTituloCampoEstatico) {
@@ -32,18 +33,28 @@ var CampoEstatico = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     CampoEstatico.prototype.parseValue = function () {
-        var valor = this.props.valor;
-        if (typeof this.props.valor === "undefined")
-            valor = "0";
+        var valor = "";
+        if (this.props.valor && this.props.valor !== "")
+            valor = this.props.valor;
         if (this.props.tipo === TipoCampoEstatico.data)
             return moment(valor).format("DD/MM/YYYY");
         if (this.props.tipo === TipoCampoEstatico.dinheiro) {
-            if (typeof (this.props.valor) === "string")
-                return "R$ " + parseFloat(valor.toString()).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            if (valor === 'NaN' || valor === '')
+                valor = '0,00';
+            if (typeof (valor) === "string")
+                return "R$ " + Number.parseFloat(valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             else
                 return "R$ " + valor.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
-        return this.props.valor;
+        if (this.props.tipo === TipoCampoEstatico.percentual) {
+            if (valor === 'NaN' || valor === '' || valor === undefined)
+                valor = '0,00';
+            if (typeof (valor) === "string")
+                return "% " + Number.parseFloat(valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            else
+                return "% " + valor.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+        return valor;
     };
     CampoEstatico.prototype.renderLabel = function () {
         var _a;
@@ -57,7 +68,7 @@ var CampoEstatico = /** @class */ (function (_super) {
                 _a["col-md-12"] = !this.props.tamanhoTitulo,
                 _a["text-lg-right"] = !cima,
                 _a["col-form-label"] = true,
-                _a));
+                _a), this.props.tituloClassName);
             return (React.createElement("label", { className: labelClasses },
                 React.createElement("b", null,
                     this.props.titulo,
@@ -70,7 +81,7 @@ var CampoEstatico = /** @class */ (function (_super) {
         var labelClasses = classNames({
             "col": this.props.titulo,
             "form-control-plaintext": this.props.titulo,
-            "align-self-center": this.props.titulo
+            "align-self-center": this.props.titulo,
         });
         return (React.createElement("label", { className: labelClasses }, valor));
     };

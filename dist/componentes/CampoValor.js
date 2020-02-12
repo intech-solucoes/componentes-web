@@ -16,26 +16,27 @@ import moment from "moment";
 import { handleFieldChange } from "@intechprev/react-lib";
 import { Botao, Col, Row } from "..";
 import classNames from 'classnames';
-var InputMask = require('react-input-mask');
+import NumberFormat from 'react-number-format';
+// var InputMask = require('react-input-mask');
 export var PosicaoBotaoGrupo;
 (function (PosicaoBotaoGrupo) {
     PosicaoBotaoGrupo["direita"] = "direita";
     PosicaoBotaoGrupo["esquerda"] = "esquerda";
 })(PosicaoBotaoGrupo || (PosicaoBotaoGrupo = {}));
-export var PosicaoTituloCampoTexto;
-(function (PosicaoTituloCampoTexto) {
-    PosicaoTituloCampoTexto[PosicaoTituloCampoTexto["esquerda"] = 0] = "esquerda";
-    PosicaoTituloCampoTexto[PosicaoTituloCampoTexto["cima"] = 1] = "cima";
-})(PosicaoTituloCampoTexto || (PosicaoTituloCampoTexto = {}));
-var CampoTexto = /** @class */ (function (_super) {
-    __extends(CampoTexto, _super);
-    function CampoTexto() {
+export var PosicaoTituloCampoValor;
+(function (PosicaoTituloCampoValor) {
+    PosicaoTituloCampoValor[PosicaoTituloCampoValor["esquerda"] = 0] = "esquerda";
+    PosicaoTituloCampoValor[PosicaoTituloCampoValor["cima"] = 1] = "cima";
+})(PosicaoTituloCampoValor || (PosicaoTituloCampoValor = {}));
+var CampoValor = /** @class */ (function (_super) {
+    __extends(CampoValor, _super);
+    function CampoValor() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    CampoTexto.prototype.renderLabel = function () {
+    CampoValor.prototype.renderLabel = function () {
         var _a;
         if (this.props.titulo) {
-            var cima = this.props.posicaoTitulo === PosicaoTituloCampoTexto.cima;
+            var cima = this.props.posicaoTitulo === PosicaoTituloCampoValor.cima;
             var labelClasses = classNames((_a = {},
                 _a["col-lg-2"] = !this.props.tamanhoTitulo && !cima,
                 _a["col-" + this.props.tamanhoTitulo] = this.props.tamanhoTitulo && !cima,
@@ -51,23 +52,50 @@ var CampoTexto = /** @class */ (function (_super) {
         }
         return null;
     };
-    CampoTexto.prototype.renderBotaoGrupo = function () {
+    CampoValor.prototype.renderBotaoGrupo = function () {
         if (this.props.grupo) {
             return (React.createElement("div", { className: "input-group-append" },
                 React.createElement(Botao, { titulo: this.props.tituloBotao, onClick: this.props.onBotaoClick, icone: this.props.iconeBotao, iconeDireita: this.props.iconeBotaoDireita })));
         }
         return null;
     };
-    CampoTexto.prototype.mountCampo = function (valor) {
+    CampoValor.prototype.mountCampo = function (valor) {
         var _this = this;
-        if (this.props.textarea) {
+        if (this.props.desabilitado) {
+            return (React.createElement("input", { type: "text", name: this.props.nome, value: valor, 
+                // maxLength={this.props.max}
+                className: "form-control", placeholder: this.props.placeholder, id: this.props.nome, disabled: this.props.desabilitado }));
+        }
+        else if (this.props.textarea) {
             return (React.createElement("textarea", { name: this.props.nome, id: this.props.nome, className: "form-control", rows: this.props.rows, placeholder: this.props.placeholder, value: valor, maxLength: this.props.max, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); }, onBlur: this.props.onBlur }));
         }
+        else if (this.props.tipo === 'dinheiro') {
+            return (React.createElement(NumberFormat, { thousandSeparator: ".", decimalSeparator: ",", decimalScale: 2, prefix: "R$", fixedDecimalScale: true, disabled: this.props.desabilitado, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); }, onBlur: this.props.onBlur }));
+        }
+        else if (this.props.tipo === 'percentual') {
+            return (React.createElement(NumberFormat, { decimalSeparator: ",", decimalScale: 2, prefix: "%", fixedDecimalScale: true, disabled: this.props.desabilitado, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); } }));
+        }
+        else if (this.props.tipo === 'data') {
+            return (React.createElement(NumberFormat, { format: "##/##/####", mask: "_", disabled: this.props.desabilitado, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); } }));
+        }
+        else if (this.props.tipo === 'mesano') {
+            return (React.createElement(NumberFormat, { format: "##/####", mask: "_", disabled: this.props.desabilitado, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); } }));
+        }
+        else if (this.props.tipo === 'telefone') {
+            return (React.createElement(NumberFormat, { format: "(###) #####-####", mask: "_", disabled: this.props.desabilitado, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); } }));
+        }
         else {
-            return (React.createElement(InputMask, { mask: this.props.mascara, name: this.props.nome, value: valor, maxLength: this.props.max, className: "form-control", type: this.props.tipo, placeholder: this.props.placeholder, id: this.props.nome, disabled: this.props.desabilitado, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); }, onBlur: this.props.onBlur }));
+            return (React.createElement(NumberFormat, { thousandSeparator: ".", decimalSeparator: ",", decimalScale: 2, prefix: "R$", fixedDecimalScale: true, disabled: this.props.desabilitado, onValueChange: (this.props.contexto, this.props.parent), onBlur: this.props.onBlur })
+            // <NumberFormat thousandSeparator={true} prefix={'$'} onValueChange={(values) => {
+            //     const {formattedValue} = values;
+            //     // formattedValue = $2,223
+            //     // value ie, 2223
+            //     this.setState({formattedValue})
+            //   }}/>
+            );
         }
     };
-    CampoTexto.prototype.renderCampo = function () {
+    CampoValor.prototype.renderCampo = function () {
         var _a;
         var campoClasses = classNames((_a = {
                 "col": !this.props.tamanhoCampo
@@ -90,14 +118,14 @@ var CampoTexto = /** @class */ (function (_super) {
             return (React.createElement(Col, { className: campoClasses }, this.mountCampo(valor)));
         }
     };
-    CampoTexto.prototype.render = function () {
+    CampoValor.prototype.render = function () {
         return (React.createElement(Row, { formGroup: true },
             this.renderLabel(),
             this.renderCampo()));
     };
-    CampoTexto.defaultProps = {
-        posicao: PosicaoTituloCampoTexto.esquerda
+    CampoValor.defaultProps = {
+        posicao: PosicaoTituloCampoValor.esquerda
     };
-    return CampoTexto;
+    return CampoValor;
 }(React.Component));
-export { CampoTexto };
+export { CampoValor };

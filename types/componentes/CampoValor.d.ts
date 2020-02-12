@@ -3,14 +3,14 @@ export declare enum PosicaoBotaoGrupo {
     direita = "direita",
     esquerda = "esquerda"
 }
-export declare enum PosicaoTituloCampoTexto {
+export declare enum PosicaoTituloCampoValor {
     esquerda = 0,
     cima = 1
 }
 interface Props {
     contexto: any;
     nome: string;
-    valor: string | number;
+    valor: number;
     titulo?: string;
     desabilitado?: boolean;
     mascara?: string;
@@ -18,6 +18,7 @@ interface Props {
     min?: number;
     obrigatorio?: boolean;
     onBlur?: any;
+    onChange?: any;
     parent?: any;
     placeholder?: string;
     rows?: number;
@@ -31,12 +32,12 @@ interface Props {
     onBotaoClick?: any;
     botaoEsquerda?: boolean;
     tituloBotao?: string;
-    posicaoTitulo?: PosicaoTituloCampoTexto;
+    posicaoTitulo?: PosicaoTituloCampoValor;
     tituloClassName?: any;
 }
-export declare class CampoTexto extends React.Component<Props> {
+export declare class CampoValor extends React.Component<Props> {
     static defaultProps: {
-        posicao: PosicaoTituloCampoTexto;
+        posicao: PosicaoTituloCampoValor;
     };
     renderLabel(): JSX.Element;
     renderBotaoGrupo(): JSX.Element;

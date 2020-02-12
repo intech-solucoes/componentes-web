@@ -3,7 +3,7 @@ import { Row } from './componentes/Row';
 import { Box } from "./componentes/Box";
 import { Alerta, TipoAlerta } from "./componentes/Alerta";
 import { Card } from "./componentes/Card";
-import { CampoTexto } from "./componentes/CampoTexto";
+import { CampoTexto, PosicaoTituloCampoTexto } from "./componentes/CampoTexto";
 import { CampoEstatico, TipoCampoEstatico, PosicaoTituloCampoEstatico } from "./componentes/CampoEstatico";
 import { Combo } from "./componentes/Combo";
 import { Dropdown } from "./componentes/Dropdown";
@@ -14,6 +14,7 @@ import { Modal } from "./componentes/Modal";
 import { Pesquisa } from "./componentes/Pesquisa";
 import { Tabela, ColunaTabela } from "./componentes/Tabela";
 import { FormEdicao, ModoFormEdicao } from "./componentes/FormEdicao";
+import { CampoValor, PosicaoTituloCampoValor } from "./componentes/CampoValor";
 
 import { Roteador, Rota } from "./Rotas";
 
@@ -25,7 +26,7 @@ export {
     Box,
     Alerta, TipoAlerta,
     Card,
-    CampoTexto,
+    CampoTexto, PosicaoTituloCampoTexto,
     CampoEstatico, TipoCampoEstatico, PosicaoTituloCampoEstatico,
     Combo,
     Dropdown,
@@ -37,7 +38,10 @@ export {
 
     Rota, Roteador,
 
-    SideMenuPage
+    SideMenuPage,
+
+    CampoValor, PosicaoTituloCampoValor,
+    //PassoWizard
 };
 
 try {

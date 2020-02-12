@@ -5,15 +5,16 @@ import { handleFieldChange } from "@intechprev/react-lib";
 
 import { Botao, Col, Row } from "..";
 import classNames from 'classnames';
+import NumberFormat from 'react-number-format';
 
-var InputMask = require('react-input-mask');
+// var InputMask = require('react-input-mask');
 
 export enum PosicaoBotaoGrupo {
     direita = "direita",
     esquerda = "esquerda"
 }
 
-export enum PosicaoTituloCampoTexto {
+export enum PosicaoTituloCampoValor {
     esquerda,
     cima
 }
@@ -21,7 +22,7 @@ export enum PosicaoTituloCampoTexto {
 interface Props {
     contexto: any;
     nome: string;
-    valor: string | number;
+    valor: number;
 
     titulo?: string;
     desabilitado?: boolean;
@@ -30,6 +31,7 @@ interface Props {
     min?: number;
     obrigatorio?: boolean;
     onBlur?: any;
+    onChange?: any;
     parent?: any;
     placeholder?: string;
     rows?: number;
@@ -45,21 +47,21 @@ interface Props {
     botaoEsquerda?: boolean;
     tituloBotao?: string;
 
-    posicaoTitulo?: PosicaoTituloCampoTexto;
+    posicaoTitulo?: PosicaoTituloCampoValor;
     tituloClassName?: any;
 }
 
-export class CampoTexto extends React.Component<Props> {
+export class CampoValor extends React.Component<Props> {
 
     static defaultProps = {
-        posicao: PosicaoTituloCampoTexto.esquerda
+        posicao: PosicaoTituloCampoValor.esquerda
     }
 
     renderLabel() {
 
         if (this.props.titulo) {
 
-            const cima = this.props.posicaoTitulo === PosicaoTituloCampoTexto.cima;
+            const cima = this.props.posicaoTitulo === PosicaoTituloCampoValor.cima;
 
             const labelClasses = classNames({
                 ["col-lg-2"]: !this.props.tamanhoTitulo && !cima,
@@ -100,7 +102,21 @@ export class CampoTexto extends React.Component<Props> {
     }
 
     mountCampo(valor: any) {
-        if (this.props.textarea) {
+
+        if (this.props.desabilitado){
+            return (
+                <input type="text"
+                    name={this.props.nome}
+                    value={valor}
+                    // maxLength={this.props.max}
+                    className={"form-control"}
+                    placeholder={this.props.placeholder}
+                    id={this.props.nome}
+                    disabled={this.props.desabilitado}
+                />
+            );
+        }
+        else if (this.props.textarea) {
             return (
                 <textarea
                     name={this.props.nome}
@@ -115,21 +131,61 @@ export class CampoTexto extends React.Component<Props> {
                 />
             );
         }
+
+        else if (this.props.tipo === 'dinheiro' ) {
+            return (
+                <NumberFormat 
+                  thousandSeparator="."  
+                  decimalSeparator=","  
+                  decimalScale={2} prefix="R$" 
+                  fixedDecimalScale={true} 
+                  disabled={this.props.desabilitado} 
+                  onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}
+                  onBlur={this.props.onBlur}
+                />
+            );
+        }
+        else if (this.props.tipo === 'percentual' ) {
+            return (
+                <NumberFormat decimalSeparator=","  decimalScale={2} prefix="%" fixedDecimalScale={true} disabled={this.props.desabilitado} onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}
+                />
+            );
+        }
+        else if (this.props.tipo === 'data' ) {
+            return (
+                <NumberFormat format="##/##/####" mask="_" disabled={this.props.desabilitado} onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}              
+                />
+            );
+        }
+        else if (this.props.tipo === 'mesano' ) {
+            return (
+                <NumberFormat format="##/####" mask="_" disabled={this.props.desabilitado} onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}
+                />
+            );
+        }
+        else if (this.props.tipo === 'telefone' ) {
+            return (
+                <NumberFormat format="(###) #####-####" mask="_" disabled={this.props.desabilitado} onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}/>
+            );
+        }
         else {
             return (
-                <InputMask
-                    mask={this.props.mascara}
-                    name={this.props.nome}
-                    value={valor}
-                    maxLength={this.props.max}
-                    className={"form-control"}
-                    type={this.props.tipo}
-                    placeholder={this.props.placeholder}
-                    id={this.props.nome}
-                    disabled={this.props.desabilitado}
-                    onChange={(e: any) => handleFieldChange(this.props.contexto, e, this.props.parent)}
-                    onBlur={this.props.onBlur}
+                <NumberFormat 
+                  thousandSeparator="."  
+                  decimalSeparator=","  
+                  decimalScale={2} prefix="R$" 
+                  fixedDecimalScale={true} 
+                  disabled={this.props.desabilitado} 
+                  onValueChange={(this.props.contexto, this.props.parent)}
+                  onBlur={this.props.onBlur}
                 />
+
+                // <NumberFormat thousandSeparator={true} prefix={'$'} onValueChange={(values) => {
+                //     const {formattedValue} = values;
+                //     // formattedValue = $2,223
+                //     // value ie, 2223
+                //     this.setState({formattedValue})
+                //   }}/>
             );
         }
     }

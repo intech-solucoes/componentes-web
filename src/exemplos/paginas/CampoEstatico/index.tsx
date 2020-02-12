@@ -94,13 +94,57 @@ export class CampoEstaticoPage extends React.Component<Props, State> {
                     <Col>
                         <Box titulo={"Dinheiro"}>
                             <code>
-                                {"<CampoEstatico valor={10.50} tipo={TipoCampo.dinheiro} />"}
+                                {"<CampoEstatico valor={10.50} tipo={TipoCampoEstatico.dinheiro} />"}
                             </code>
 
                             <CampoEstatico valor={1576.50} tipo={TipoCampoEstatico.dinheiro} />
                         </Box>
                     </Col>
+                    <Col>
+                        <Box titulo={"Percentual"}>
+                            <code>
+                                {"<CampoEstatico valor={10.50} tipo={TipoCampoEstatico.percentual} />"}
+                            </code>
+
+                            <CampoEstatico valor={''} tipo={TipoCampoEstatico.percentual} />
+                        </Box>
+                    </Col>
                 </Row>
+
+                <Row>
+                    <Col>
+                        <Box titulo={"Cor do Titulo (Label)"}>
+                            <code>
+                                {"<div className=\"form-row\">"}<br />
+                                {"    <CampoEstatico  valor={10.50} tipo={TipoCampo.dinheiro}"}<br />
+                                {"</div>"}
+                            </code>
+
+                            <CampoEstatico valor={1576.50} tipo={TipoCampoEstatico.dinheiro} tituloClassName={"text-primary"} />
+
+                        </Box>
+                    </Col>
+                </Row>   
+
+
+                <Row>
+                    <Col>
+                        <Box titulo={"Cor do Titulo (Label)"}>
+
+                            <p>Define a cor do Título.</p>
+
+                            <h4 className={"mt-4"}>Esquerda (padrão):</h4>
+                            <code>{"<CampoEstatico posicao={CampoEstaticoPosicao.esquerda} tituloClassName={\"text-primary\"} />"}</code>
+
+                            <CampoEstatico titulo={"Titulo"} valor={"Valor"} tituloClassName={"text-primary"} />
+
+                            <h4 className={"mt-4"}>Cima:</h4>
+                            <code>{"<CampoEstatico posicao={PosicaoTituloCampoEstatico.cima} />"}</code>
+
+                            <CampoEstatico titulo={"Titulo"} valor={"Valor"} posicaoTitulo={PosicaoTituloCampoEstatico.cima} tituloClassName={"text-primary"} />
+                        </Box>
+                    </Col>
+                </Row>                                 
             </MasterPage>
         );
     }

@@ -6,7 +6,8 @@ import { Row } from '..';
 export enum TipoCampoEstatico {
     texto,
     dinheiro,
-    data
+    data,
+    percentual
 }
 
 export enum PosicaoTituloCampoEstatico {
@@ -24,6 +25,7 @@ interface Props {
     titulo?: string;
     tamanhoTitulo?: string;
     posicaoTitulo?: PosicaoTituloCampoEstatico;
+    tituloClassName?: any;
 
     tamanhoCampo?: string;
 }
@@ -36,20 +38,32 @@ export class CampoEstatico extends React.Component<Props> {
     }
 
     parseValue() {
-        var valor = this.props.valor;
+        var valor: string | number | Date = "";
 
-        if(typeof this.props.valor === "undefined")
-            valor = "0";
-
+        if(this.props.valor && this.props.valor !== "")
+            valor = this.props.valor;
+            
         if (this.props.tipo === TipoCampoEstatico.data)
             return moment(valor).format("DD/MM/YYYY");
         if (this.props.tipo === TipoCampoEstatico.dinheiro) {
-            if (typeof (this.props.valor) === "string")
-                return `R$ ${parseFloat(valor.toString()).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            if (valor === 'NaN' || valor === '')
+               valor = '0,00';
+
+            if (typeof (valor) === "string")
+                return `R$ ${Number.parseFloat(valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
             else
                 return `R$ ${valor.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
         }
-        return this.props.valor;
+        if (this.props.tipo === TipoCampoEstatico.percentual) {
+            if (valor === 'NaN' || valor === '' || valor === undefined)
+               valor = '0,00';
+
+            if (typeof (valor) === "string")
+                return `% ${Number.parseFloat(valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            else
+                return `% ${valor.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        }
+        return valor;
     }
 
     renderLabel() {
@@ -64,7 +78,7 @@ export class CampoEstatico extends React.Component<Props> {
                 "text-lg-right": !cima,
                 "col-form-label": true,
                 //"text-primary": true
-            });
+            }, this.props.tituloClassName);
 
             return (
                 <label className={labelClasses}>
@@ -84,7 +98,7 @@ export class CampoEstatico extends React.Component<Props> {
         const labelClasses = classNames({
             "col": this.props.titulo,
             "form-control-plaintext": this.props.titulo,
-            "align-self-center": this.props.titulo
+            "align-self-center": this.props.titulo,
         });
 
         return (
