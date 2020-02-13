@@ -107,7 +107,7 @@ export class ModalPage extends React.Component<Props, State> {
                                 visivel={this.state.modalStatus_2}
                                 titulo={"Título muito criativo!"}
                             >
-                                ...
+                                Conteúdo
                             </Modal>
                             
                             <Botao

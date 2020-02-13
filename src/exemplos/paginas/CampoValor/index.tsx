@@ -10,6 +10,8 @@ interface State {
     valor2: number;
     valor3: number;
     valor4: number;
+    valor5: number;
+    valor6: number;    
 
 }
 
@@ -20,6 +22,8 @@ export class CampoValorPage extends React.Component<Props, State> {
         valor2: 0,
         valor3: 0,
         valor4: 0,
+        valor5: 0,
+        valor6: 0,        
     }
 
     testeOnchange(valor: number) {
@@ -35,7 +39,13 @@ export class CampoValorPage extends React.Component<Props, State> {
 
                             <p>Se não informar o tipo o defaut será dinheiro:</p>
                             <code>{"<CampoValor titulo={\"Titulo\"} valor={\"Valor\"} />"}</code>
-                            <CampoValor contexto={this} titulo={"Titulo"} valor={this.state.valor1} nome={"valor1"} posicaoTitulo={PosicaoTituloCampoValor.esquerda} />
+                            <CampoValor contexto={this}
+                                titulo={"Titulo"}
+                                valor={this.state.valor1}
+                                nome={"valor1"} 
+                                posicaoTitulo={PosicaoTituloCampoValor.esquerda}
+                            />
+
                             {this.state.valor1}
                         </Box>
                     </Col>
@@ -45,11 +55,16 @@ export class CampoValorPage extends React.Component<Props, State> {
                     <Col>
                         <Box titulo={"Dinheiro"}>
 
-                            <p>Uso padrão:</p>
+                            <p>Uso Dinheiro:</p>
                             <code>{"<CampoValor titulo={\"Titulo\"} valor={\"Valor\"} />"}</code>
-                            <CampoValor contexto={this} titulo={"Titulo"} valor={this.state.valor2} nome={"valor2"} tipo={"dinheiro"} posicaoTitulo={PosicaoTituloCampoValor.esquerda} />
-                            {/* <CampoTexto contexto={this} titulo={"Titulo"} valor={this.state.valor2} nome={"valor2"} posicaoTitulo={PosicaoTituloCampoTexto.esquerda} /> */}
-
+                            <CampoValor 
+                              contexto={this} 
+                              titulo={"Titulo"} 
+                              valor={this.state.valor2} 
+                              nome={"valor2"} 
+                              tipo={"dinheiro"} 
+                              posicaoTitulo={PosicaoTituloCampoValor.esquerda} 
+                            />
                             {this.state.valor2}
                         </Box>
                     </Col>
@@ -59,9 +74,16 @@ export class CampoValorPage extends React.Component<Props, State> {
                     <Col>
                         <Box titulo={"Percentual"}>
 
-                            <p>Uso Dinheiro:</p>
+                            <p>Uso Percentual:</p>
                             <code>{"<CampoValor titulo={\"Titulo\"} valor={\"Valor\"} />"}</code>
-                            <CampoValor contexto={this} titulo={"Titulo"} valor={this.state.valor1} nome={"valor1"} tipo={"percentual"} />
+                            <CampoValor 
+                               contexto={this} 
+                               titulo={"Titulo"} 
+                               valor={this.state.valor3} 
+                               nome={"valor3"} 
+                               tipo={"percentual"} 
+                            />
+                            {this.state.valor3}                        
                         </Box>
                     </Col>
                 </Row>
@@ -73,7 +95,14 @@ export class CampoValorPage extends React.Component<Props, State> {
 
                             <p>Uso Data:</p>
                             <code>{"<CampoValor titulo={\"Titulo\"} valor={\"Valor\"} />"}</code>
-                            <CampoValor contexto={this} titulo={"Titulo"} valor={this.state.valor1} nome={"valor1"} tipo={"data"} />
+                            <CampoValor 
+                               contexto={this} 
+                               titulo={"Titulo"} 
+                               valor={this.state.valor4} 
+                               nome={"valor4"} 
+                               tipo={"data"} 
+                            />
+                            {this.state.valor4}
                         </Box>
                     </Col>
                 </Row>
@@ -84,7 +113,14 @@ export class CampoValorPage extends React.Component<Props, State> {
 
                             <p>Uso Data:</p>
                             <code>{"<CampoValor titulo={\"Titulo\"} valor={\"Valor\"} />"}</code>
-                            <CampoValor contexto={this} titulo={"Titulo"} valor={this.state.valor1} nome={"valor1"} tipo={"mesano"} />
+                            <CampoValor 
+                               contexto={this} 
+                               titulo={"Titulo"} 
+                               valor={this.state.valor5} 
+                               nome={"valor5"} 
+                               tipo={"mesano"} 
+                            />
+                            {this.state.valor5}
                         </Box>
                     </Col>
                 </Row>
@@ -95,7 +131,14 @@ export class CampoValorPage extends React.Component<Props, State> {
 
                             <p>Uso Telefone:</p>
                             <code>{"<CampoValor titulo={\"Titulo\"} valor={\"Valor\"} />"}</code>
-                            <CampoValor contexto={this} titulo={"Titulo"} valor={this.state.valor1} nome={"valor1"} tipo={"telefone"} />
+                            <CampoValor 
+                              contexto={this} 
+                              titulo={"Titulo"} 
+                              valor={this.state.valor6} 
+                              nome={"valor6"} 
+                              tipo={"telefone"} 
+                            />
+                            {this.state.valor6}                            
                         </Box>
                     </Col>
                 </Row>

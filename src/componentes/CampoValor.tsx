@@ -103,7 +103,7 @@ export class CampoValor extends React.Component<Props> {
 
     mountCampo(valor: any) {
 
-        if (this.props.desabilitado){
+        if (this.props.desabilitado) {
             return (
                 <input type="text"
                     name={this.props.nome}
@@ -132,60 +132,100 @@ export class CampoValor extends React.Component<Props> {
             );
         }
 
-        else if (this.props.tipo === 'dinheiro' ) {
+        else if (this.props.tipo === 'dinheiro') {
             return (
-                <NumberFormat 
-                  thousandSeparator="."  
-                  decimalSeparator=","  
-                  decimalScale={2} prefix="R$" 
-                  fixedDecimalScale={true} 
-                  disabled={this.props.desabilitado} 
-                  onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}
-                  onBlur={this.props.onBlur}
+                <NumberFormat
+                    name={this.props.nome}
+                    id={this.props.nome}
+                    className={"form-control"}
+                    thousandSeparator="."
+                    decimalSeparator=","
+                    decimalScale={2} prefix="R$"
+                    fixedDecimalScale={true}
+                    disabled={this.props.desabilitado}
+                    value={valor}
+                    onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}
+                    onBlur={this.props.onBlur}
                 />
             );
         }
-        else if (this.props.tipo === 'percentual' ) {
+        else if (this.props.tipo === 'percentual') {
             return (
-                <NumberFormat decimalSeparator=","  decimalScale={2} prefix="%" fixedDecimalScale={true} disabled={this.props.desabilitado} onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}
+                <NumberFormat
+                    name={this.props.nome}
+                    id={this.props.nome}
+                    className={"form-control"}
+                    decimalSeparator=","
+                    decimalScale={2}
+                    prefix="%"
+                    fixedDecimalScale={true}
+                    disabled={this.props.desabilitado}
+                    value={valor}
+                    onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}
+                    onBlur={this.props.onBlur}
                 />
             );
         }
-        else if (this.props.tipo === 'data' ) {
+        else if (this.props.tipo === 'data') {
             return (
-                <NumberFormat format="##/##/####" mask="_" disabled={this.props.desabilitado} onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}              
+                <NumberFormat
+                    name={this.props.nome}
+                    id={this.props.nome}
+                    className={"form-control"}
+                    format="##/##/####"
+                    mask="_"
+                    disabled={this.props.desabilitado}
+                    value={valor}
+                    onBlur={this.props.onBlur}
+                    onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}
                 />
             );
         }
-        else if (this.props.tipo === 'mesano' ) {
+        else if (this.props.tipo === 'mesano') {
             return (
-                <NumberFormat format="##/####" mask="_" disabled={this.props.desabilitado} onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}
+                <NumberFormat
+                    name={this.props.nome}
+                    id={this.props.nome}
+                    className={"form-control"} 
+                    format="##/####" 
+                    mask="_" 
+                    disabled={this.props.desabilitado} 
+                    onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}
+                    value={valor}
+                    onBlur={this.props.onBlur}
                 />
             );
         }
-        else if (this.props.tipo === 'telefone' ) {
+        else if (this.props.tipo === 'telefone') {
             return (
-                <NumberFormat format="(###) #####-####" mask="_" disabled={this.props.desabilitado} onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}/>
+                <NumberFormat
+                    name={this.props.nome}
+                    id={this.props.nome}
+                    className={"form-control"} 
+                    format="(###) #####-####" 
+                    mask="_" 
+                    disabled={this.props.desabilitado} 
+                    onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)} 
+                    value={valor}
+                    onBlur={this.props.onBlur}
+                />
             );
         }
         else {
             return (
-                <NumberFormat 
-                  thousandSeparator="."  
-                  decimalSeparator=","  
-                  decimalScale={2} prefix="R$" 
-                  fixedDecimalScale={true} 
-                  disabled={this.props.desabilitado} 
-                  onValueChange={(this.props.contexto, this.props.parent)}
-                  onBlur={this.props.onBlur}
+                <NumberFormat
+                    name={this.props.nome}
+                    id={this.props.nome}
+                    className={"form-control"}
+                    thousandSeparator="."
+                    decimalSeparator=","
+                    decimalScale={2} prefix="R$"
+                    fixedDecimalScale={true}
+                    disabled={this.props.desabilitado}
+                    value={valor}
+                    onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}
+                    onBlur={this.props.onBlur}
                 />
-
-                // <NumberFormat thousandSeparator={true} prefix={'$'} onValueChange={(values) => {
-                //     const {formattedValue} = values;
-                //     // formattedValue = $2,223
-                //     // value ie, 2223
-                //     this.setState({formattedValue})
-                //   }}/>
             );
         }
     }
@@ -225,7 +265,7 @@ export class CampoValor extends React.Component<Props> {
     }
 
     render() {
-        
+
         return (
             <Row formGroup>
                 {this.renderLabel()}
