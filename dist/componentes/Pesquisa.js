@@ -53,15 +53,48 @@ var Pesquisa = /** @class */ (function (_super) {
     function Pesquisa() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.form = React.createRef();
+        _this.alerta = React.createRef();
         _this.pesquisar = function () { return __awaiter(_this, void 0, void 0, function () {
+            var result, erro_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.form.current.validar()];
+                    case 0:
+                        _a.trys.push([0, 6, , 8]);
+                        return [4 /*yield*/, this.form.current.validar()];
                     case 1:
                         _a.sent();
-                        if (this.form.current.valido)
-                            this.props.onPesquisar(0);
-                        return [2 /*return*/];
+                        if (!this.form.current.isValido()) return [3 /*break*/, 5];
+                        if (!this.props.service) return [3 /*break*/, 3];
+                        return [4 /*yield*/, this.props.service["Pesquisar"](this.props.dados)];
+                    case 2:
+                        result = _a.sent();
+                        this.props.contexto.setState({
+                            resultadoPesquisa: result,
+                            pesquisado: true
+                        });
+                        return [3 /*break*/, 5];
+                    case 3: return [4 /*yield*/, this.props.onPesquisar()];
+                    case 4:
+                        _a.sent();
+                        _a.label = 5;
+                    case 5: return [3 /*break*/, 8];
+                    case 6:
+                        erro_1 = _a.sent();
+                        if (erro_1.response) {
+                            this.alerta.current.adicionarErro(erro_1.response.data);
+                            this.form.current.setState({ valido: false });
+                        }
+                        else {
+                            this.alerta.current.adicionarErro(erro_1);
+                            this.form.current.setState({ valido: false });
+                        }
+                        return [4 /*yield*/, this.props.contexto.setState({
+                                resultadoPesquisa: []
+                            })];
+                    case 7:
+                        _a.sent();
+                        return [3 /*break*/, 8];
+                    case 8: return [2 /*return*/];
                 }
             });
         }); };
@@ -71,7 +104,7 @@ var Pesquisa = /** @class */ (function (_super) {
         return (React.createElement(Box, { titulo: "Pesquisa" },
             React.createElement(Form, { ref: this.form },
                 this.props.children,
-                React.createElement(Alerta, { tipo: TipoAlerta.danger, padraoFormulario: true }),
+                React.createElement(Alerta, { ref: this.alerta, tipo: TipoAlerta.danger, padraoFormulario: true }),
                 React.createElement(Botao, { titulo: "Pesquisar", onClick: this.pesquisar }))));
     };
     return Pesquisa;

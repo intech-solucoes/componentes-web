@@ -15,11 +15,13 @@ interface State {
 export class Form extends React.Component<Props, State> {
 
     erros: Array<string> = [];
-    valido: boolean = true;
+    //valido: boolean = true;
 
     state = {
         valido: true
     }
+
+    isValido = () => this.state.valido;
     
     filtroCampos(campo: any): boolean {
         return (campo.type === CampoTexto || campo.type === Combo);
@@ -53,13 +55,13 @@ export class Form extends React.Component<Props, State> {
     }
 
     validar = async () => {
-        this.valido = true;
+        //this.valido = true;
         this.erros = [];
 
         if(this.props.children.length > 0)
             this.validarRecursivo(this.props.children);
 
-        this.valido = this.erros.length === 0;
+        //this.valido = this.erros.length === 0;
         await this.setState({
             valido: this.erros.length === 0
         });

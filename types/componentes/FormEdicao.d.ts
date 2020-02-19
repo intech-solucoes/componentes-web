@@ -7,6 +7,7 @@ export declare enum ModoFormEdicao {
 interface Props {
     item: any;
     onSalvar: Function;
+    onCancelar: Function;
     modo: ModoFormEdicao;
 }
 interface State {
@@ -18,6 +19,7 @@ export declare class FormEdicao extends React.Component<Props, State> {
     };
     state: State;
     onSalvar: () => Promise<void>;
+    onCancelar: () => Promise<void>;
     render(): JSX.Element;
 }
 export {};

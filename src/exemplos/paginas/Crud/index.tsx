@@ -1,7 +1,6 @@
 import React from "react";
 import MasterPage from "../../MasterPage";
-import { Alerta, TipoAlerta, Row, Col, Box, Form, CampoTexto, Botao, Combo, Pesquisa, Tabela, ColunaTabela, FormEdicao, ModoFormEdicao } from "../../..";
-import { timingSafeEqual } from "crypto";
+import { CampoTexto, Pesquisa, Tabela, ColunaTabela, FormEdicao, ModoFormEdicao } from "../../..";
 
 interface Props {
 
@@ -57,7 +56,7 @@ export class CrudPage extends React.Component<Props, State> {
 
     }
 
-    editar = async(usuario: UsuarioEntidade) => {
+    editar = async() => {
         this.setState({
             modoForm: ModoFormEdicao.Edicao
         });
