@@ -20,6 +20,7 @@ interface Props {
     tamanhoLabel?: string;
     tamanhoCampo?: string;
     textoVazio?: string;
+    parent?: any;
 
     grupo?: boolean;
     iconeBotao?: string;
@@ -41,13 +42,22 @@ export class Combo extends Component<Props> {
         labelOculta: false
     }
 
-    async componentDidMount() {
+    componentDidMount = async () => {
         var nome = this.props.nome;
 
         // Atualiza o state do combo para o valor padrão selecionado via props.
-        await this.props.contexto.setState({
-            [nome]: this.props.padrao
-        });
+        if (this.props.parent) {
+            var parentObj = this.props.contexto.state[this.props.parent];
+            parentObj[nome] = this.props.padrao;
+
+            this.props.contexto.setState({
+                [this.props.parent]: parentObj
+            });
+        } else {
+            await this.props.contexto.setState({
+                [nome]: this.props.padrao
+            });
+        }
     }
 
     validar = () => {
@@ -65,7 +75,7 @@ export class Combo extends Component<Props> {
     onChange = async (e: Event) => {
         var target = e.target;
 
-        await handleFieldChange(this.props.contexto, e);
+        await handleFieldChange(this.props.contexto, e, this.props.parent);
 
         if (this.props.onChange) {
             await this.props.onChange(target);

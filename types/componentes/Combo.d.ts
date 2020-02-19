@@ -14,6 +14,7 @@ interface Props {
     tamanhoLabel?: string;
     tamanhoCampo?: string;
     textoVazio?: string;
+    parent?: any;
     grupo?: boolean;
     iconeBotao?: string;
     iconeBotaoDireita?: boolean;
@@ -30,7 +31,7 @@ export declare class Combo extends Component<Props> {
         opcoes: any[];
         labelOculta: boolean;
     };
-    componentDidMount(): Promise<void>;
+    componentDidMount: () => Promise<void>;
     validar: () => void;
     onChange: (e: Event) => Promise<void>;
     renderBotaoGrupo(): JSX.Element;
