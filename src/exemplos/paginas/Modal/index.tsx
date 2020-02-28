@@ -81,6 +81,7 @@ export class ModalPage extends React.Component<Props, State> {
                             <code>{"const body = document.querySelector(\"body\"); if(this.state.modalStatus){ body.classList.add('modal-open'); } else{ body.classList.remove('modal-open'); }"}</code>
                             <Modal
                                 onClose={this.toggleModal_1}
+                                onConfirm={this.toggleModal_1}
                                 visivel={this.state.modalStatus_1}
                                 titulo={"some modal"}
                             >
@@ -104,6 +105,7 @@ export class ModalPage extends React.Component<Props, State> {
                             
                             <Modal
                                 onClose={this.toggleModal_2}
+                                onConfirm={this.toggleModal_2}
                                 visivel={this.state.modalStatus_2}
                                 titulo={"Título muito criativo!"}
                             >
@@ -127,6 +129,7 @@ export class ModalPage extends React.Component<Props, State> {
                             
                             <Modal
                                 onClose={this.toggleModal_3}
+                                onConfirm={this.toggleModal_3}
                                 visivel={this.state.modalStatus_3}
                                 titulo={"Título muito criativo!"}
                                 tituloBotaoFechar={"Salvar"}
