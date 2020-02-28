@@ -131,24 +131,6 @@ export class CampoValor extends React.Component<Props> {
                 />
             );
         }
-
-        else if (this.props.tipo === 'dinheiro') {
-            return (
-                <NumberFormat
-                    name={this.props.nome}
-                    id={this.props.nome}
-                    className={"form-control"}
-                    thousandSeparator="."
-                    decimalSeparator=","
-                    decimalScale={2} prefix="R$"
-                    fixedDecimalScale={true}
-                    disabled={this.props.desabilitado}
-                    value={valor}
-                    onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}
-                    onBlur={this.props.onBlur}
-                />
-            );
-        }
         else if (this.props.tipo === 'percentual') {
             return (
                 <NumberFormat
@@ -186,10 +168,10 @@ export class CampoValor extends React.Component<Props> {
                 <NumberFormat
                     name={this.props.nome}
                     id={this.props.nome}
-                    className={"form-control"} 
-                    format="##/####" 
-                    mask="_" 
-                    disabled={this.props.desabilitado} 
+                    className={"form-control"}
+                    format="##/####"
+                    mask="_"
+                    disabled={this.props.desabilitado}
                     onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}
                     value={valor}
                     onBlur={this.props.onBlur}
@@ -201,12 +183,31 @@ export class CampoValor extends React.Component<Props> {
                 <NumberFormat
                     name={this.props.nome}
                     id={this.props.nome}
-                    className={"form-control"} 
-                    format="(###) #####-####" 
-                    mask="_" 
-                    disabled={this.props.desabilitado} 
-                    onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)} 
+                    className={"form-control"}
+                    format="(###) #####-####"
+                    mask="_"
+                    disabled={this.props.desabilitado}
+                    onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}
                     value={valor}
+                    onBlur={this.props.onBlur}
+                />
+            );
+        }
+        else if (this.props.tipo === 'dinheiro') {
+            return (
+                <NumberFormat
+                    name={this.props.nome}
+                    id={this.props.nome}
+                    className={"form-control"}
+                    thousandSeparator={true}
+                    //decimalSeparator=","
+                    decimalScale={2}
+                    allowedDecimalSeparators={[","]}
+                    //prefix="R$"
+                    fixedDecimalScale={true}
+                    disabled={this.props.desabilitado}
+                    value={valor}
+                    onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}
                     onBlur={this.props.onBlur}
                 />
             );
@@ -217,9 +218,11 @@ export class CampoValor extends React.Component<Props> {
                     name={this.props.nome}
                     id={this.props.nome}
                     className={"form-control"}
-                    thousandSeparator="."
-                    decimalSeparator=","
-                    decimalScale={2} prefix="R$"
+                    thousandSeparator={true}
+                    //decimalSeparator=","
+                    decimalScale={2}
+                    allowedDecimalSeparators={[","]}
+                    //prefix="R$"
                     fixedDecimalScale={true}
                     disabled={this.props.desabilitado}
                     value={valor}
