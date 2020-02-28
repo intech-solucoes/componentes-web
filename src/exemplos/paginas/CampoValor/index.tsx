@@ -18,12 +18,12 @@ interface State {
 export class CampoValorPage extends React.Component<Props, State> {
 
     state: State = {
-        valor1: 0,
-        valor2: 0,
-        valor3: 0,
-        valor4: 0,
-        valor5: 0,
-        valor6: 0,        
+        valor1: 6500.89,
+        valor2: 65000.89,
+        valor3: 100.00,
+        valor4: 28022020,
+        valor5: 282020,
+        valor6: 61981045713,        
     }
 
     testeOnchange(valor: number) {
