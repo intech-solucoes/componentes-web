@@ -50,7 +50,7 @@ export class CampoEstatico extends React.Component<Props> {
                valor = '0,00';
 
             if (typeof (valor) === "string")
-                return `R$ ${Number.parseFloat(valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                return `R$ ${parseFloat(valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
             else
                 return `R$ ${valor.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
         }
@@ -59,7 +59,7 @@ export class CampoEstatico extends React.Component<Props> {
                valor = '0,00';
 
             if (typeof (valor) === "string")
-                return `% ${Number.parseFloat(valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                return `% ${parseFloat(valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
             else
                 return `% ${valor.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
         }
