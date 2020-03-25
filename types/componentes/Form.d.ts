@@ -7,10 +7,10 @@ interface State {
 }
 export declare class Form extends React.Component<Props, State> {
     erros: Array<string>;
-    valido: boolean;
     state: {
         valido: boolean;
     };
+    isValido: () => boolean;
     filtroCampos(campo: any): boolean;
     validarRecursivo: (children: any) => void;
     validar: () => Promise<void>;

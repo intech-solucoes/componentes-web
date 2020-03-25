@@ -12,6 +12,7 @@ export enum ModoFormEdicao {
 interface Props {
     item: any;
     onSalvar: Function;
+    onCancelar: Function;
     modo: ModoFormEdicao;
 }
 
@@ -30,7 +31,11 @@ export class FormEdicao extends React.Component<Props, State> {
     }
 
     onSalvar = async() => {
+        await this.props.onSalvar();
+    }
 
+    onCancelar = async() => {
+        await this.props.onCancelar();
     }
 
     render() {
@@ -42,8 +47,8 @@ export class FormEdicao extends React.Component<Props, State> {
                         this.props.children
                     }
 
-                    <Botao titulo={"Salvar"} onClick={() => {  }} className={"mr-2"} />
-                    <Botao titulo={"Cancelar"} onClick={() => {  }}/>
+                    <Botao titulo={"Salvar"} onClick={this.onSalvar} className={"mr-2"} />
+                    <Botao titulo={"Cancelar"} onClick={this.onCancelar}/>
                     
                 </Box>
             );

@@ -10,6 +10,7 @@ interface Props {
     nomeUsuario: string;
     history?: History;
     match?: any;
+    onLogout?: Function;
 }
 interface State {
     menuAberto: boolean;

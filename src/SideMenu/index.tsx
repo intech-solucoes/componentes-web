@@ -20,6 +20,7 @@ interface Props {
 
     history?: History;
     match?: any;
+    onLogout?: Function;
 }
 
 interface State {
@@ -35,32 +36,36 @@ export class SideMenuPage extends React.Component<Props, State> {
     }
 
     logout = () => {
-        const tokens = {
-            "user": this.props.appName ? `@${this.props.appName}:token` : "token",
-            "admin": this.props.appName ? `@${this.props.appName}:token-admin` : "token-admin"
-        };
-       
-        localStorage.removeItem(tokens.user);
-        localStorage.removeItem(tokens.admin);
-        this.props.history.push("login");
+        if (this.props.onLogout) {
+            this.props.onLogout();
+        } else {
+            const tokens = {
+                "user": this.props.appName ? `@${this.props.appName}:token` : "token",
+                "admin": this.props.appName ? `@${this.props.appName}:token-admin` : "token-admin"
+            };
+
+            localStorage.removeItem(tokens.user);
+            localStorage.removeItem(tokens.admin);
+            this.props.history.push("login");
+        }
     }
 
     render() {
         const classesNavbar = classNames([
             "navbar-default",
-            {"nav-open": this.state.menuAberto}
+            { "nav-open": this.state.menuAberto }
         ]);
 
         const classesMenuButton = classNames([
             "btn",
             "btn-primary",
             "btn-menu-close",
-            {"nav-open": this.state.menuAberto}
+            { "nav-open": this.state.menuAberto }
         ]);
 
         const classesPageWrapper = classNames([
             "page-wrapper",
-            {"nav-open": this.state.menuAberto }
+            { "nav-open": this.state.menuAberto }
         ]);
 
         const Title = () => {
@@ -125,8 +130,8 @@ export class SideMenuPage extends React.Component<Props, State> {
                         <Col>
                             <Title />
                         </Col>
-                        
-                        <Col tamanho={"4"} className={"col-lg-4 col-6 text-right user-icon"}>
+
+                        <Col tamanho={"6"} className={"text-right user-icon"}>
                             <Row>
                                 <Col className={"nome-usuario"}>
                                     {this.props.nomeUsuario}
@@ -148,8 +153,8 @@ export class SideMenuPage extends React.Component<Props, State> {
 
                     <div className="wrapper-content">
                         {!this.state.loading && this.props.children}
-                        
-                        {this.state.loading && 
+
+                        {this.state.loading &&
                             <div className="loader">
                                 <img src="./imagens/loading.gif" alt="loading" />
                             </div>

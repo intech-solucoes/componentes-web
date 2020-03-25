@@ -63,7 +63,22 @@ var FormEdicao = /** @class */ (function (_super) {
         };
         _this.onSalvar = function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.props.onSalvar()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        }); };
+        _this.onCancelar = function () { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.props.onCancelar()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         }); };
         return _this;
@@ -73,8 +88,8 @@ var FormEdicao = /** @class */ (function (_super) {
             return (React.createElement(Box, { titulo: this.props.modo === ModoFormEdicao.Inclusao ? "Inclusão" : "Edição" },
                 this.state.item &&
                     this.props.children,
-                React.createElement(Botao, { titulo: "Salvar", onClick: function () { }, className: "mr-2" }),
-                React.createElement(Botao, { titulo: "Cancelar", onClick: function () { } })));
+                React.createElement(Botao, { titulo: "Salvar", onClick: this.onSalvar, className: "mr-2" }),
+                React.createElement(Botao, { titulo: "Cancelar", onClick: this.onCancelar })));
         }
         else {
             return null;

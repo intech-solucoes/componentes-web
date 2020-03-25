@@ -26,13 +26,18 @@ var SideMenuPage = /** @class */ (function (_super) {
             loading: false
         };
         _this.logout = function () {
-            var tokens = {
-                "user": _this.props.appName ? "@" + _this.props.appName + ":token" : "token",
-                "admin": _this.props.appName ? "@" + _this.props.appName + ":token-admin" : "token-admin"
-            };
-            localStorage.removeItem(tokens.user);
-            localStorage.removeItem(tokens.admin);
-            _this.props.history.push("login");
+            if (_this.props.onLogout) {
+                _this.props.onLogout();
+            }
+            else {
+                var tokens = {
+                    "user": _this.props.appName ? "@" + _this.props.appName + ":token" : "token",
+                    "admin": _this.props.appName ? "@" + _this.props.appName + ":token-admin" : "token-admin"
+                };
+                localStorage.removeItem(tokens.user);
+                localStorage.removeItem(tokens.admin);
+                _this.props.history.push("login");
+            }
         };
         return _this;
     }
@@ -90,7 +95,7 @@ var SideMenuPage = /** @class */ (function (_super) {
                             React.createElement("i", { className: "fa fa-bars" }))),
                     React.createElement(Col, null,
                         React.createElement(Title, null)),
-                    React.createElement(Col, { tamanho: "4", className: "col-lg-4 col-6 text-right user-icon" },
+                    React.createElement(Col, { tamanho: "6", className: "text-right user-icon" },
                         React.createElement(Row, null,
                             React.createElement(Col, { className: "nome-usuario" },
                                 this.props.nomeUsuario,

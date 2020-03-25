@@ -56,6 +56,29 @@ var Combo = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.erros = [];
         _this.possuiErros = false;
+        _this.componentDidMount = function () { return __awaiter(_this, void 0, void 0, function () {
+            var _a, _b, nome, parentObj;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        nome = this.props.nome;
+                        if (!this.props.parent) return [3 /*break*/, 1];
+                        parentObj = this.props.contexto.state[this.props.parent];
+                        parentObj[nome] = this.props.padrao;
+                        this.props.contexto.setState((_a = {},
+                            _a[this.props.parent] = parentObj,
+                            _a));
+                        return [3 /*break*/, 3];
+                    case 1: return [4 /*yield*/, this.props.contexto.setState((_b = {},
+                            _b[nome] = this.props.padrao,
+                            _b))];
+                    case 2:
+                        _c.sent();
+                        _c.label = 3;
+                    case 3: return [2 /*return*/];
+                }
+            });
+        }); };
         _this.validar = function () {
             _this.possuiErros = false;
             _this.erros = [];
@@ -71,7 +94,7 @@ var Combo = /** @class */ (function (_super) {
                 switch (_a.label) {
                     case 0:
                         target = e.target;
-                        return [4 /*yield*/, handleFieldChange(this.props.contexto, e)];
+                        return [4 /*yield*/, handleFieldChange(this.props.contexto, e, this.props.parent)];
                     case 1:
                         _a.sent();
                         if (!this.props.onChange) return [3 /*break*/, 3];
@@ -85,25 +108,6 @@ var Combo = /** @class */ (function (_super) {
         }); };
         return _this;
     }
-    Combo.prototype.componentDidMount = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a, nome;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        nome = this.props.nome;
-                        // Atualiza o state do combo para o valor padrão selecionado via props.
-                        return [4 /*yield*/, this.props.contexto.setState((_a = {},
-                                _a[nome] = this.props.padrao,
-                                _a))];
-                    case 1:
-                        // Atualiza o state do combo para o valor padrão selecionado via props.
-                        _b.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
     Combo.prototype.renderBotaoGrupo = function () {
         if (this.props.grupo) {
             return (React.createElement("div", { className: "input-group-append" },

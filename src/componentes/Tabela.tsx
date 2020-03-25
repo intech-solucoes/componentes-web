@@ -40,7 +40,7 @@ export class Tabela extends React.Component<Props, State> {
     renderHeader = (): Array<any> => {
         var headers = new Array<any>();
         var children = React.Children.toArray(this.props.children);
-        
+
         children.forEach((coluna: any, index: number) => {
             var header = <th key={index}>{coluna.props.titulo}</th>;
             headers.push(header);
@@ -54,7 +54,7 @@ export class Tabela extends React.Component<Props, State> {
         var children = React.Children.toArray(this.props.children);
 
         children.forEach((coluna: any, index: number) => {
-            var row = 
+            var row =
                 <td key={index} className={"align-middle"}>
                     {`${coluna.props.prefixo}${item[coluna.props.propriedadeValor]}${coluna.props.sufixo}`}
                 </td>;
@@ -65,10 +65,10 @@ export class Tabela extends React.Component<Props, State> {
     }
 
     render() {
-        if(this.props.dados.length > 0) {
+        if (this.props.dados.length > 0) {
             return (
                 <Box titulo={this.props.titulo}>
-                    
+
                     <div className={"table-responsive"}>
                         <table className={"table table-sm table-striped table-bordered table-hover"}>
                             <thead>
@@ -87,17 +87,22 @@ export class Tabela extends React.Component<Props, State> {
                                             {(this.props.edicaoHabilitada || this.props.exclusaoHabilitada) &&
                                                 <td className={"align-middle text-center"}>
                                                     {this.props.edicaoHabilitada &&
-                                                        <Botao icone={"fa-pencil-alt"} 
-                                                               tamanho={TamanhoBotao.pequeno} 
-                                                               style={{ marginRight: this.props.exclusaoHabilitada ? 5 : 0 }}
-                                                               onClick={() => this.props.onSelecionar(item)} />
+                                                        <Botao icone={"fa-pencil-alt"}
+                                                            tamanho={TamanhoBotao.pequeno}
+                                                            style={{ marginRight: this.props.exclusaoHabilitada ? 5 : 0 }}
+                                                            onClick={() => this.props.onSelecionar(item)}
+                                                        />
                                                     }
                                                     {this.props.exclusaoHabilitada &&
-                                                        <Botao icone={"fa-trash"} tipo={TipoBotao.danger} tamanho={TamanhoBotao.pequeno} onClick={() => this.props.onExcluir(item)} />
+                                                        <Botao icone={"fa-trash"}
+                                                            tipo={TipoBotao.danger}
+                                                            tamanho={TamanhoBotao.pequeno}
+                                                            onClick={() => this.props.onExcluir(item)}
+                                                        />
                                                     }
                                                 </td>
                                             }
-                                            
+
                                             {this.renderRow(item)}
                                         </tr>
                                     )
@@ -120,7 +125,7 @@ export class Tabela extends React.Component<Props, State> {
                             </div>
                         }
                     </div>
-                    
+
                 </Box>
             );
         } else {

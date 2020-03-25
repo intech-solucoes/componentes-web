@@ -54,10 +54,11 @@ var Form = /** @class */ (function (_super) {
     function Form() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.erros = [];
-        _this.valido = true;
+        //valido: boolean = true;
         _this.state = {
             valido: true
         };
+        _this.isValido = function () { return _this.state.valido; };
         _this.validarRecursivo = function (children) {
             if (children.forEach) {
                 children.forEach(function (campo) {
@@ -88,15 +89,16 @@ var Form = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.valido = true;
+                        //this.valido = true;
                         this.erros = [];
                         if (this.props.children.length > 0)
                             this.validarRecursivo(this.props.children);
-                        this.valido = this.erros.length === 0;
+                        //this.valido = this.erros.length === 0;
                         return [4 /*yield*/, this.setState({
                                 valido: this.erros.length === 0
                             })];
                     case 1:
+                        //this.valido = this.erros.length === 0;
                         _a.sent();
                         return [2 /*return*/];
                 }
