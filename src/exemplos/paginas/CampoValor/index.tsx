@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import MasterPage from "../../MasterPage";
 import { Row, Col, Box, CampoValor } from "../../../";
 import { PosicaoTituloCampoValor } from "../../../componentes/CampoValor";
@@ -11,7 +11,14 @@ interface State {
     valor3: number;
     valor4: number;
     valor5: number;
-    valor6: number;    
+    valor6: number;
+    separadorDecimal: string;
+    separadorMilhar: string;
+    prefixo: string;
+
+    valorFormatado: number;
+
+    valorString: string;
 
 }
 
@@ -23,16 +30,110 @@ export class CampoValorPage extends React.Component<Props, State> {
         valor3: 100.00,
         valor4: 28022020,
         valor5: 282020,
-        valor6: 61981045713,        
+        valor6: 61981045713,
+
+        valorFormatado: 0,
+
+        separadorDecimal: ',',
+        separadorMilhar: '.',
+        prefixo: '',
+
+        valorString: '',
     }
 
-    testeOnchange(valor: number) {
-        alert('Teste Onchance botao: ' + valor)
+    mascaraValor= (e: FormEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        var nome = ((e.target) as any).name;
+        var valorMask = ((e.target) as any).value;
+
+        var valorNovo = this.aplicarMascara(valorMask);
+
+        if (valorNovo === '') {
+            return;
+         }
+    
+        // console.log(valorMask);
+        // console.log(valorNovo);
+        
+        this.setState({
+            //valor1: parseFloat(valorNovo.replace(/\D/g, '')),
+            valor1: parseInt(valorNovo.replace(/\D/g, ''), 10),
+            valorString: valorNovo
+        }); 
+        
     }
+
+
+    aplicarMascara(valorConverter: string): string {
+        let valorNum = parseInt(valorConverter.replace(/\D/g, ''), 10);
+        let valorMask = '';
+        let valor: string;
+        
+        if (isNaN(valorNum)) {
+            return '';
+        }
+
+        valor = valorNum.toString();
+
+        switch (valor.length) {
+            case 1:
+                valorMask = '0' + this.state.separadorDecimal + '0' + valor;
+                break;
+            case 2:
+                valorMask = '0' + this.state.separadorDecimal + valor;
+                break;
+            case 3:
+                valorMask = valor.substr(0, 1) + this.state.separadorDecimal + valor.substr(1, 2);
+                break;
+            default:
+                break;
+        }
+
+        if (valorMask === '') {
+            let sepMilhar = 0;
+            for (let i = (valor.length - 3); i >= 0; i--) {
+                if (sepMilhar === 3) {
+                    valorMask = this.state.separadorMilhar + valorMask;
+                    sepMilhar = 0;
+                }
+                valorMask = valor.charAt(i) + valorMask;
+                sepMilhar++;
+            }
+            valorMask = valorMask + this.state.separadorDecimal +
+                valor.substr(valor.length - 2, 2);
+        }
+
+        if (this.state.prefixo !== '') {
+            valorMask = this.state.prefixo + ' ' + valorMask;
+        }
+        return valorMask;
+    }
+
 
     render() {
         return (
             <MasterPage {...this.props}>
+
+                <Row>
+                    <Col>
+                        <Box titulo={"Padrão"}>
+
+                            <p>Meu Teste:</p>
+                            <code>{"<CampoValor titulo={\"Titulo\"} valor={\"Valor\"} />"}</code>
+                            <input
+                                type="Text"
+                                // value={this.state.valor1}
+                                onChange={this.mascaraValor}
+                            />
+
+                            <br></br>
+                            {this.state.valor1}
+                            <br></br>
+                            {this.state.valorString}
+                        </Box>
+                    </Col>
+                </Row>
+
                 <Row>
                     <Col>
                         <Box titulo={"Padrão"}>
@@ -42,7 +143,7 @@ export class CampoValorPage extends React.Component<Props, State> {
                             <CampoValor contexto={this}
                                 titulo={"Titulo"}
                                 valor={this.state.valor1}
-                                nome={"valor1"} 
+                                nome={"valor1"}
                                 posicaoTitulo={PosicaoTituloCampoValor.esquerda}
                             />
 
@@ -57,13 +158,13 @@ export class CampoValorPage extends React.Component<Props, State> {
 
                             <p>Uso Dinheiro:</p>
                             <code>{"<CampoValor titulo={\"Titulo\"} valor={\"Valor\"} />"}</code>
-                            <CampoValor 
-                              contexto={this} 
-                              titulo={"Titulo"} 
-                              valor={this.state.valor2} 
-                              nome={"valor2"} 
-                              tipo={"dinheiro"} 
-                              posicaoTitulo={PosicaoTituloCampoValor.esquerda} 
+                            <CampoValor
+                                contexto={this}
+                                titulo={"Titulo"}
+                                valor={this.state.valor2}
+                                nome={"valor2"}
+                                tipo={"dinheiro"}
+                                posicaoTitulo={PosicaoTituloCampoValor.esquerda}
                             />
                             {this.state.valor2}
                         </Box>
@@ -76,14 +177,14 @@ export class CampoValorPage extends React.Component<Props, State> {
 
                             <p>Uso Percentual:</p>
                             <code>{"<CampoValor titulo={\"Titulo\"} valor={\"Valor\"} />"}</code>
-                            <CampoValor 
-                               contexto={this} 
-                               titulo={"Titulo"} 
-                               valor={this.state.valor3} 
-                               nome={"valor3"} 
-                               tipo={"percentual"} 
+                            <CampoValor
+                                contexto={this}
+                                titulo={"Titulo"}
+                                valor={this.state.valor3}
+                                nome={"valor3"}
+                                tipo={"percentual"}
                             />
-                            {this.state.valor3}                        
+                            {this.state.valor3}
                         </Box>
                     </Col>
                 </Row>
@@ -95,12 +196,12 @@ export class CampoValorPage extends React.Component<Props, State> {
 
                             <p>Uso Data:</p>
                             <code>{"<CampoValor titulo={\"Titulo\"} valor={\"Valor\"} />"}</code>
-                            <CampoValor 
-                               contexto={this} 
-                               titulo={"Titulo"} 
-                               valor={this.state.valor4} 
-                               nome={"valor4"} 
-                               tipo={"data"} 
+                            <CampoValor
+                                contexto={this}
+                                titulo={"Titulo"}
+                                valor={this.state.valor4}
+                                nome={"valor4"}
+                                tipo={"data"}
                             />
                             {this.state.valor4}
                         </Box>
@@ -113,12 +214,12 @@ export class CampoValorPage extends React.Component<Props, State> {
 
                             <p>Uso Data:</p>
                             <code>{"<CampoValor titulo={\"Titulo\"} valor={\"Valor\"} />"}</code>
-                            <CampoValor 
-                               contexto={this} 
-                               titulo={"Titulo"} 
-                               valor={this.state.valor5} 
-                               nome={"valor5"} 
-                               tipo={"mesano"} 
+                            <CampoValor
+                                contexto={this}
+                                titulo={"Titulo"}
+                                valor={this.state.valor5}
+                                nome={"valor5"}
+                                tipo={"mesano"}
                             />
                             {this.state.valor5}
                         </Box>
@@ -131,14 +232,14 @@ export class CampoValorPage extends React.Component<Props, State> {
 
                             <p>Uso Telefone:</p>
                             <code>{"<CampoValor titulo={\"Titulo\"} valor={\"Valor\"} />"}</code>
-                            <CampoValor 
-                              contexto={this} 
-                              titulo={"Titulo"} 
-                              valor={this.state.valor6} 
-                              nome={"valor6"} 
-                              tipo={"telefone"} 
+                            <CampoValor
+                                contexto={this}
+                                titulo={"Titulo"}
+                                valor={this.state.valor6}
+                                nome={"valor6"}
+                                tipo={"telefone"}
                             />
-                            {this.state.valor6}                            
+                            {this.state.valor6}
                         </Box>
                     </Col>
                 </Row>
