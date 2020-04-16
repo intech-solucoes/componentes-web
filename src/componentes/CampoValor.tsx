@@ -139,7 +139,7 @@ export class CampoValor extends React.Component<Props> {
                     className={"form-control"}
                     decimalSeparator=","
                     decimalScale={2}
-                    prefix="%"
+                   // prefix="%"
                     fixedDecimalScale={true}
                     disabled={this.props.desabilitado}
                     value={valor}

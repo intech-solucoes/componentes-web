@@ -70,7 +70,9 @@ var CampoValor = /** @class */ (function (_super) {
             return (React.createElement("textarea", { name: this.props.nome, id: this.props.nome, className: "form-control", rows: this.props.rows, placeholder: this.props.placeholder, value: valor, maxLength: this.props.max, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); }, onBlur: this.props.onBlur }));
         }
         else if (this.props.tipo === 'percentual') {
-            return (React.createElement(NumberFormat, { name: this.props.nome, id: this.props.nome, className: "form-control", decimalSeparator: ",", decimalScale: 2, prefix: "%", fixedDecimalScale: true, disabled: this.props.desabilitado, value: valor, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); }, onBlur: this.props.onBlur }));
+            return (React.createElement(NumberFormat, { name: this.props.nome, id: this.props.nome, className: "form-control", decimalSeparator: ",", decimalScale: 2, 
+                // prefix="%"
+                fixedDecimalScale: true, disabled: this.props.desabilitado, value: valor, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); }, onBlur: this.props.onBlur }));
         }
         else if (this.props.tipo === 'data') {
             return (React.createElement(NumberFormat, { name: this.props.nome, id: this.props.nome, className: "form-control", format: "##/##/####", mask: "_", disabled: this.props.desabilitado, value: valor, onBlur: this.props.onBlur, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); } }));
