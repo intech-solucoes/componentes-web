@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import styled from 'styled-components';
 
-import { handleFieldChange } from "@intechprev/react-lib";
+//import { handleFieldChange } from "@intechprev/react-lib";
 
 interface Props {
     contexto: any;
@@ -67,15 +67,15 @@ export class ISlider extends Component<Props> {
   
     handleOnChange = (e) => this.setState({ value: e.target.value })    
 
-    onChange = async (e: Event) => {
-       // var target = e.target;
+    // onChange = async (e: Event) => {
+    //    var target = e.target;
 
-        await handleFieldChange(this.props.contexto, e, this.props.parent);
+    //     await handleFieldChange(this.props.contexto, e, this.props.parent);
 
-        // if (this.props.onChange) {
-        //     await this.props.onChange(target);
-        // }
-    }
+    //     if (this.props.onChange) {
+    //         await this.props.onChange(target);
+    //     }
+    // }
 
 
     render() {
@@ -88,12 +88,12 @@ export class ISlider extends Component<Props> {
              min={this.props.valMin} 
              max={this.props.valMax} 
              step={this.props.step}
-             value={this.props.valor} 
-             //value={this.state.value} 
+             //value={this.props.valor} 
+             value={this.state.value} 
              className="slider" 
              //onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}
-             onChange={(e: any) => this.onChange(e)}
-             //onChange={this.handleOnChange}
+             //onChange={(e: any) => this.onChange(e)}
+             onChange={this.handleOnChange}
           />
 
           <div className="value">&nbsp; {this.props.valor}{this.props.formato}</div>
