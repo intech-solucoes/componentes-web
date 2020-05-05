@@ -55,7 +55,7 @@ margin-bottom: 2rem;
 
 export class Slider extends Component<Props> {
     static defaultProps = {
-        cor: "#3D9970",
+        cor: "#33C3F0;",
         step: 1,
         valor: 0,
     }
@@ -89,7 +89,7 @@ export class Slider extends Component<Props> {
                     onChange={this.onChange}
                 />
 
-                <div className="value">&nbsp; {this.props.max}{this.props.formato}</div>
+                <div className="value">&nbsp; {this.props.valor}{this.props.formato}</div>
             </Styles>
         );
     }

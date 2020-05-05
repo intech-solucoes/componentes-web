@@ -15,6 +15,7 @@ import { Pesquisa } from "./componentes/Pesquisa";
 import { Tabela, ColunaTabela } from "./componentes/Tabela";
 import { FormEdicao, ModoFormEdicao } from "./componentes/FormEdicao";
 import { CampoValor, PosicaoTituloCampoValor } from "./componentes/CampoValor";
+import { Slider } from "./componentes/Slider";
 import { Roteador, Rota } from "./Rotas";
 import { SideMenuPage } from "./SideMenu";
-export { Col, Row, Box, Alerta, TipoAlerta, Card, CampoTexto, PosicaoTituloCampoTexto, CampoEstatico, TipoCampoEstatico, PosicaoTituloCampoEstatico, Combo, Dropdown, Form, Botao, TipoBotao, TamanhoBotao, BotaoSwitch, Modal, Pesquisa, Tabela, ColunaTabela, FormEdicao, ModoFormEdicao, Rota, Roteador, SideMenuPage, CampoValor, PosicaoTituloCampoValor, };
+export { Col, Row, Box, Alerta, TipoAlerta, Card, CampoTexto, PosicaoTituloCampoTexto, CampoEstatico, TipoCampoEstatico, PosicaoTituloCampoEstatico, Combo, Dropdown, Form, Botao, TipoBotao, TamanhoBotao, BotaoSwitch, Modal, Pesquisa, Tabela, ColunaTabela, FormEdicao, ModoFormEdicao, Rota, Roteador, SideMenuPage, CampoValor, PosicaoTituloCampoValor, Slider, };

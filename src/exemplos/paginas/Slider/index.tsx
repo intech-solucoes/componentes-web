@@ -41,8 +41,20 @@ export class SliderPage extends React.Component<Props, State> {
         });
 
         await this.setState({
-            vlMaximoMorte: 1 - this.state.vlInvalidez
+            vlMaximoMorte: this.arredondar(1 - this.state.vlInvalidez, 2,0)
         });
+    }
+
+    arredondar(valor: number, casas: number, ceilOrFloor: number): number {
+        var arredondado = valor;
+        arredondado *= (Math.pow(10, casas));
+        if (ceilOrFloor == 0) {
+            arredondado = Math.ceil(arredondado);
+        } else {
+            arredondado = Math.floor(arredondado);
+        }
+        arredondado /= (Math.pow(10, casas));
+        return arredondado;
     }
 
     render() {
