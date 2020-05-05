@@ -14,8 +14,6 @@ interface Props {
     valMax: number;
     step: number;
     formato: string;
-
-    onChange?: Function;
     parent?: any;
 }
 
@@ -67,19 +65,19 @@ export class ISlider extends Component<Props> {
         valor: 0,
     }
   
-    //handleOnChange = (e) => this.setState({ value: e.target.value })    
-    handleOnChange = (e) => this.setState({ value: e.target.value, valor: e.target.value })
-    
+    handleOnChange = (e) => this.setState({ value: e.target.value })    
+
     onChange = async (e: Event) => {
-        var target = e.target;
+       // var target = e.target;
 
         await handleFieldChange(this.props.contexto, e, this.props.parent);
 
-        if (this.props.onChange) {
-            await this.props.onChange(target);
-        }
+        // if (this.props.onChange) {
+        //     await this.props.onChange(target);
+        // }
     }
-  
+
+
     render() {
       return (
         <Styles cor={this.props.cor}>
@@ -90,11 +88,12 @@ export class ISlider extends Component<Props> {
              min={this.props.valMin} 
              max={this.props.valMax} 
              step={this.props.step}
-             //value={this.props.valor} 
-             value={this.state.value} 
+             value={this.props.valor} 
+             //value={this.state.value} 
              className="slider" 
-             //onChange={(e: any) => this.onChange(e)}
-             onChange={this.handleOnChange}
+             //onChange={(e) => handleFieldChange(this.props.contexto, e, this.props.parent)}
+             onChange={(e: any) => this.onChange(e)}
+             //onChange={this.handleOnChange}
           />
 
           <div className="value">&nbsp; {this.props.valor}{this.props.formato}</div>

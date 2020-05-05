@@ -71,6 +71,7 @@ export class ComboPage extends React.Component<Props, State> {
                             Valor: {this.state.objeto}
                         </Box>
                     </Col>
+
                 </Row>
             </MasterPage>
         );
