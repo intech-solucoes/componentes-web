@@ -17,6 +17,7 @@ import { ComboPage } from "./paginas/Combo";
 import { CampoTextoPage } from "./paginas/CampoTexto";
 import { ExemploPassoaPasso } from "./paginas/PassoaPasso";
 import { CampoValorPage } from "./paginas/CampoValor";
+import { SliderPage } from "./paginas/Slider";
 
 const rotas: Array<Rota> = [
     {
@@ -133,6 +134,8 @@ const rotas: Array<Rota> = [
         icone: "fas fa-layer-group",
         caminho: "/combo",
         componente: (routeProps: RouteProps) => <ComboPage {...routeProps} />,
+        mostrarMenu: true,
+        caminhoExato: true        
     },
     {
         id: "passoapasso",
@@ -149,6 +152,15 @@ const rotas: Array<Rota> = [
         icone: "fas fa-layer-group",
         caminho: "/campovalor",
         componente: (routeProps: RouteProps) => <CampoValorPage {...routeProps} />,
+        mostrarMenu: true,
+        caminhoExato: true
+    },
+    {
+        id: "slider",
+        titulo: "Slider",
+        icone: "fas fa-layer-group",
+        caminho: "/slider",
+        componente: (routeProps: RouteProps) => <SliderPage {...routeProps} />,
         mostrarMenu: true,
         caminhoExato: true
     }
