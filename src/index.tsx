@@ -16,6 +16,8 @@ import { Tabela, ColunaTabela } from "./componentes/Tabela";
 import { FormEdicao, ModoFormEdicao } from "./componentes/FormEdicao";
 import { CampoValor, PosicaoTituloCampoValor } from "./componentes/CampoValor";
 
+import { ISlider } from "./componentes/ISlider";
+
 import { Roteador, Rota } from "./Rotas";
 
 import { SideMenuPage } from "./SideMenu";
@@ -41,7 +43,7 @@ export {
     SideMenuPage,
 
     CampoValor, PosicaoTituloCampoValor,
-    //PassoWizard
+    ISlider,
 };
 
 try {
