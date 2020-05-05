@@ -16,7 +16,7 @@ import { Tabela, ColunaTabela } from "./componentes/Tabela";
 import { FormEdicao, ModoFormEdicao } from "./componentes/FormEdicao";
 import { CampoValor, PosicaoTituloCampoValor } from "./componentes/CampoValor";
 
-import { ISlider } from "./componentes/ISlider";
+import { Slider } from "./componentes/Slider";
 
 import { Roteador, Rota } from "./Rotas";
 
@@ -32,7 +32,7 @@ export {
     CampoEstatico, TipoCampoEstatico, PosicaoTituloCampoEstatico,
     Combo,
     Dropdown,
-    Form, 
+    Form,
     Botao, TipoBotao, TamanhoBotao,
     BotaoSwitch,
     Modal,
@@ -43,7 +43,7 @@ export {
     SideMenuPage,
 
     CampoValor, PosicaoTituloCampoValor,
-    ISlider,
+    Slider,
 };
 
 try {
@@ -51,10 +51,10 @@ try {
     var ReactDOM = require("react-dom");
 
     var Rotas = require("./exemplos/Rotas");
-    
-    if(Rotas) {
+
+    if (Rotas) {
         Rotas = Rotas.default;
         ReactDOM.render(
             <Roteador rotas={Rotas} />, document.getElementById('root'));
     }
-} catch(e) {}
+} catch (e) { }
