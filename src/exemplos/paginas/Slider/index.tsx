@@ -48,6 +48,7 @@ export class SliderPage extends React.Component<Props, State> {
                                      <h5 className={"mt-5 mb-2"}>Beneficio de Risco - Invalizez Participante</h5>
                                      <div>
                                          <ISlider 
+                                            contexto={this}
                                             id={"id1"}
                                             nome={"riscoInvalidez"}
                                             valMin={this.state.vlMinimoInvalidez} 
@@ -55,7 +56,6 @@ export class SliderPage extends React.Component<Props, State> {
                                             step={0.1} 
                                             formato={"%"} 
                                             valor={this.state.vlInvalidez}
-                                            onChange={this.state.vlInvalidez}
                                         />
                                         {"Valor retorno: "}{this.state.vlInvalidez} { "%"}
                                      </div>
@@ -67,6 +67,7 @@ export class SliderPage extends React.Component<Props, State> {
                                     <h5 className={"mt-5 mb-2"}>Beneficio de Risco - Morte Participante</h5>
                                     <div>
                                     <ISlider 
+                                        contexto={this}
                                         id={"id1"}
                                         nome={"riscoMorte"}
                                         valMin={this.state.vlMinimoMorte} 
@@ -74,7 +75,6 @@ export class SliderPage extends React.Component<Props, State> {
                                         step={0.1} 
                                         formato={"%"} 
                                         valor={this.state.vlMorte}                                        
-                                        onChange={this.state.vlMorte}                                        
                                     />
                                         {"Valor retorno: "}{this.state.vlMorte} { "%"}
                                     </div>
