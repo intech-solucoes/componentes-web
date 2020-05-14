@@ -16,9 +16,11 @@ import { Tabela, ColunaTabela } from "./componentes/Tabela";
 import { FormEdicao, ModoFormEdicao } from "./componentes/FormEdicao";
 import { CampoValor, PosicaoTituloCampoValor } from "./componentes/CampoValor";
 import { Slider } from "./componentes/Slider";
+import Abas from './componentes/Abas/Abas';
+import AbasLista from './componentes/Abas/AbasLista';
 import { Roteador, Rota } from "./Rotas";
 import { SideMenuPage } from "./SideMenu";
-export { Col, Row, Box, Alerta, TipoAlerta, Card, CampoTexto, PosicaoTituloCampoTexto, CampoEstatico, TipoCampoEstatico, PosicaoTituloCampoEstatico, Combo, Dropdown, Form, Botao, TipoBotao, TamanhoBotao, BotaoSwitch, Modal, Pesquisa, Tabela, ColunaTabela, FormEdicao, ModoFormEdicao, Rota, Roteador, SideMenuPage, CampoValor, PosicaoTituloCampoValor, Slider, };
+export { Col, Row, Box, Alerta, TipoAlerta, Card, CampoTexto, PosicaoTituloCampoTexto, CampoEstatico, TipoCampoEstatico, PosicaoTituloCampoEstatico, Combo, Dropdown, Form, Botao, TipoBotao, TamanhoBotao, BotaoSwitch, Modal, Pesquisa, Tabela, ColunaTabela, FormEdicao, ModoFormEdicao, Rota, Roteador, SideMenuPage, Abas, AbasLista, CampoValor, PosicaoTituloCampoValor, Slider, };
 try {
     var React = require("react");
     var ReactDOM = require("react-dom");
@@ -27,5 +29,6 @@ try {
         Rotas = Rotas.default;
         ReactDOM.render(React.createElement(Roteador, { rotas: Rotas }), document.getElementById('root'));
     }
+    ;
 }
 catch (e) { }

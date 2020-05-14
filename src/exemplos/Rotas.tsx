@@ -18,6 +18,7 @@ import { CampoTextoPage } from "./paginas/CampoTexto";
 import { ExemploPassoaPasso } from "./paginas/PassoaPasso";
 import { CampoValorPage } from "./paginas/CampoValor";
 import { SliderPage } from "./paginas/Slider";
+import { TabsPage } from "./paginas/Tabs";
 
 const rotas: Array<Rota> = [
     {
@@ -161,6 +162,15 @@ const rotas: Array<Rota> = [
         icone: "fas fa-layer-group",
         caminho: "/slider",
         componente: (routeProps: RouteProps) => <SliderPage {...routeProps} />,
+        mostrarMenu: true,
+        caminhoExato: true
+    },
+    {
+        id: "tabs",
+        titulo: "Tabs",
+        icone: "fas fa-layer-group",
+        caminho: "/tab",
+        componente: (routeProps: RouteProps) => <TabsPage {...routeProps} />,
         mostrarMenu: true,
         caminhoExato: true
     }

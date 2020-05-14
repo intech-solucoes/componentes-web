@@ -9,6 +9,8 @@ interface Props {
 
 export default class Roteador extends React.Component<Props> {
     render() {
+
+
         return (
             <HashRouter>
 				<Switch>

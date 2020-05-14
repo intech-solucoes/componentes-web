@@ -49,8 +49,8 @@ margin-bottom: 2rem;
       appearance: none;
       ${props => sliderThumbStyles(props)}      
     }
+}
 
-  }
 `;
 
 export class Slider extends Component<Props> {

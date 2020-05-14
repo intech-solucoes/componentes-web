@@ -53,7 +53,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 import React, { Component } from 'react';
 import styled from 'styled-components';
 var sliderThumbStyles = function (props) { return ("\n  width: 15px;\n  height: 15px;\n  background: " + props.cor + ";\n  background-color: " + props.cor + ";\n  cursor: pointer;\n  -webkit-transition: .2s;\n  transition: opacity .2s;\n  border-radius: 10px;\n"); };
-var Styles = styled.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n\ndisplay: flex;\nalign-items: center;\ncolor: #888;\nmargin-top: 2rem;\nmargin-bottom: 2rem;\n\n.slider {\n    flex: 1;\n    -webkit-appearance: none;\n    width: 100%;\n    height: 10px;\n    border-radius: 5px;\n    background: #efefef;\n    outline: none;\n\n    &::-webkit-slider-thumb {\n      -webkit-appearance: none;\n      appearance: none;\n      ", "      \n    }\n\n  }\n"], ["\n\ndisplay: flex;\nalign-items: center;\ncolor: #888;\nmargin-top: 2rem;\nmargin-bottom: 2rem;\n\n.slider {\n    flex: 1;\n    -webkit-appearance: none;\n    width: 100%;\n    height: 10px;\n    border-radius: 5px;\n    background: #efefef;\n    outline: none;\n\n    &::-webkit-slider-thumb {\n      -webkit-appearance: none;\n      appearance: none;\n      ", "      \n    }\n\n  }\n"])), function (props) { return sliderThumbStyles(props); });
+var Styles = styled.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n\ndisplay: flex;\nalign-items: center;\ncolor: #888;\nmargin-top: 2rem;\nmargin-bottom: 2rem;\n\n.slider {\n    flex: 1;\n    -webkit-appearance: none;\n    width: 100%;\n    height: 10px;\n    border-radius: 5px;\n    background: #efefef;\n    outline: none;\n\n    &::-webkit-slider-thumb {\n      -webkit-appearance: none;\n      appearance: none;\n      ", "      \n    }\n}\n\n"], ["\n\ndisplay: flex;\nalign-items: center;\ncolor: #888;\nmargin-top: 2rem;\nmargin-bottom: 2rem;\n\n.slider {\n    flex: 1;\n    -webkit-appearance: none;\n    width: 100%;\n    height: 10px;\n    border-radius: 5px;\n    background: #efefef;\n    outline: none;\n\n    &::-webkit-slider-thumb {\n      -webkit-appearance: none;\n      appearance: none;\n      ", "      \n    }\n}\n\n"])), function (props) { return sliderThumbStyles(props); });
 var Slider = /** @class */ (function (_super) {
     __extends(Slider, _super);
     function Slider() {
@@ -91,7 +91,7 @@ var Slider = /** @class */ (function (_super) {
                 this.props.formato)));
     };
     Slider.defaultProps = {
-        cor: "#3D9970",
+        cor: "#33C3F0;",
         step: 1,
         valor: 0,
     };

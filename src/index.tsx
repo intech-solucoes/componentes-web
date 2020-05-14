@@ -17,6 +17,8 @@ import { FormEdicao, ModoFormEdicao } from "./componentes/FormEdicao";
 import { CampoValor, PosicaoTituloCampoValor } from "./componentes/CampoValor";
 
 import { Slider } from "./componentes/Slider";
+import Abas from './componentes/Abas/Abas';
+import AbasLista from './componentes/Abas/AbasLista';
 
 import { Roteador, Rota } from "./Rotas";
 
@@ -37,11 +39,9 @@ export {
     BotaoSwitch,
     Modal,
     Pesquisa, Tabela, ColunaTabela, FormEdicao, ModoFormEdicao,
-
     Rota, Roteador,
-
     SideMenuPage,
-
+    Abas, AbasLista,
     CampoValor, PosicaoTituloCampoValor,
     Slider,
 };
@@ -56,5 +56,5 @@ try {
         Rotas = Rotas.default;
         ReactDOM.render(
             <Roteador rotas={Rotas} />, document.getElementById('root'));
-    }
+    };
 } catch (e) { }
