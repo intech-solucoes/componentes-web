@@ -50,6 +50,11 @@ import React, { Component } from "react";
 import { handleFieldChange } from "@intechprev/react-lib";
 import { Botao, Col, Row } from "..";
 import classNames from 'classnames';
+export var PosicaoTituloCombo;
+(function (PosicaoTituloCombo) {
+    PosicaoTituloCombo[PosicaoTituloCombo["esquerda"] = 0] = "esquerda";
+    PosicaoTituloCombo[PosicaoTituloCombo["cima"] = 1] = "cima";
+})(PosicaoTituloCombo || (PosicaoTituloCombo = {}));
 var Combo = /** @class */ (function (_super) {
     __extends(Combo, _super);
     function Combo() {
@@ -153,12 +158,13 @@ var Combo = /** @class */ (function (_super) {
     Combo.prototype.renderLabel = function () {
         var _a;
         if (this.props.label) {
+            var cima = this.props.posicaoTitulo === PosicaoTituloCombo.cima;
             var labelClasses = classNames((_a = {
-                    "col-lg-2": !this.props.tamanhoLabel
+                    "col-lg-2": !this.props.tamanhoLabel && !cima
                 },
-                _a["col-" + this.props.tamanhoLabel] = this.props.tamanhoLabel,
+                _a["col-" + this.props.tamanhoLabel] = this.props.tamanhoLabel && !cima,
                 _a["col-md-12"] = !this.props.tamanhoLabel,
-                _a["text-lg-right"] = true,
+                _a["text-lg-right"] = !cima,
                 _a["col-form-label"] = true,
                 _a));
             return (React.createElement("div", { className: labelClasses },
@@ -177,7 +183,8 @@ var Combo = /** @class */ (function (_super) {
     Combo.defaultProps = {
         padrao: "",
         opcoes: [],
-        labelOculta: false
+        labelOculta: false,
+        posicao: PosicaoTituloCombo.esquerda
     };
     return Combo;
 }(Component));

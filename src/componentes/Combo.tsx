@@ -4,6 +4,11 @@ import { handleFieldChange } from "@intechprev/react-lib";
 import { Botao, Col, Row } from "..";
 import classNames from 'classnames';
 
+export enum PosicaoTituloCombo {
+    esquerda,
+    cima
+}
+
 interface Props {
     contexto: any;
     nome: string;
@@ -29,6 +34,7 @@ interface Props {
     botaoEsquerda?: boolean;
     tituloBotao?: string;
     labelOculta?: boolean;
+    posicaoTitulo?: PosicaoTituloCombo;
 }
 
 export class Combo extends Component<Props> {
@@ -39,7 +45,8 @@ export class Combo extends Component<Props> {
     static defaultProps = {
         padrao: "",
         opcoes: [],
-        labelOculta: false
+        labelOculta: false,
+        posicao: PosicaoTituloCombo.esquerda
     }
 
     componentDidMount = async () => {
@@ -155,12 +162,15 @@ export class Combo extends Component<Props> {
     }
 
     renderLabel() {
+
         if (this.props.label) {
+            const cima = this.props.posicaoTitulo === PosicaoTituloCombo.cima;
+
             const labelClasses = classNames({
-                "col-lg-2": !this.props.tamanhoLabel,
-                [`col-${this.props.tamanhoLabel}`]: this.props.tamanhoLabel,
+                "col-lg-2": !this.props.tamanhoLabel && !cima,
+                [`col-${this.props.tamanhoLabel}`]: this.props.tamanhoLabel && !cima,
                 "col-md-12": !this.props.tamanhoLabel,
-                "text-lg-right": true,
+                "text-lg-right": !cima,
                 "col-form-label": true
             });
 

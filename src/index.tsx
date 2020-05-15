@@ -5,7 +5,7 @@ import { Alerta, TipoAlerta } from "./componentes/Alerta";
 import { Card } from "./componentes/Card";
 import { CampoTexto, PosicaoTituloCampoTexto } from "./componentes/CampoTexto";
 import { CampoEstatico, TipoCampoEstatico, PosicaoTituloCampoEstatico } from "./componentes/CampoEstatico";
-import { Combo } from "./componentes/Combo";
+import { Combo, PosicaoTituloCombo } from "./componentes/Combo";
 import { Dropdown } from "./componentes/Dropdown";
 import { Form } from "./componentes/Form";
 import { Botao, TipoBotao, TamanhoBotao } from "./componentes/Botao";
@@ -32,7 +32,7 @@ export {
     Card,
     CampoTexto, PosicaoTituloCampoTexto,
     CampoEstatico, TipoCampoEstatico, PosicaoTituloCampoEstatico,
-    Combo,
+    Combo, PosicaoTituloCombo,
     Dropdown,
     Form,
     Botao, TipoBotao, TamanhoBotao,

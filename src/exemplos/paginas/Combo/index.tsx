@@ -1,6 +1,6 @@
 import React from "react";
 import MasterPage from "../../MasterPage";
-import { Row, Col, Box, Combo } from "../../..";
+import { Row, Col, Box, Combo, PosicaoTituloCombo } from "../../..";
 
 interface Props { }
 
@@ -53,6 +53,7 @@ export class ComboPage extends React.Component<Props, State> {
                                 valor={this.state.data}
                                 padrao={this.state.data}
                                 opcoes={datas}
+                                posicaoTitulo={PosicaoTituloCombo.cima}
                             />
                             <br/>
                             Valor: {this.state.data}

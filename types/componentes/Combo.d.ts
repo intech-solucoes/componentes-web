@@ -1,4 +1,8 @@
 import { Component } from "react";
+export declare enum PosicaoTituloCombo {
+    esquerda = 0,
+    cima = 1
+}
 interface Props {
     contexto: any;
     nome: string;
@@ -22,6 +26,7 @@ interface Props {
     botaoEsquerda?: boolean;
     tituloBotao?: string;
     labelOculta?: boolean;
+    posicaoTitulo?: PosicaoTituloCombo;
 }
 export declare class Combo extends Component<Props> {
     erros: Array<string>;
@@ -30,6 +35,7 @@ export declare class Combo extends Component<Props> {
         padrao: string;
         opcoes: any[];
         labelOculta: boolean;
+        posicao: PosicaoTituloCombo;
     };
     componentDidMount: () => Promise<void>;
     validar: () => void;

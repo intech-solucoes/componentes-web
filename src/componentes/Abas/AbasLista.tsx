@@ -19,9 +19,9 @@ function AbasLista({
     linkClassName = ''
 }: Props) {
     return (
-            <li className="tab nav-item">
+            <li className="nav-item">
                 <a
-                    className={`tab-link ${linkClassName} ${isActive ? 'active' : ''}`}
+                    className={`nav-link ${linkClassName} ${isActive ? 'active' : ''}`}
                     onClick={(event) => {
                         event.preventDefault();
                         onClick(tabIndex);
@@ -33,6 +33,22 @@ function AbasLista({
                 </a>
             </li>
     );
+
+    // return (
+    //     <li className="tab nav-item">
+    //         <a
+    //             className={`tab-link ${linkClassName} ${isActive ? 'active' : ''}`}
+    //             onClick={(event) => {
+    //                 event.preventDefault();
+    //                 onClick(tabIndex);
+    //             }}
+    //         >
+    //             <i className={`tab-icon ${iconClassName}`} />
+    //             {"  "}
+    //             {linkClassName}
+    //         </a>
+    //     </li>
+    // );
 }
 
 export default AbasLista;

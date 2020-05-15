@@ -12,7 +12,6 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import * as React from 'react';
-//import './Abas.css'
 var Abas = /** @class */ (function (_super) {
     __extends(Abas, _super);
     function Abas(props, context) {
@@ -53,9 +52,21 @@ var Abas = /** @class */ (function (_super) {
         }
     };
     Abas.prototype.render = function () {
-        return (React.createElement("div", { className: "tabs" },
-            React.createElement("ul", { className: "tabs-nav nav nav-tabs " }, this.renderChildrenWithTabsApiAsProps()),
-            React.createElement("div", { className: "tabs-active-content" }, this.renderActiveTabContent())));
+        return (React.createElement("div", { className: "card card-outline card-outline-tabs" },
+            React.createElement("div", { className: "card-header" },
+                React.createElement("ul", { className: "nav nav-tabs" }, this.renderChildrenWithTabsApiAsProps())),
+            React.createElement("div", { className: "card-body" },
+                React.createElement("div", { className: "tab-content" }, this.renderActiveTabContent()))));
+        // return (
+        //     <div className="tabs">
+        //         <ul className="tabs-nav nav nav-tabs ">
+        //             {this.renderChildrenWithTabsApiAsProps()}
+        //         </ul>
+        //         <div className="tabs-active-content">
+        //             {this.renderActiveTabContent()}
+        //         </div>
+        //     </div>
+        // );
     };
     return Abas;
 }(React.Component));

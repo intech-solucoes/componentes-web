@@ -1,5 +1,4 @@
 import * as React from 'react';
-//import './Abas.css'
 
 export default class Abas extends React.Component<any, any> {
 
@@ -43,14 +42,30 @@ export default class Abas extends React.Component<any, any> {
 
     render() {
         return (
-            <div className="tabs">
-                <ul className="tabs-nav nav nav-tabs ">
-                    {this.renderChildrenWithTabsApiAsProps()}
-                </ul>
-                <div className="tabs-active-content">
-                    {this.renderActiveTabContent()}
+            <div className="card card-outline card-outline-tabs">
+                <div className="card-header">
+                    <ul className="nav nav-tabs">
+                        {this.renderChildrenWithTabsApiAsProps()}
+                    </ul>
+                </div>
+
+                <div className="card-body">
+                    <div className="tab-content">
+                        {this.renderActiveTabContent()}
+                    </div>
                 </div>
             </div>
         );
+
+        // return (
+        //     <div className="tabs">
+        //         <ul className="tabs-nav nav nav-tabs ">
+        //             {this.renderChildrenWithTabsApiAsProps()}
+        //         </ul>
+        //         <div className="tabs-active-content">
+        //             {this.renderActiveTabContent()}
+        //         </div>
+        //     </div>
+        // );
     }
 }
