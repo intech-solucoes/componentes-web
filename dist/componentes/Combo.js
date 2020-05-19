@@ -89,7 +89,7 @@ var Combo = /** @class */ (function (_super) {
             _this.erros = [];
             if (_this.props.obrigatorio) {
                 if (typeof _this.props.valor === "undefined" || _this.props.valor === "")
-                    _this.erros.push("Campo \"" + _this.props.label + "\" obrigat\u00F3rio.");
+                    _this.erros.push("Campo \"" + _this.props.titulo + "\" obrigat\u00F3rio.");
             }
             _this.possuiErros = _this.erros.length > 0;
         };
@@ -157,27 +157,27 @@ var Combo = /** @class */ (function (_super) {
     };
     Combo.prototype.renderLabel = function () {
         var _a;
-        if (this.props.label) {
+        if (this.props.titulo) {
             var cima = this.props.posicaoTitulo === PosicaoTituloCombo.cima;
             var labelClasses = classNames((_a = {
-                    "col-lg-2": !this.props.tamanhoLabel && !cima
+                    "col-lg-2": !this.props.tamanhoTitulo && !cima
                 },
-                _a["col-" + this.props.tamanhoLabel] = this.props.tamanhoLabel && !cima,
-                _a["col-md-12"] = !this.props.tamanhoLabel,
+                _a["col-" + this.props.tamanhoTitulo] = this.props.tamanhoTitulo && !cima,
+                _a["col-md-12"] = !this.props.tamanhoTitulo,
                 _a["text-lg-right"] = !cima,
                 _a["col-form-label"] = true,
-                _a));
+                _a), this.props.tituloClassName);
             return (React.createElement("div", { className: labelClasses },
                 React.createElement("b", null,
                     React.createElement("label", { htmlFor: this.props.nome },
-                        this.props.label,
+                        this.props.titulo,
                         this.props.obrigatorio && " *"))));
         }
         return null;
     };
     Combo.prototype.render = function () {
         return (React.createElement(Row, { formGroup: true },
-            !this.props.labelOculta && this.renderLabel(),
+            !this.props.tituloOculto && this.renderLabel(),
             this.renderCombo()));
     };
     Combo.defaultProps = {

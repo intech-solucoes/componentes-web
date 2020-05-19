@@ -10,12 +10,12 @@ interface Props {
     nomeMembro?: string;
     valorMembro?: string;
     desabilitado?: boolean;
-    label?: string;
+    titulo?: string;
     obrigatorio?: boolean;
     onChange?: Function;
     opcoes?: Array<any>;
     padrao?: any;
-    tamanhoLabel?: string;
+    tamanhoTitulo?: string;
     tamanhoCampo?: string;
     textoVazio?: string;
     parent?: any;
@@ -25,8 +25,9 @@ interface Props {
     onBotaoClick?: any;
     botaoEsquerda?: boolean;
     tituloBotao?: string;
-    labelOculta?: boolean;
+    tituloOculto?: boolean;
     posicaoTitulo?: PosicaoTituloCombo;
+    tituloClassName?: any;
 }
 export declare class Combo extends Component<Props> {
     erros: Array<string>;

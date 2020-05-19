@@ -17,12 +17,12 @@ interface Props {
     nomeMembro?: string;
     valorMembro?: string;
     desabilitado?: boolean;
-    label?: string;
+    titulo?: string;
     obrigatorio?: boolean;
     onChange?: Function;
     opcoes?: Array<any>;
     padrao?: any;
-    tamanhoLabel?: string;
+    tamanhoTitulo?: string;
     tamanhoCampo?: string;
     textoVazio?: string;
     parent?: any;
@@ -33,8 +33,9 @@ interface Props {
     onBotaoClick?: any;
     botaoEsquerda?: boolean;
     tituloBotao?: string;
-    labelOculta?: boolean;
+    tituloOculto?: boolean;
     posicaoTitulo?: PosicaoTituloCombo;
+    tituloClassName?: any;
 }
 
 export class Combo extends Component<Props> {
@@ -73,7 +74,7 @@ export class Combo extends Component<Props> {
 
         if (this.props.obrigatorio) {
             if (typeof this.props.valor === "undefined" || this.props.valor === "")
-                this.erros.push(`Campo "${this.props.label}" obrigatório.`);
+                this.erros.push(`Campo "${this.props.titulo}" obrigatório.`);
         }
 
         this.possuiErros = this.erros.length > 0;
@@ -163,22 +164,22 @@ export class Combo extends Component<Props> {
 
     renderLabel() {
 
-        if (this.props.label) {
+        if (this.props.titulo) {
             const cima = this.props.posicaoTitulo === PosicaoTituloCombo.cima;
 
             const labelClasses = classNames({
-                "col-lg-2": !this.props.tamanhoLabel && !cima,
-                [`col-${this.props.tamanhoLabel}`]: this.props.tamanhoLabel && !cima,
-                "col-md-12": !this.props.tamanhoLabel,
+                "col-lg-2": !this.props.tamanhoTitulo && !cima,
+                [`col-${this.props.tamanhoTitulo}`]: this.props.tamanhoTitulo && !cima,
+                "col-md-12": !this.props.tamanhoTitulo,
                 "text-lg-right": !cima,
-                "col-form-label": true
-            });
+                "col-form-label": true,
+            }, this.props.tituloClassName);
 
             return (
                 <div className={labelClasses}>
                     <b>
                         <label htmlFor={this.props.nome}>
-                            {this.props.label}
+                            {this.props.titulo}
                             {this.props.obrigatorio && " *"}
                         </label>
                     </b>
@@ -191,7 +192,7 @@ export class Combo extends Component<Props> {
     render() {
         return (
             <Row formGroup>
-                {!this.props.labelOculta && this.renderLabel()}
+                {!this.props.tituloOculto && this.renderLabel()}
                 {this.renderCombo()}
             </Row>
         );

@@ -30,27 +30,33 @@ export class Form extends React.Component<Props, State> {
     validarRecursivo = (children: any) => {
         if(children.forEach) {
             children.forEach((campo: any) => {
-                if(this.filtroCampos(campo)) {
-                    // Valida cada campo
-                    if (campo.props.obrigatorio) {
-                        if (typeof (campo.props.valor) === "undefined" || campo.props.valor === "")
-                            this.erros.push(`Campo "${campo.props.label || campo.props.placeholder}" obrigatório.`);
-                    }
-
-                    /*
-                        Essa série de ifs existe mais para organização.
-                        Como o Combo não tem props como "tipo" os ifs
-                        internos do validarCampoTexto não são executados.
-                        Em tese.
-                    */
-                    if (campo.type === CampoTexto) {
-                        this.validarCampoTexto(campo);
-                    }
-                } else {
-                    if(campo.props && campo.props.children && campo.props.children.length > 0)
-                        this.validarRecursivo(campo.props.children);
-                }
+                this.validarCampo(campo);
             });
+        } else {
+            this.validarCampo(children);
+        }
+    }
+
+    validarCampo = (campo: any) => {
+        if(this.filtroCampos(campo)) {
+            // Valida cada campo
+            if (campo.props.obrigatorio) {
+                if (typeof (campo.props.valor) === "undefined" || campo.props.valor === "")
+                    this.erros.push(`Campo "${campo.props.titulo || campo.props.placeholder}" obrigatório.`);
+            }
+
+            /*
+                Essa série de ifs existe mais para organização.
+                Como o Combo não tem props como "tipo" os ifs
+                internos do validarCampoTexto não são executados.
+                Em tese.
+            */
+            if (campo.type === CampoTexto) {
+                this.validarCampoTexto(campo);
+            }
+        } else {
+            if(campo.props && campo.props.children)
+                this.validarRecursivo(campo.props.children);
         }
     }
 
@@ -78,7 +84,7 @@ export class Form extends React.Component<Props, State> {
             valorSemMascara = campo.props.valor.split("_").join("");
 
         if (campo.props.min && valorSemMascara.length < campo.props.min)
-            this.erros.push(`Campo "${campo.props.label || campo.props.placeholder}" inválido.`);
+            this.erros.push(`Campo "${campo.props.titulo || campo.props.placeholder}" inválido.`);
     }
 
     render() {

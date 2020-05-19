@@ -62,27 +62,33 @@ var Form = /** @class */ (function (_super) {
         _this.validarRecursivo = function (children) {
             if (children.forEach) {
                 children.forEach(function (campo) {
-                    if (_this.filtroCampos(campo)) {
-                        // Valida cada campo
-                        if (campo.props.obrigatorio) {
-                            if (typeof (campo.props.valor) === "undefined" || campo.props.valor === "")
-                                _this.erros.push("Campo \"" + (campo.props.label || campo.props.placeholder) + "\" obrigat\u00F3rio.");
-                        }
-                        /*
-                            Essa série de ifs existe mais para organização.
-                            Como o Combo não tem props como "tipo" os ifs
-                            internos do validarCampoTexto não são executados.
-                            Em tese.
-                        */
-                        if (campo.type === CampoTexto) {
-                            _this.validarCampoTexto(campo);
-                        }
-                    }
-                    else {
-                        if (campo.props && campo.props.children && campo.props.children.length > 0)
-                            _this.validarRecursivo(campo.props.children);
-                    }
+                    _this.validarCampo(campo);
                 });
+            }
+            else {
+                _this.validarCampo(children);
+            }
+        };
+        _this.validarCampo = function (campo) {
+            if (_this.filtroCampos(campo)) {
+                // Valida cada campo
+                if (campo.props.obrigatorio) {
+                    if (typeof (campo.props.valor) === "undefined" || campo.props.valor === "")
+                        _this.erros.push("Campo \"" + (campo.props.titulo || campo.props.placeholder) + "\" obrigat\u00F3rio.");
+                }
+                /*
+                    Essa série de ifs existe mais para organização.
+                    Como o Combo não tem props como "tipo" os ifs
+                    internos do validarCampoTexto não são executados.
+                    Em tese.
+                */
+                if (campo.type === CampoTexto) {
+                    _this.validarCampoTexto(campo);
+                }
+            }
+            else {
+                if (campo.props && campo.props.children)
+                    _this.validarRecursivo(campo.props.children);
             }
         };
         _this.validar = function () { return __awaiter(_this, void 0, void 0, function () {
@@ -112,7 +118,7 @@ var Form = /** @class */ (function (_super) {
             if (campo.props.valor !== undefined)
                 valorSemMascara = campo.props.valor.split("_").join("");
             if (campo.props.min && valorSemMascara.length < campo.props.min)
-                _this.erros.push("Campo \"" + (campo.props.label || campo.props.placeholder) + "\" inv\u00E1lido.");
+                _this.erros.push("Campo \"" + (campo.props.titulo || campo.props.placeholder) + "\" inv\u00E1lido.");
         };
         return _this;
     }

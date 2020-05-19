@@ -21,7 +21,7 @@ export enum PosicaoTituloCampoTexto {
 interface Props {
     contexto: any;
     nome: string;
-    valor: string | number;
+    valor: string | number | Date;
 
     titulo?: string;
     desabilitado?: boolean;

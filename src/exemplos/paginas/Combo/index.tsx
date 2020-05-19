@@ -67,6 +67,7 @@ export class ComboPage extends React.Component<Props, State> {
                                 valor={this.state.objeto}
                                 padrao={this.state.objeto}
                                 opcoes={objetos}
+                                tituloClassName={"text-primary"}
                             />
                             <br/>
                             Valor: {this.state.objeto}

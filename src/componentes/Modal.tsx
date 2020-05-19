@@ -55,7 +55,7 @@ export class Modal extends React.Component<Props> {
                 }}
                 className={`modal`}
             >
-                <div className={"modal-dialog"}>
+                <div className={"modal-dialog modal-dialog-scrollable"}>
                     <div className={"modal-content"}>
                         {this.renderHeader()}
                         {this.renderBody()}

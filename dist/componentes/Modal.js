@@ -34,7 +34,7 @@ var Modal = /** @class */ (function (_super) {
         return (React.createElement("div", { style: {
                 display: this.props.visivel ? "block" : "none"
             }, className: "modal" },
-            React.createElement("div", { className: "modal-dialog" },
+            React.createElement("div", { className: "modal-dialog modal-dialog-scrollable" },
                 React.createElement("div", { className: "modal-content" },
                     this.renderHeader(),
                     this.renderBody(),

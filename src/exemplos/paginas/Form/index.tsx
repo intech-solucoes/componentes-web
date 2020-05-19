@@ -11,7 +11,7 @@ interface State {
     campoDataObrigatoria: string;
     comboNaoObrigatorio: string;
     comboObrigatorio: string;
-    comboObrigatorioSemLabel: string;
+    comboObrigatorioSemtitulo: string;
 }
 
 const opcoesSimNao = [
@@ -37,7 +37,7 @@ export class FormPage extends React.Component<Props, State> {
         campoDataObrigatoria: "1991-01-01",
         comboNaoObrigatorio: "",
         comboObrigatorio: "false",
-        comboObrigatorioSemLabel: ""
+        comboObrigatorioSemtitulo: ""
     }
 
     validar = async() => {
@@ -66,16 +66,16 @@ export class FormPage extends React.Component<Props, State> {
 
                             <CampoTexto
                                 contexto={this}
-                                tamanhoLabel={"lg-3"}
-                                label={"Campo Não Obrigatório"}
+                                tamanhoTitulo={"lg-3"}
+                                titulo={"Campo Não Obrigatório"}
                                 nome={"campoNaoObrigatorio"}
                                 valor={this.state.campoNaoObrigatorio}
                             />
                             
                             <CampoTexto
                                 contexto={this}
-                                tamanhoLabel={"lg-3"}
-                                label={"Campo Obrigatório"}
+                                tamanhoTitulo={"lg-3"}
+                                titulo={"Campo Obrigatório"}
                                 nome={"campoObrigatorio"}
                                 valor={this.state.campoObrigatorio}
                                 obrigatorio
@@ -83,18 +83,18 @@ export class FormPage extends React.Component<Props, State> {
 
                             <CampoTexto
                                 contexto={this}
-                                tamanhoLabel={"lg-3"}
+                                tamanhoTitulo={"lg-3"}
                                 tipo={"date"}
-                                label={"Campo Data Não Obrigatória"}
+                                titulo={"Campo Data Não Obrigatória"}
                                 nome={"campoDataNaoObrigatoria"}
                                 valor={this.state.campoDataNaoObrigatoria}
                             />
 
                             <CampoTexto
                                 contexto={this}
-                                tamanhoLabel={"lg-3"}
+                                tamanhoTitulo={"lg-3"}
                                 tipo={"date"}
-                                label={"Campo Data Obrigatória"}
+                                titulo={"Campo Data Obrigatória"}
                                 nome={"campoDataObrigatoria"}
                                 valor={this.state.campoDataObrigatoria}
                                 obrigatorio
@@ -102,8 +102,8 @@ export class FormPage extends React.Component<Props, State> {
 
                             <Combo
                                 contexto={this}
-                                tamanhoLabel={"lg-3"}
-                                label={"Combo Não Obrigatório"}
+                                tamanhoTitulo={"lg-3"}
+                                titulo={"Combo Não Obrigatório"}
                                 nome={"comboNaoObrigatorio"}
                                 valor={this.state.comboNaoObrigatorio}
                                 textoVazio={"Selecione uma opção..."}
@@ -114,8 +114,8 @@ export class FormPage extends React.Component<Props, State> {
 
                             <Combo
                                 contexto={this}
-                                tamanhoLabel={"lg-3"}
-                                label={"Combo Obrigatório"}
+                                tamanhoTitulo={"lg-3"}
+                                titulo={"Combo Obrigatório"}
                                 nome={"comboObrigatorio"}
                                 opcoes={opcoesSimNao}
                                 valor={this.state.comboObrigatorio}
@@ -127,15 +127,15 @@ export class FormPage extends React.Component<Props, State> {
                             
                             <Combo
                                 contexto={this}
-                                label={"Combo obrigatório sem label"}
-                                nome={"comboObrigatorioSemLabel"}
-                                valor={this.state.comboObrigatorioSemLabel}
-                                textoVazio={"Combo obrigatório sem label..."}
+                                titulo={"Combo obrigatório sem titulo"}
+                                nome={"comboObrigatorioSemtitulo"}
+                                valor={this.state.comboObrigatorioSemtitulo}
+                                textoVazio={"Combo obrigatório sem titulo..."}
                                 opcoes={opcoesSimNao}
                                 nomeMembro={"name"}
                                 valorMembro={"value"}
                                 obrigatorio
-                                labelOculta
+                                tituloOculto
                             />
                         </div>
 
