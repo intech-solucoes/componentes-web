@@ -46,7 +46,7 @@ export class Botao extends React.Component<Props, State> {
 
     static defaultProps = {
         tipo: TipoBotao.primary,
-        tamanho: TamanhoBotao.normal
+        tamanho: TamanhoBotao.normal,
     }
 
     constructor(props: Props) {
@@ -78,7 +78,8 @@ export class Botao extends React.Component<Props, State> {
             {[`btn-outline-${this.props.tipo}`]: this.props.outline },
             { "btn-block": this.props.block },
             this.props.tamanho,
-            this.props.className);
+            this.props.className,
+        );
 
         var classesIcone = classNames(
             "fas",
@@ -87,11 +88,13 @@ export class Botao extends React.Component<Props, State> {
             this.props.icone
         );
 
+
         return (
             <button type={type} 
                 className={classes} onClick={this.onClick} 
                 style={this.props.style}
-                disabled={this.props.desativado || this.state.carregando}
+                disabled={this.props.desativado || this.state.carregando
+                }
             >
                 {!this.state.carregando && 
                     <span>
@@ -106,6 +109,7 @@ export class Botao extends React.Component<Props, State> {
 
                 {this.state.carregando &&
                     <i className="fas fa-spinner fa-pulse"></i>}
+
             </button>
         )
     }

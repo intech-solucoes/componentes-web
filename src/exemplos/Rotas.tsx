@@ -19,6 +19,7 @@ import { ExemploPassoaPasso } from "./paginas/PassoaPasso";
 import { CampoValorPage } from "./paginas/CampoValor";
 import { SliderPage } from "./paginas/Slider";
 import { TabsPage } from "./paginas/Tabs";
+import { ToasterPage } from "./paginas/Toaster";
 
 const rotas: Array<Rota> = [
     {
@@ -171,6 +172,16 @@ const rotas: Array<Rota> = [
         icone: "fas fa-layer-group",
         caminho: "/tab",
         componente: (routeProps: RouteProps) => <TabsPage {...routeProps} />,
+        mostrarMenu: true,
+        caminhoExato: true
+    },
+
+    {
+        id: "toaster",
+        titulo: "Toaster",
+        icone: "fas fa-layer-group",
+        caminho: "/toaster",
+        componente: (routeProps: RouteProps) => <ToasterPage {...routeProps} />,
         mostrarMenu: true,
         caminhoExato: true
     }

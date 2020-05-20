@@ -43,7 +43,7 @@ export {
     SideMenuPage,
     Abas, AbasLista,
     CampoValor, PosicaoTituloCampoValor,
-    Slider,
+    Slider
 };
 
 try {
