@@ -10,6 +10,7 @@ import { DropdownPage } from "./paginas/Dropdown";
 import { CampoEstaticoPage } from "./paginas/CampoEstatico";
 import { InputGroupPage } from "./paginas/InputGroup";
 import { ModalPage } from "./paginas/Modal";
+import { ModalConfirmaPage } from "./paginas/ModalConfirma";
 import { FormPage } from "./paginas/Form";
 import { TabelaPage } from "./paginas/Tabela";
 import { CrudPage } from "./paginas/Crud";
@@ -100,6 +101,15 @@ const rotas: Array<Rota> = [
         icone: "fas fa-layer-group",
         caminho: "/modal",
         componente: (routeProps: RouteProps) => <ModalPage {...routeProps} />,
+        mostrarMenu: true,
+        caminhoExato: true
+    },
+    {
+        id: "modalconfirma",
+        titulo: "Modal Confirma",
+        icone: "fas fa-layer-group",
+        caminho: "/modalconfirma",
+        componente: (routeProps: RouteProps) => <ModalConfirmaPage {...routeProps} />,
         mostrarMenu: true,
         caminhoExato: true
     },

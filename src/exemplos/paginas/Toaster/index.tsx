@@ -58,7 +58,7 @@ export class ToasterPage extends React.Component<Props, State> {
                             <Botao className={"mr-1 mb-1"} titulo={"Sucesso"} tipo={TipoBotao.success} onClick={this.mensagemSucesso} />
                             <Botao className={"mr-1 mb-1"} titulo={"Atenção"} tipo={TipoBotao.warning} onClick={this.mensagemAtencao} />
                             <Botao className={"mr-1 mb-1"} titulo={"Erro"}  tipo={TipoBotao.danger} onClick={this.mensagemErro} />
-                            <Botao className={"mr-1 mb-1"} titulo={"Informação"} tipo={TipoBotao.info} onClick={this.mensagemAtencao} />
+                            <Botao className={"mr-1 mb-1"} titulo={"Informação"} tipo={TipoBotao.info} onClick={this.mensagemInfo} />
                         </Box>
                     </Col>
 

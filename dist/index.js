@@ -11,6 +11,7 @@ import { Form } from "./componentes/Form";
 import { Botao, TipoBotao, TamanhoBotao } from "./componentes/Botao";
 import { BotaoSwitch } from "./componentes/BotaoSwitch";
 import { Modal } from "./componentes/Modal";
+import { ModalConfirma } from "./componentes/ModalConfirma";
 import { Pesquisa } from "./componentes/Pesquisa";
 import { Tabela, ColunaTabela } from "./componentes/Tabela";
 import { FormEdicao, ModoFormEdicao } from "./componentes/FormEdicao";
@@ -20,7 +21,7 @@ import Abas from './componentes/Abas/Abas';
 import AbasLista from './componentes/Abas/AbasLista';
 import { Roteador, Rota } from "./Rotas";
 import { SideMenuPage } from "./SideMenu";
-export { Col, Row, Box, Alerta, TipoAlerta, Card, CampoTexto, PosicaoTituloCampoTexto, CampoEstatico, TipoCampoEstatico, PosicaoTituloCampoEstatico, Combo, PosicaoTituloCombo, Dropdown, Form, Botao, TipoBotao, TamanhoBotao, BotaoSwitch, Modal, Pesquisa, Tabela, ColunaTabela, FormEdicao, ModoFormEdicao, Rota, Roteador, SideMenuPage, Abas, AbasLista, CampoValor, PosicaoTituloCampoValor, Slider, };
+export { Col, Row, Box, Alerta, TipoAlerta, Card, CampoTexto, PosicaoTituloCampoTexto, CampoEstatico, TipoCampoEstatico, PosicaoTituloCampoEstatico, Combo, PosicaoTituloCombo, Dropdown, Form, Botao, TipoBotao, TamanhoBotao, BotaoSwitch, Modal, Pesquisa, Tabela, ColunaTabela, FormEdicao, ModoFormEdicao, Rota, Roteador, SideMenuPage, Abas, AbasLista, CampoValor, PosicaoTituloCampoValor, Slider, ModalConfirma };
 try {
     var React = require("react");
     var ReactDOM = require("react-dom");

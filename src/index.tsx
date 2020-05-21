@@ -11,6 +11,7 @@ import { Form } from "./componentes/Form";
 import { Botao, TipoBotao, TamanhoBotao } from "./componentes/Botao";
 import { BotaoSwitch } from "./componentes/BotaoSwitch";
 import { Modal } from "./componentes/Modal";
+import { ModalConfirma } from "./componentes/ModalConfirma";
 import { Pesquisa } from "./componentes/Pesquisa";
 import { Tabela, ColunaTabela } from "./componentes/Tabela";
 import { FormEdicao, ModoFormEdicao } from "./componentes/FormEdicao";
@@ -43,7 +44,8 @@ export {
     SideMenuPage,
     Abas, AbasLista,
     CampoValor, PosicaoTituloCampoValor,
-    Slider
+    Slider,
+    ModalConfirma
 };
 
 try {

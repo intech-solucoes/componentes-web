@@ -116,7 +116,7 @@ var Botao = /** @class */ (function (_super) {
     };
     Botao.defaultProps = {
         tipo: TipoBotao.primary,
-        tamanho: TamanhoBotao.normal
+        tamanho: TamanhoBotao.normal,
     };
     return Botao;
 }(React.Component));
