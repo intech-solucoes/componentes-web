@@ -75,7 +75,7 @@ var SideMenuPage = /** @class */ (function (_super) {
                     this.props.rotas.map(function (rota, index) {
                         if (rota.mostrarMenu) {
                             return (React.createElement("li", { key: index },
-                                React.createElement(Link, { to: rota.caminho },
+                                React.createElement(Link, { to: rota.caminhoLink || rota.caminho },
                                     React.createElement("i", { className: rota.icone }),
                                     rota.titulo)));
                         }

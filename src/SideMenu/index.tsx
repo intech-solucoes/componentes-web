@@ -95,7 +95,7 @@ export class SideMenuPage extends React.Component<Props, State> {
                                 if (rota.mostrarMenu) {
                                     return (
                                         <li key={index}>
-                                            <Link to={rota.caminho}>
+                                            <Link to={rota.caminhoLink || rota.caminho}>
                                                 <i className={rota.icone}></i>
                                                 {rota.titulo}
                                             </Link>
