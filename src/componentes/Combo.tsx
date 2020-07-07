@@ -186,6 +186,7 @@ export class Combo extends Component<Props> {
                 </div>
             );
         }
+        
         return null;
     }
 
