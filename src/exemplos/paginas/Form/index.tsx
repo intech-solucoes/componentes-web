@@ -1,12 +1,25 @@
-import React from "react";
+import React, { Children } from "react";
 import MasterPage from "../../MasterPage";
-import { Alerta, TipoAlerta, Row, Col, Box, Form, CampoTexto, Botao, Combo } from "../../..";
+import {
+    Alerta,
+    TipoAlerta,
+    Row,
+    Col,
+    Box,
+    Form,
+    CampoTexto,
+    Botao,
+    Combo,
+    CampoValor,
+} from "../../..";
 
-interface Props { }
+interface Props {}
 
 interface State {
+    valorObrigatorio: number;
     campoNaoObrigatorio: string;
     campoObrigatorio: string;
+    campoObrigatorioComponente: string;
     campoDataNaoObrigatoria: string;
     campoDataObrigatoria: string;
     comboNaoObrigatorio: string;
@@ -17,38 +30,54 @@ interface State {
 const opcoesSimNao = [
     {
         name: "Não",
-        value: "false"
+        value: "false",
     },
     {
         name: "Sim",
-        value: "true"
-    }
+        value: "true",
+    },
 ];
 
-export class FormPage extends React.Component<Props, State> {
+const ComponenteTeste: React.FC = () => {
+    return (
+        <>
+            <CampoTexto
+                contexto={this}
+                tamanhoTitulo={"lg-3"}
+                titulo={"Campo Obrigatório dentro de componente"}
+                nome={"campoObrigatorioComponente"}
+                valor={this.state.campoObrigatorioComponente}
+                obrigatorio
+            />
+        </>
+    );
+}
 
+export class FormPage extends React.Component<Props, State> {
     private alert = React.createRef<Alerta>();
     private form = React.createRef<Form>();
-    
+
     state: State = {
+        valorObrigatorio: null,
         campoNaoObrigatorio: "",
         campoObrigatorio: "1",
+        campoObrigatorioComponente: "",
         campoDataNaoObrigatoria: "",
         campoDataObrigatoria: "1991-01-01",
         comboNaoObrigatorio: "",
         comboObrigatorio: "false",
-        comboObrigatorioSemtitulo: ""
-    }
+        comboObrigatorioSemtitulo: "",
+    };
 
-    validar = async() => {
+    validar = async () => {
         await this.alert.current.limparErros();
         await this.form.current.validar();
 
         if (this.form.current.state.valido) {
             alert("Campos válidos!");
         }
-    }
-    
+    };
+
     render() {
         return (
             <MasterPage {...this.props}>
@@ -56,13 +85,26 @@ export class FormPage extends React.Component<Props, State> {
                     <Form ref={this.form}>
                         <div>
                             <p>
-                                São consideradas pessoas politicamente expostas detentores de mandatos eletivos, ocupantes de cargo do Poder Executivo da União, 
-                                Membros do Conselho Nacional de Justiça/STF e dos Tribunais Superiores (dentre outros).
+                                São consideradas pessoas politicamente expostas
+                                detentores de mandatos eletivos, ocupantes de
+                                cargo do Poder Executivo da União, Membros do
+                                Conselho Nacional de Justiça/STF e dos Tribunais
+                                Superiores (dentre outros).
                             </p>
 
                             <p>
-                                Considera-se enquadrado como PESSOA POLITICAMENTE EXPOSTA* (IN PREVIC 18/2014)?
+                                Considera-se enquadrado como PESSOA
+                                POLITICAMENTE EXPOSTA* (IN PREVIC 18/2014)?
                             </p>
+
+                            <CampoValor
+                                contexto={this}
+                                tamanhoTitulo={"lg-3"}
+                                titulo={"Valor Obrigatório"}
+                                nome={"valorObrigatorio"}
+                                valor={this.state.valorObrigatorio}
+                                obrigatorio
+                            />
 
                             <CampoTexto
                                 contexto={this}
@@ -71,7 +113,7 @@ export class FormPage extends React.Component<Props, State> {
                                 nome={"campoNaoObrigatorio"}
                                 valor={this.state.campoNaoObrigatorio}
                             />
-                            
+
                             <CampoTexto
                                 contexto={this}
                                 tamanhoTitulo={"lg-3"}
@@ -124,7 +166,7 @@ export class FormPage extends React.Component<Props, State> {
                                 valorMembro={"value"}
                                 obrigatorio
                             />
-                            
+
                             <Combo
                                 contexto={this}
                                 titulo={"Combo obrigatório sem titulo"}
@@ -137,10 +179,20 @@ export class FormPage extends React.Component<Props, State> {
                                 obrigatorio
                                 tituloOculto
                             />
+
+                            <ComponenteTeste />
                         </div>
 
-                        <Alerta ref={this.alert} tipo={TipoAlerta.danger} padraoFormulario />
-                        <Botao onClick={this.validar} titulo={"Continuar"} submit />
+                        <Alerta
+                            ref={this.alert}
+                            tipo={TipoAlerta.danger}
+                            padraoFormulario
+                        />
+                        <Botao
+                            onClick={this.validar}
+                            titulo={"Continuar"}
+                            submit
+                        />
                     </Form>
                 </Box>
             </MasterPage>

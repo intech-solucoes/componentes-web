@@ -11,12 +11,12 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import React from 'react';
+import React from "react";
 import moment from "moment";
 import { handleFieldChange } from "@intechprev/react-lib";
 import { Botao, Col, Row } from "..";
-import classNames from 'classnames';
-import NumberFormat from 'react-number-format';
+import classNames from "classnames";
+import NumberFormat from "react-number-format";
 // var InputMask = require('react-input-mask');
 export var PosicaoBotaoGrupo;
 (function (PosicaoBotaoGrupo) {
@@ -67,58 +67,74 @@ var CampoValor = /** @class */ (function (_super) {
                 className: "form-control", placeholder: this.props.placeholder, id: this.props.nome, disabled: this.props.desabilitado }));
         }
         else if (this.props.textarea) {
-            return (React.createElement("textarea", { name: this.props.nome, id: this.props.nome, className: "form-control", rows: this.props.rows, placeholder: this.props.placeholder, value: valor, maxLength: this.props.max, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); }, onBlur: this.props.onBlur }));
+            return (React.createElement("textarea", { name: this.props.nome, id: this.props.nome, className: "form-control", rows: this.props.rows, placeholder: this.props.placeholder, value: valor, maxLength: this.props.max, onChange: function (e) {
+                    return handleFieldChange(_this.props.contexto, e, _this.props.parent);
+                }, onBlur: this.props.onBlur }));
         }
-        else if (this.props.tipo === 'percentual') {
+        else if (this.props.tipo === "percentual") {
             return (React.createElement(NumberFormat, { name: this.props.nome, id: this.props.nome, className: "form-control", decimalSeparator: ",", decimalScale: 2, 
                 // prefix="%"
-                fixedDecimalScale: true, disabled: this.props.desabilitado, value: valor, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); }, onBlur: this.props.onBlur }));
+                fixedDecimalScale: true, disabled: this.props.desabilitado, value: valor, onChange: function (e) {
+                    return handleFieldChange(_this.props.contexto, e, _this.props.parent);
+                }, onBlur: this.props.onBlur }));
         }
-        else if (this.props.tipo === 'data') {
-            return (React.createElement(NumberFormat, { name: this.props.nome, id: this.props.nome, className: "form-control", format: "##/##/####", mask: "_", disabled: this.props.desabilitado, value: valor, onBlur: this.props.onBlur, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); } }));
+        else if (this.props.tipo === "data") {
+            return (React.createElement(NumberFormat, { name: this.props.nome, id: this.props.nome, className: "form-control", format: "##/##/####", mask: "_", disabled: this.props.desabilitado, value: valor, onBlur: this.props.onBlur, onChange: function (e) {
+                    return handleFieldChange(_this.props.contexto, e, _this.props.parent);
+                } }));
         }
-        else if (this.props.tipo === 'mesano') {
-            return (React.createElement(NumberFormat, { name: this.props.nome, id: this.props.nome, className: "form-control", format: "##/####", mask: "_", disabled: this.props.desabilitado, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); }, value: valor, onBlur: this.props.onBlur }));
+        else if (this.props.tipo === "mesano") {
+            return (React.createElement(NumberFormat, { name: this.props.nome, id: this.props.nome, className: "form-control", format: "##/####", mask: "_", disabled: this.props.desabilitado, onChange: function (e) {
+                    return handleFieldChange(_this.props.contexto, e, _this.props.parent);
+                }, value: valor, onBlur: this.props.onBlur }));
         }
-        else if (this.props.tipo === 'telefone') {
-            return (React.createElement(NumberFormat, { name: this.props.nome, id: this.props.nome, className: "form-control", format: "(###) #####-####", mask: "_", disabled: this.props.desabilitado, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); }, value: valor, onBlur: this.props.onBlur }));
+        else if (this.props.tipo === "telefone") {
+            return (React.createElement(NumberFormat, { name: this.props.nome, id: this.props.nome, className: "form-control", format: "(###) #####-####", mask: "_", disabled: this.props.desabilitado, onChange: function (e) {
+                    return handleFieldChange(_this.props.contexto, e, _this.props.parent);
+                }, value: valor, onBlur: this.props.onBlur }));
         }
-        else if (this.props.tipo === 'dinheiro') {
-            return (React.createElement(NumberFormat, { name: this.props.nome, id: this.props.nome, className: "form-control", thousandSeparator: true, 
-                //decimalSeparator=","
-                decimalScale: 2, allowedDecimalSeparators: [","], 
+        else if (this.props.tipo === "dinheiro") {
+            return (React.createElement(NumberFormat, { name: this.props.nome, id: this.props.nome, className: "form-control", thousandSeparator: ".", decimalSeparator: ",", decimalScale: 2, allowedDecimalSeparators: [","], 
                 //prefix="R$"
-                fixedDecimalScale: true, disabled: this.props.desabilitado, value: valor, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); }, onBlur: this.props.onBlur }));
+                fixedDecimalScale: true, disabled: this.props.desabilitado, value: valor, onChange: function (e) {
+                    return handleFieldChange(_this.props.contexto, e, _this.props.parent);
+                }, onBlur: this.props.onBlur }));
         }
         else {
             return (React.createElement(NumberFormat, { name: this.props.nome, id: this.props.nome, className: "form-control", thousandSeparator: true, 
                 //decimalSeparator=","
                 decimalScale: 2, allowedDecimalSeparators: [","], 
                 //prefix="R$"
-                fixedDecimalScale: true, disabled: this.props.desabilitado, value: valor, onChange: function (e) { return handleFieldChange(_this.props.contexto, e, _this.props.parent); }, onBlur: this.props.onBlur }));
+                fixedDecimalScale: true, disabled: this.props.desabilitado, value: valor, onChange: function (e) {
+                    return handleFieldChange(_this.props.contexto, e, _this.props.parent);
+                }, onBlur: this.props.onBlur }));
         }
     };
     CampoValor.prototype.renderCampo = function () {
         var _a;
         var campoClasses = classNames((_a = {
-                "col": !this.props.tamanhoCampo
+                col: !this.props.tamanhoCampo
             },
             _a["col-" + this.props.tamanhoCampo] = this.props.tamanhoCampo,
             _a));
         var valor = "";
         if (this.props.valor)
             valor = this.props.valor.toString();
-        if (typeof (valor) === typeof (Date))
+        if (typeof valor === typeof Date)
             valor = moment(valor).format("dd/MM/yyyy");
         if (this.props.grupo) {
             return (React.createElement(Col, { className: campoClasses },
                 React.createElement("div", { className: "input-group" },
-                    this.props.botaoEsquerda ? this.renderBotaoGrupo() : null,
+                    this.props.botaoEsquerda
+                        ? this.renderBotaoGrupo()
+                        : null,
                     this.mountCampo(valor),
-                    this.props.botaoEsquerda ? null : this.renderBotaoGrupo())));
+                    this.props.botaoEsquerda
+                        ? null
+                        : this.renderBotaoGrupo())));
         }
         else {
-            return (React.createElement(Col, { className: campoClasses }, this.mountCampo(valor)));
+            return React.createElement(Col, { className: campoClasses }, this.mountCampo(valor));
         }
     };
     CampoValor.prototype.render = function () {
@@ -127,7 +143,7 @@ var CampoValor = /** @class */ (function (_super) {
             this.renderCampo()));
     };
     CampoValor.defaultProps = {
-        posicao: PosicaoTituloCampoValor.esquerda
+        posicao: PosicaoTituloCampoValor.esquerda,
     };
     return CampoValor;
 }(React.Component));

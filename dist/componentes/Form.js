@@ -46,9 +46,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import React from 'react';
+import React from "react";
 import { validarEmail } from "@intechprev/react-lib";
-import { CampoTexto, Combo, Alerta } from '..';
+import { CampoTexto, Combo, Alerta, CampoValor } from "..";
 var Form = /** @class */ (function (_super) {
     __extends(Form, _super);
     function Form() {
@@ -56,7 +56,7 @@ var Form = /** @class */ (function (_super) {
         _this.erros = [];
         //valido: boolean = true;
         _this.state = {
-            valido: true
+            valido: true,
         };
         _this.isValido = function () { return _this.state.valido; };
         _this.validarRecursivo = function (children) {
@@ -73,7 +73,10 @@ var Form = /** @class */ (function (_super) {
             if (_this.filtroCampos(campo)) {
                 // Valida cada campo
                 if (campo.props.obrigatorio) {
-                    if (typeof (campo.props.valor) === "undefined" || campo.props.valor === "")
+                    console.log(campo);
+                    if (!campo.props.valor ||
+                        typeof campo.props.valor === "undefined" ||
+                        campo.props.valor === "")
                         _this.erros.push("Campo \"" + (campo.props.titulo || campo.props.placeholder) + "\" obrigat\u00F3rio.");
                 }
                 /*
@@ -82,7 +85,7 @@ var Form = /** @class */ (function (_super) {
                     internos do validarCampoTexto não são executados.
                     Em tese.
                 */
-                if (campo.type === CampoTexto) {
+                if (campo.type === CampoTexto || campo.type === CampoValor) {
                     _this.validarCampoTexto(campo);
                 }
             }
@@ -101,7 +104,7 @@ var Form = /** @class */ (function (_super) {
                             this.validarRecursivo(this.props.children);
                         //this.valido = this.erros.length === 0;
                         return [4 /*yield*/, this.setState({
-                                valido: this.erros.length === 0
+                                valido: this.erros.length === 0,
                             })];
                     case 1:
                         //this.valido = this.erros.length === 0;
@@ -115,15 +118,17 @@ var Form = /** @class */ (function (_super) {
             if (campo.props.tipo === "email" && validarEmail(campo.props.valor))
                 _this.erros.push("E-mail inválido.");
             var valorSemMascara = null;
-            if (campo.props.valor !== undefined)
-                valorSemMascara = campo.props.valor.split("_").join("");
+            if (campo.props.valor)
+                valorSemMascara = campo.props.valor.toString().split("_").join("");
             if (campo.props.min && valorSemMascara.length < campo.props.min)
                 _this.erros.push("Campo \"" + (campo.props.titulo || campo.props.placeholder) + "\" inv\u00E1lido.");
         };
         return _this;
     }
     Form.prototype.filtroCampos = function (campo) {
-        return (campo.type === CampoTexto || campo.type === Combo);
+        return (campo.type === CampoTexto ||
+            campo.type === CampoValor ||
+            campo.type === Combo);
     };
     Form.prototype.render = function () {
         var _this = this;
@@ -134,7 +139,7 @@ var Form = /** @class */ (function (_super) {
             else
                 return child;
         });
-        return (React.createElement("form", null, childrenWithProps));
+        return React.createElement("form", null, childrenWithProps);
     };
     return Form;
 }(React.Component));

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 export declare enum PosicaoBotaoGrupo {
     direita = "direita",
     esquerda = "esquerda"
