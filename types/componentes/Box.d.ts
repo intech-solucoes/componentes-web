@@ -1,6 +1,7 @@
 import React from "react";
 interface Props {
     titulo?: string;
+    subtitulo?: string;
     label?: string;
     renderRow: boolean;
     children: React.ReactNode;
