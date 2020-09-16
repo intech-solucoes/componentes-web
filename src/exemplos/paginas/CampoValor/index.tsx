@@ -12,6 +12,7 @@ interface State {
     valor4: number;
     valor5: number;
     valor6: number;
+    valorStr: string;
     separadorDecimal: string;
     separadorMilhar: string;
     prefixo: string;
@@ -31,6 +32,7 @@ export class CampoValorPage extends React.Component<Props, State> {
         valor4: 28022020,
         valor5: 282020,
         valor6: 61981045713,
+        valorStr: '6500.89',
 
         valorFormatado: 0,
 
@@ -122,7 +124,7 @@ export class CampoValorPage extends React.Component<Props, State> {
                             <code>{"<CampoValor titulo={\"Titulo\"} valor={\"Valor\"} />"}</code>
                             <input
                                 type="Text"
-                                // value={this.state.valor1}
+                                value={this.state.valor1}
                                 onChange={this.mascaraValor}
                             />
 
@@ -142,8 +144,8 @@ export class CampoValorPage extends React.Component<Props, State> {
                             <code>{"<CampoValor titulo={\"Titulo\"} valor={\"Valor\"} />"}</code>
                             <CampoValor contexto={this}
                                 titulo={"Titulo"}
-                                valor={this.state.valor1}
-                                nome={"valor1"}
+                                valor={this.state.valorStr}
+                                nome={"valorStr"}
                                 posicaoTitulo={PosicaoTituloCampoValor.esquerda}
                             />
 

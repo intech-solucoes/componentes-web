@@ -61,13 +61,8 @@ var CampoValor = /** @class */ (function (_super) {
     };
     CampoValor.prototype.mountCampo = function (valor) {
         var _this = this;
-        if (this.props.desabilitado) {
-            return (React.createElement("input", { type: "text", name: this.props.nome, value: valor, 
-                // maxLength={this.props.max}
-                className: "form-control", placeholder: this.props.placeholder, id: this.props.nome, disabled: this.props.desabilitado }));
-        }
-        else if (this.props.textarea) {
-            return (React.createElement("textarea", { name: this.props.nome, id: this.props.nome, className: "form-control", rows: this.props.rows, placeholder: this.props.placeholder, value: valor, maxLength: this.props.max, onChange: function (e) {
+        if (this.props.textarea) {
+            return (React.createElement("textarea", { name: this.props.nome, id: this.props.nome, className: "form-control", rows: this.props.rows, placeholder: this.props.placeholder, value: valor, maxLength: this.props.max, disabled: this.props.desabilitado, onChange: function (e) {
                     return handleFieldChange(_this.props.contexto, e, _this.props.parent);
                 }, onBlur: this.props.onBlur }));
         }
@@ -96,16 +91,14 @@ var CampoValor = /** @class */ (function (_super) {
         else if (this.props.tipo === "dinheiro") {
             return (React.createElement(NumberFormat, { name: this.props.nome, id: this.props.nome, className: "form-control", thousandSeparator: ".", decimalSeparator: ",", decimalScale: 2, allowedDecimalSeparators: [","], 
                 //prefix="R$"
-                fixedDecimalScale: true, disabled: this.props.desabilitado, value: valor, onChange: function (e) {
+                fixedDecimalScale: true, disabled: this.props.desabilitado, value: Number(valor), onChange: function (e) {
                     return handleFieldChange(_this.props.contexto, e, _this.props.parent);
                 }, onBlur: this.props.onBlur }));
         }
         else {
-            return (React.createElement(NumberFormat, { name: this.props.nome, id: this.props.nome, className: "form-control", thousandSeparator: true, 
-                //decimalSeparator=","
-                decimalScale: 2, allowedDecimalSeparators: [","], 
+            return (React.createElement(NumberFormat, { name: this.props.nome, id: this.props.nome, className: "form-control", thousandSeparator: ".", decimalSeparator: ",", allowedDecimalSeparators: ["."], 
                 //prefix="R$"
-                fixedDecimalScale: true, disabled: this.props.desabilitado, value: valor, onChange: function (e) {
+                decimalScale: 2, fixedDecimalScale: true, disabled: this.props.desabilitado, value: Number(valor), onChange: function (e) {
                     return handleFieldChange(_this.props.contexto, e, _this.props.parent);
                 }, onBlur: this.props.onBlur }));
         }
@@ -125,13 +118,9 @@ var CampoValor = /** @class */ (function (_super) {
         if (this.props.grupo) {
             return (React.createElement(Col, { className: campoClasses },
                 React.createElement("div", { className: "input-group" },
-                    this.props.botaoEsquerda
-                        ? this.renderBotaoGrupo()
-                        : null,
+                    this.props.botaoEsquerda ? this.renderBotaoGrupo() : null,
                     this.mountCampo(valor),
-                    this.props.botaoEsquerda
-                        ? null
-                        : this.renderBotaoGrupo())));
+                    this.props.botaoEsquerda ? null : this.renderBotaoGrupo())));
         }
         else {
             return React.createElement(Col, { className: campoClasses }, this.mountCampo(valor));
