@@ -11,10 +11,10 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import React from 'react';
+import React from "react";
 import classNames from "classnames";
 import moment from "moment";
-import { Row } from '..';
+import { Row } from "..";
 export var TipoCampoEstatico;
 (function (TipoCampoEstatico) {
     TipoCampoEstatico[TipoCampoEstatico["texto"] = 0] = "texto";
@@ -39,20 +39,20 @@ var CampoEstatico = /** @class */ (function (_super) {
         if (this.props.tipo === TipoCampoEstatico.data)
             return moment(valor).format("DD/MM/YYYY");
         if (this.props.tipo === TipoCampoEstatico.dinheiro) {
-            if (valor === 'NaN' || valor === '')
-                valor = '0,00';
-            if (typeof (valor) === "string")
-                return "R$ " + parseFloat(valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            if (valor === "NaN" || valor === "")
+                valor = "0,00";
+            if (typeof valor === "string")
+                return "R$ " + parseFloat(valor).toLocaleString("pt-br", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             else
-                return "R$ " + valor.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                return "R$ " + valor.toLocaleString("pt-br", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
         if (this.props.tipo === TipoCampoEstatico.percentual) {
-            if (valor === 'NaN' || valor === '' || valor === undefined)
-                valor = '0,00';
-            if (typeof (valor) === "string")
-                return "% " + parseFloat(valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            if (valor === "NaN" || valor === "" || valor === undefined)
+                valor = "0,00";
+            if (typeof valor === "string")
+                return "% " + parseFloat(valor).toLocaleString("pt-br", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             else
-                return "% " + valor.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                return "% " + valor.toLocaleString("pt-br", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
         return valor;
     };
@@ -79,17 +79,17 @@ var CampoEstatico = /** @class */ (function (_super) {
     CampoEstatico.prototype.renderCampo = function () {
         var valor = this.parseValue();
         var labelClasses = classNames({
-            "col": this.props.titulo,
+            col: this.props.titulo,
             "form-control-plaintext": this.props.titulo,
             "align-self-center": this.props.titulo,
         });
-        return (React.createElement("label", { className: labelClasses }, valor));
+        return React.createElement("div", { dangerouslySetInnerHTML: { __html: valor.toString() }, className: labelClasses });
     };
     CampoEstatico.prototype.render = function () {
         var _a;
         var classes = classNames((_a = {
                 "form-group": true,
-                "col": !this.props.tamanhoCampo
+                col: !this.props.tamanhoCampo
             },
             _a["col-" + this.props.tamanhoCampo] = this.props.tamanhoCampo,
             _a));
@@ -105,7 +105,7 @@ var CampoEstatico = /** @class */ (function (_super) {
     };
     CampoEstatico.defaultProps = {
         tipo: TipoCampoEstatico.texto,
-        posicao: PosicaoTituloCampoEstatico.esquerda
+        posicao: PosicaoTituloCampoEstatico.esquerda,
     };
     return CampoEstatico;
 }(React.Component));

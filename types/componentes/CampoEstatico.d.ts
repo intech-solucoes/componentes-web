@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 export declare enum TipoCampoEstatico {
     texto = 0,
     dinheiro = 1,

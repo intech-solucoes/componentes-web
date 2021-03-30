@@ -98,7 +98,7 @@ var CampoValor = /** @class */ (function (_super) {
         else {
             return (React.createElement(NumberFormat, { name: this.props.nome, id: this.props.nome, className: "form-control", thousandSeparator: ".", decimalSeparator: ",", allowedDecimalSeparators: ["."], 
                 //prefix="R$"
-                decimalScale: 2, fixedDecimalScale: true, disabled: this.props.desabilitado, value: Number(valor), onChange: function (e) {
+                decimalScale: 2, fixedDecimalScale: true, disabled: this.props.desabilitado, value: valor, onChange: function (e) {
                     return handleFieldChange(_this.props.contexto, e, _this.props.parent);
                 }, onBlur: this.props.onBlur }));
         }

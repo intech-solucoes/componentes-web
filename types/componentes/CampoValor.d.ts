@@ -10,7 +10,7 @@ export declare enum PosicaoTituloCampoValor {
 interface Props {
     contexto: any;
     nome: string;
-    valor: number;
+    valor: number | string;
     titulo?: string;
     desabilitado?: boolean;
     mascara?: string;
